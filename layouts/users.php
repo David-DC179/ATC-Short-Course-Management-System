@@ -1,5 +1,7 @@
 <?php
-    require "../apps/sesseion.php";
+     session_start();
+     require "../function/login.php";
+     require "../apps/sesseion.php";
 ?>
 
 <!DOCTYPE html>
@@ -103,7 +105,7 @@
 
                                         <li>
                                             <div class="btn btn-outline-success px-3 mt-3" style=" border: 2px solid grey; padding: 10px;">
-                                                    <a href="../forms/user.php" class="nav-link align-middle px-0">
+                                                    <a href="../layouts/users.php" class="nav-link align-middle px-0">
                                                    <i class="fs-4  bi-table text-dark fw-bold" width="16" height="16"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">View Users</span>
                                                     </a>  
                                             </div> 

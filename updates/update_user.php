@@ -1,6 +1,10 @@
 <?php
-    require "../apps/sesseion.php";
+    session_start();
+    require "../function/login.php";
+   require "../apps/sesseion.php";
     require "../database/conncetion.php";
+
+
 
     if(isset($_GET['update'])){
         $id = $_GET['update'];
@@ -34,7 +38,7 @@
 
        
         if($query){
-            echo "safi sana";
+           header("location:../layouts/users.php");
         }
         else{
             echo "jaribu";
@@ -56,7 +60,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid col-md-12  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid col-md-12  mt-2 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
 <div class="">
     <div class="col-md-12 mt-2">

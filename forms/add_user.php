@@ -1,5 +1,8 @@
 <?php
-    require "../apps/sesseion.php";
+session_start();
+require "../function/login.php";
+require "../apps/sesseion.php";
+    require "../apps/adduser_logic.php";
 ?>
 
 <!DOCTYPE html>
@@ -154,23 +157,23 @@
 
           <h3>ADD NEW USER</h3>
                 <div class="ms-5">
+                    <form action="" method="post">
+
+                   
                    
                     <div class="-body">
                         
                         <div class="form-group col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="">First name</label>
-                                    <input type="text" placeholder="David " class="form-control">
+                                    <label for="">Full name</label>
+                                    <input type="text" placeholder="David "name ="name" class="form-control">
                                 </div>
                              
-                                <div class="col-md-4">
-                                    <label for="">Last name</label>
-                                    <input type="text" placeholder="Christpher" class="form-control">
-                                </div>
+                              
                                 <div class="col-md-4">
                                     <label for="">Username</label>
-                                    <input type="text" placeholder="Senior" class="form-control">
+                                    <input type="text" placeholder="Senior" name ="username" class="form-control">
                                 </div>
                             </div>
                             
@@ -188,7 +191,7 @@
                              
                                 <div class="col-md-4">
                                     <label for=""> Departiment</label>
-                                    <select name="" id="" class="form-control">
+                                    <select name="departiment" id="" class="form-control">
                                     <option value=""> Select Departiment</option>
                                     <option value="Single">ICT</option>
                                     <option value="Married">Mechanical</option>
@@ -198,7 +201,7 @@
 
                                 <div class="col-md-4">
                                     <label for=""> Roles</label>
-                                    <select name="" id="" class="form-control">
+                                    <select name="roles" id="" class="form-control">
                                     <option value=""> Choose Role</option>
                                     <option value="Administrator">Administrator</option>
                                     <option value="Coordinator">Coordinator</option>
@@ -209,7 +212,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for=""> Status</label>
-                                    <select name="" id="" class="form-control">
+                                    <select name="status" id="" class="form-control">
                                     <option value=""> Choose Status</option>
                                     <option value="Single">ACTIVE</option>
                                     <option value="Married">OFFLINE</option>
@@ -231,7 +234,7 @@
                                 <div class="col-md-4">
                                     <label for=""></label>
                                     <!-- <input type="button" value="Save" class="btn btn-info form-control"> -->
-                                    <button type="submit" class="btn btn-primary form-control">Save</button>
+                                    <button type="submit"name="submit" class="btn btn-primary form-control">Save</button>
 
                                 </div>
 
@@ -243,16 +246,11 @@
                             
                         </div>
                      
-                    
-                       
-                       
-                        
-                        <div class="form-group">
-                        <span></span>
-                          
-                        </div>
+          
                     </div>
-                </div>
+                </form>
+
+                
       
             </div> 
         </div>

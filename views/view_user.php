@@ -1,6 +1,9 @@
-<?php
-require "../database/conncetion.php";
+<?
+session_start();
+require "../function/login.php";
 require "../apps/sesseion.php";
+require "../database/conncetion.php";
+
 
 $select = "SELECT * FROM users";
 $result = mysqli_query($conn,$select);

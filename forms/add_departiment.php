@@ -1,6 +1,7 @@
 <?php
-    require "../apps/sesseion.php";
-?>
+session_start();
+require "../function/login.php";
+require "../apps/sesseion.php";?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

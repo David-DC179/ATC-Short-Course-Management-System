@@ -47,15 +47,15 @@ require "./database/conncetion.php";
                         header("location:./layouts/dashbord.php");
                     }
                     elseif($role =='Instructor' && $status == 'Active' ){
-                        array_push($errors, " Wew sio admini bhan");
+                        array_push($errors, " Instructor Dashbord on progress sorry!!");
 
                     }
                     elseif($role =='Accountant' && $status == 'Active' ){
-                        array_push($errors, " Wew sio admini bhan");
+                        array_push($errors, "Accoutant Dashbord on progress sorry!!");
 
                     }
                     elseif($role =='Rector' && $status == 'Active' ){
-                        array_push($errors, " Wew sio admini bhan");
+                        array_push($errors, " Rector Dashbord on progress sorry!!");
 
                     }
                     else{
