@@ -200,9 +200,24 @@
                                                     <td><?php echo $username ?></td>
                                                     <td><?php echo $departiment ?> </td>
                                                     <td><?php echo $role ?> </td>
-                                                    <td>
-                                                        <span class="badge bg-success">ACTIVE</span>
-                                                    </td>
+                                              
+                                                    
+                                                    <?php 
+                                                        if($status=='Active'){?>
+
+                                                            <td class="badge m-1 bg-success"><?php echo $status?> </td>
+                                                                    <?php
+
+                                                        }
+                                                        else if($status =='Offline'){?>
+                                                            <td class="badge m-1 bg-danger"> <?php echo $status?> </td>
+
+                                                    <?php }
+                                                    else{?>
+                                                                    <td class="badge m-1 bg-warning"> <?php echo $status?> </td>
+
+                                                    <?php  }
+                                                    ?>
                                             
                                                 </tr>
                                                 

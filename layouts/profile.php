@@ -120,13 +120,13 @@
                                         <td>Status:</td>
 
                                         <?php 
-                                            if($status='Active'){?>
+                                            if($status=='Active'){?>
 
                                                 <td class="badge m-1 bg-success"><?php echo $status?> </td>
                                                         <?php
 
                                             }
-                                             else if($status ='Offlile'){?>
+                                             else if($status =='Offlile'){?>
                                                 <td class="badge m-1 bg-danger"> Not Active </td>
 
                                            <?php }
