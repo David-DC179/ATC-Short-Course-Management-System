@@ -1,11 +1,53 @@
 <?php
     require "../apps/sesseion.php";
+    require "../database/conncetion.php";
+
+    if(isset($_GET['update'])){
+        $id = $_GET['update'];
+        $select = "SELECT * FROM users WHERE  id=$id";
+        $result = mysqli_query($conn,$select);
+
+        if(mysqli_num_rows($result)){
+            $users=mysqli_fetch_assoc($result);
+
+            $fullname= $users['name'];
+            $suzaname = $users['username'];
+            $depart = $users['departiment'];
+            $rolee = $users['role'];
+            $statas  = $users['status'];
+            
+
+        }
+     
+    }
+
+    if(isset($_POST['update'])){
+        $name = $_POST['name'];
+        $username =$_POST['username'];
+        $departiment = $_POST['departiment'];
+        $role = $_POST['role'];
+        $status = $_POST['status'];
+
+        // die($departiment.$role.$status);
+        $update = "UPDATE users SET name='$name', username='$username', departiment='$departiment', role ='$role', status='$status' WHERE id=$id";
+        $query= mysqli_query($conn,$update);
+
+       
+        if($query){
+            echo "safi sana";
+        }
+        else{
+            echo "jaribu";
+        }
+
+    }
+    
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> ATC-SCMS</title>
@@ -54,8 +96,8 @@
                             
                             <div class="col-md-12 ms-5 ">
                                 <a href="../layouts/students.ph" class="btn btn-outline-dark">MANAGE STUDENTS  <img src="../image/student.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
-                                <a href="../layouts/instructors.php" class="btn btn-outline-dark"> INSTRUCTORS <img src="../image/batche2.jfif" class="image rounded-pill"  width="32" height="30"  alt="" srcset=""></a>
-                                <a href="../layouts/course.php" class="btn btn-outline-dark"> COURSES <img src="../image/course2.png" class="image rounded-pill" width="32" height="30"  alt="" srcset=""></a>
+                                <a href="../layouts/course.php" class="btn btn-outline-dark"> INSTRUCTORS <img src="../image/batche2.jfif" class="image rounded-pill"  width="32" height="30"  alt="" srcset=""></a>
+                                <a href="../layouts/instructors.php" class="btn btn-outline-dark"> COURSES <img src="../image/course2.png" class="image rounded-pill" width="32" height="30"  alt="" srcset=""></a>
                                 <a href="../layouts/batch.php" class="btn btn-outline-dark"> BATCHES <img src="../image/batch.png" class="image rounded-pill"  width="32" height="30"  alt="" srcset=""></a>
                                 <a href="../layouts/payment.php" class="btn btn-outline-dark">DEPARTMENTS<img src="../image/dep2.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
                                 <a href="../layouts/users.php" class="btn btn-outline-dark"> PAYMENTS <img src="../image/accoun.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
@@ -98,7 +140,7 @@
                                     
                                         <li>
                                             <div class="btn btn-outline-primary mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../updates/update_user.php" class="nav-link align-middle px-0">
+                                                <a href="../forms/add_user.php" class="nav-link align-middle px-0">
                                                 <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Add Users</span>
                                                 </a>  
                                             </div> 
@@ -111,11 +153,6 @@
                                         </div> 
                                         </li>
                                          
-                                    
-
-                                    
-                                   
-                               
         
                                     
                                     </ul>
@@ -157,50 +194,40 @@
                 <div class="ms-5">
                    
                     <div class="-body">
-                        
-                        <div class="form-group col-md-12">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="">First name</label>
-                                    <input type="text" placeholder="David " class="form-control">
-                                </div>
-                             
-                                <div class="col-md-4">
-                                    <label for="">Last name</label>
-                                    <input type="text" placeholder="Christpher" class="form-control">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="">Username</label>
-                                    <input type="text" placeholder="Senior" class="form-control">
-                                </div>
+                        <form action="" method="post">
+                            <div class="form-group col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label for="">Full  name</label>
+                                            <input type="text" value="<?php echo $users['name'];?>" name="name" class="form-control">
+                                        </div>
+                                    
+                                        
+                                        <div class="col-md-4">
+                                            <label for="">Username</label>
+                                            <input type="text" value="<?php echo $users['username'];?>" name="username" class="form-control">
+                                        </div>
+                                    </div>
+            
+                                    
                             </div>
-                            
-
-
-                            </div>
-                            
-                            
-                            
-                        </div>
-
-                     
-                        <div class="form-group col-md-12">
+                            <div class="form-group col-md-12">
                             <div class="row">
                              
                                 <div class="col-md-4">
                                     <label for=""> Departiment</label>
-                                    <select name="" id="" class="form-control">
-                                    <option value=""> Select Departiment</option>
-                                    <option value="Single">ICT</option>
-                                    <option value="Married">Mechanical</option>
-                                    <option value="divoced">Civil</option>
+                                    <select name="departiment" id="" class="form-control">
+                                    <option value="<?php echo $depart;?>"> <?php echo $depart;?> </option>
+                                    <option value="ICT">ICT</option>
+                                    <option value="Mechanical">Mechanical</option>
+                                    <option value="Civil">Civil</option>
                                     </select>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for=""> Roles</label>
-                                    <select name="" id="" class="form-control">
-                                    <option value=""> Choose Role</option>
+                                    <select name="role" id="" class="form-control">
+                                    <option value="<?php echo $rolee;?>"> <?php echo $rolee;?></option>
                                     <option value="Administrator">Administrator</option>
                                     <option value="Coordinator">Coordinator</option>
                                     <option value="Instructor">Instructor</option>
@@ -210,11 +237,11 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for=""> Status</label>
-                                    <select name="" id="" class="form-control">
-                                    <option value=""> Choose Status</option>
-                                    <option value="Single">ACTIVE</option>
-                                    <option value="Married">OFFLINE</option>
-                                    <option value="divoced">PENNDING</option>
+                                    <select name="status" id="" class="form-control">
+                                    <option value="<?php echo $statas;?>"><?php echo $statas;?></option>
+                                    <option value="Active">ACTIVE</option>
+                                    <option value="Offline">OFFLINE</option>
+                                    <option value="Pendding">PENNDING</option>
                                     </select>
                                 </div>
                                 
@@ -223,20 +250,11 @@
                             
                             
                         </div>
-
-                 
-
-                        <div class="form-group col-md-12">
-                            <div class="row">
-                        
-                                <div class="col-md-4">
-                                    <label for=""></label>
-                                    <!-- <input type="button" value="Save" class="btn btn-info form-control"> -->
-                                    <button type="submit" class="btn btn-primary form-control">Save</button>
-
-                                </div>
-
-
+                        <div class="form-group col-md-12 mt-4">
+                            <div class="row col-md-4">                      
+                    
+                              
+                                    <button type="submit" class="btn btn-primary form-control" name="update">Save</button>
 
                             </div>
                                
@@ -244,14 +262,13 @@
                             
                         </div>
                      
-                    
-                       
-                       
+
+
+                        </form>
                         
-                        <div class="form-group">
-                        <span></span>
-                          
-                        </div>
+
+                    
+                
                     </div>
                 </div>
       

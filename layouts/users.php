@@ -109,13 +109,13 @@
                                             </div> 
                                         </li>
 
-                                        <li>
+                                        <!-- <li>
                                             <div class="btn btn-outline-warning px-3 mt-3" style=" border: 2px solid grey; padding: 10px;">
-                                                    <a href="../forms/user.php" class="nav-link align-middle px-0">
+                                                    <a href="../updates/update_user.php" class="nav-link align-middle px-0">
                                                     <i class="fs-4  bi-pencil-square text-dark fw-bold"></i>  <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold"> Update User</span>
                                                     </a>  
                                             </div> 
-                                        </li>
+                                        </li> -->
                                     
                     
     
@@ -181,7 +181,7 @@
                                                     <th>DEPARTIMENT</th>
                                                     <th>ROLE</th>
                                                     <th>STUTAS</th>
-                                                    <!-- <th>STATUS</th> -->
+                                                    <th>ACTIONS</th>
                                                 
                                                 </thead>
                                             <?php
@@ -218,6 +218,9 @@
 
                                                     <?php  }
                                                     ?>
+
+                                                    <td><a href="../updates/update_user.php?update=<?php echo $users['id'];?>" name="update"><i class="fs-4  bi-pencil-square text-warning fw-bold"></i></a></td>
+                                                    
                                             
                                                 </tr>
                                                 

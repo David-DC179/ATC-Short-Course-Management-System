@@ -41,12 +41,25 @@ require "./database/conncetion.php";
                     $_SESSION['status'] = $user['status'];
 
                     $role = $_SESSION['role'];
+                    $status = $_SESSION['status'];
 
-                    if($role =='Admin' || $role =='Coordinator'){
+                    if($role =='Admin' && $status == 'Active' ||  $role =='Coordinator' && $status == 'Active' ){
                         header("location:./layouts/dashbord.php");
                     }
-                    else{
+                    elseif($role =='Instructor' && $status == 'Active' ){
                         array_push($errors, " Wew sio admini bhan");
+
+                    }
+                    elseif($role =='Accountant' && $status == 'Active' ){
+                        array_push($errors, " Wew sio admini bhan");
+
+                    }
+                    elseif($role =='Rector' && $status == 'Active' ){
+                        array_push($errors, " Wew sio admini bhan");
+
+                    }
+                    else{
+                        array_push($errors, " Your Account is in Active Contact Your Admin");
                     }
 
                      
