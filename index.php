@@ -79,7 +79,7 @@
         <div class="row border-top rounded-dark mt-4" style="text-align: center;">
             <div class="col-md-12 mt-3 " style="height: 7vh;">
                 
-                <p class=" text-muted"> Arusha Technical College &copy;2022 </p>
+                <p class=" text-muted"> &copy;Arusha Technical College 2022 </p>
             </div>
         </div>
 
