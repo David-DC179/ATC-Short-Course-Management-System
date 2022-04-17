@@ -1,6 +1,8 @@
 <?php 
     require "./apps/login_logic.php";
 
+   
+
 
     
 ?>
@@ -54,12 +56,16 @@
 
                     <div class="card-body">
                         <div >
+                       <p class="alert alert-warning"><?php if(isset($_GET['msg'])) echo $_GET['msg'] ?>  </p> 
                          
                                    <?php     foreach($errors as $error){
                                 
                                 echo "<p class='alert alert-danger'>$error </p>";
-
-                            }?>
+                                
+                            }
+                              
+                            
+                            ?>
                            
                           
                         </div>
