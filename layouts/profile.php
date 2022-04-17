@@ -61,7 +61,7 @@
                             </li>
                             <li><a href="#" class="text-dark fw-bold text-decoration-none">User Manuel</a></li>
                             <li><hr class="dropdown-divider w-"></li>
-                            <li><a href="../index.php" class="text-dark fw-bold text-decoration-none">Log out</a></li>
+                            <li><a href="../apps/logout.php" class="text-dark fw-bold text-decoration-none">Log out</a></li>
                         </ul>
                         </div>
                     </div>
