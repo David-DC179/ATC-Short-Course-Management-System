@@ -33,11 +33,11 @@
                 <div class="navbar navbar-light text-dark shadow-sm mt-3 mb3" style="height: auto; background-color:#B9F88E;">
                         <div class="container-fluid">
                             <nav class="navbar-brand">
-                                <strong class="float-md-start">ATC-SCMS | INSTRUCTOR </strong>
+                                <strong class="float-md-start">ATC-SCMS | MANAGE INSTRUCTOR </strong>
                                 
                                 
                             </nav>
-                            <strong class="float-md-end ">Coordinater Name:  David Christopher 
+                            <strong class="float-md-end "><?php echo $role ." : ". $username?> 
                                 <img  hreclass="image rounded-pill " src="../image/icon.png" width="50" height="50" alt=""> &nbsp;
                                 
                             </strong>

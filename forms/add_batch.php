@@ -36,7 +36,7 @@
                                 
                                 
                             </nav>
-                            <strong class="float-md-end ">Coordinater Name:  David Christopher 
+                            <strong class="float-md-end "><?php echo $role ." : ". $username?>  
                                 <img  hreclass="image rounded-pill " src="../image/icon.png" width="50" height="50" alt=""> &nbsp;
                                 
                             </strong>
