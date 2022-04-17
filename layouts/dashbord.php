@@ -1,3 +1,23 @@
+<?php 
+        session_start();
+        
+        require "../function/login.php";
+
+        $username = $_SESSION['username'];
+      
+        $role = $_SESSION['role'];
+        if(!isLoggedIn($username)){
+            header("Location: ../index.php");
+            array_push($errors, "haupo");
+        }
+        if(!isAdmin($role)){
+            header("Location: ../index.php");
+            array_push($errors, "haupo");
+        }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +68,7 @@
                                 
                                 
                             </nav>
-                            <strong class="float-md-end ">Coordinater Name:  David Christopher 
+                            <strong class="float-md-end "><?php echo $role ." : ". $username?> 
                                 <img  class="profile rounded-pill " src="../image/icon.png" width="50" height="50" alt=""> &nbsp;
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
@@ -73,7 +93,7 @@
                                 </li>
                                 <li><a href="../resources/ATC-SCMS.pdf" class="text-dark fw-bold text-decoration-none">User Manuel</a></li>
                                 <li><hr class="dropdown-divider w-"></li>
-                                <li><a href="../index.php" class="text-dark fw-bold text-decoration-none">Log out</a></li>
+                                <li><a href="../apps/logout.php" class="text-dark fw-bold text-decoration-none">Log out</a></li>
                             </ul>
                         </div>
                     </div>
