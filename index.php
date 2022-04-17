@@ -1,3 +1,11 @@
+<?php 
+    require "./apps/login_logic.php";
+
+
+    
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,19 +53,31 @@
                     </div>
 
                     <div class="card-body">
-                        <form action="./layouts/dashbord.php" method="post">
+                        <div >
+                         
+                                   <?php     foreach($errors as $error){
+                                
+                                echo "<p class='alert alert-danger'>$error </p>";
+
+                            }?>
+                           
+                          
+                        </div>
+                       
+                        <form action="" method="post">
 
                         <div class="form-floating col-md-12"> 
                            
-                            <input type="text" id="floatingInput" placeholder="Enter Email" class="form-control rounded-pill ">
+                            <input type="text" name="username" id="floatingInput" placeholder="Enter Email" class="form-control rounded-pill ">
                             <label for="floatingInput" class="form-label">Username</label>
+                              
                         </div>
 
                         
 
                         <div class="form-floating mt-3">
                             
-                            <input type="password" placeholder="Enter Password" class=" rounded-pill form-control">
+                            <input type="password" name="password" placeholder="Enter Password" class=" rounded-pill form-control">
                             <label for="floatingPassword" class="form-label">Password</label>
                         </div>
 
@@ -66,7 +86,7 @@
                         </div>
 
                         <div class="form-group mt-3">
-                            <button type="submit" class="btn form-control text-dark rounded-pill " style="background-color: #B9F88E;">Login</button>
+                            <button type="submit" name="submit" class="btn form-control text-dark rounded-pill " style="background-color: #B9F88E;">Login</button>
                         </div>
                     </form>
                     </div>
@@ -86,5 +106,8 @@
     </div>
 </body>
 </html>
+
+<?php
+?>
 
                   
