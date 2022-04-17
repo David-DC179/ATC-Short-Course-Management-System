@@ -1,3 +1,6 @@
+<?php 
+    require "./apps/sesseion.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
