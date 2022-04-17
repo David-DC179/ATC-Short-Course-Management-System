@@ -1,5 +1,5 @@
 <?php 
-   require "../apps/sesseion.php";h
+   require "../apps/sesseion.php";
 
 ?>
 
