@@ -54,7 +54,7 @@
                                 
                                 
                             </nav>
-                            <strong class="float-md-end "><?php echo $role ." : ". $username?> 
+                            <strong class="float-md-end "><?php echo $role ." : ". $name?> 
                                 <img  class="profile rounded-pill " src="../image/icon.png" width="50" height="50" alt=""> &nbsp;
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>

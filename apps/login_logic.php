@@ -23,7 +23,7 @@ require "./database/conncetion.php";
 
         if(empty($errors)){
 
-            $select = "SELECT username,password,role,name from users WHERE username ='$username'";
+            $select = "SELECT * from users WHERE username ='$username'";
             $result = mysqli_query($conn , $select);
             if(mysqli_num_rows($result)==1){
                 $user = mysqli_fetch_assoc($result);

@@ -56,7 +56,13 @@
 
                     <div class="card-body">
                         <div >
-                        <?php if(isset($_GET['msg'])) echo $_GET['msg'] ?> 
+                           
+                        <?php 
+                        global $msg;
+                         echo $msg;
+                        if(isset($_GET['msg'])) 
+                            echo $msg."santeeeeee";
+                        ?> 
                          
                                    <?php     foreach($errors as $error){
                                 

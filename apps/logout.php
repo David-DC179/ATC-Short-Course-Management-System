@@ -4,9 +4,22 @@ unset($_SESSION['username']);
 unset($_SESSION['role']);
 session_destroy();
 
-$msg = "";
+header("Location: ../index.php");
 
-if(!$msg){
-    $msg = "<p class='alert alert-warning'> THANK YOU USING OUR SYSTEM </p>";
-    header("Location: ../index.php?msg=$msg");
-}
+
+// $msg = "";
+
+
+//     $msg = "<p class='alert alert-warning'> THANK YOU USING OUR SYSTEM </p>";
+
+//     global $msg;
+    
+//     if(){
+//         echo $msg."ertyuiop[poiuop";
+//      
+//     }
+//     else{
+//         header("Location: ../index.php");
+//     }
+    
+
