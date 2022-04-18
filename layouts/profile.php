@@ -105,7 +105,7 @@
                                 <table class="table">
                                         <tr>
                                             <td>Full Name: </td>
-                                            <td>David Christopher</td>
+                                            <td><?php echo $name;?></td>
                                         </tr>
                                     
                                     <tr>
@@ -114,13 +114,31 @@
                                     </tr>
                                     <tr>
                                         <td>Role: </td>
-                                        <td>Administrator</td>
+                                        <td><?php echo $role ?></td>
                                     </tr>
                                     <tr>
                                         <td>Status:</td>
-                                        <td class="badge m-1 bg-success">Active </td>
-                                        <td class="badge m-1 bg-danger"> Not Active </td>
-                                        <td class="badge m-1 bg-warning"> Pending </td>
+
+                                        <?php 
+                                            if($status='Active'){?>
+
+                                                <td class="badge m-1 bg-success"><?php echo $status?> </td>
+                                                        <?php
+
+                                            }
+                                             else if($status ='Offlile'){?>
+                                                <td class="badge m-1 bg-danger"> Not Active </td>
+
+                                           <?php }
+                                           else{?>
+                                                        <td class="badge m-1 bg-warning"> Pending </td>
+
+                                         <?php  }
+                                        ?>
+                                        
+                                       
+                                        
+                                        
                                     </tr>
                                     <tr>
                                         <td colspan=""><a href="#" class="text-decoration-none"><strong class="h6 mt-3 text-primary">Change password?</strong></a></td>

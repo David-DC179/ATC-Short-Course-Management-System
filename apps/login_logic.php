@@ -30,16 +30,19 @@ require "./database/conncetion.php";
                 $username2 = $user['username'];
                 $password2 = $user['password'];
                 $name = $user['name'];
+                $status = $user['status'];
+
           
 
                 if($username == $username2 && $password == $password2){
                     $_SESSION['username'] = $user['username'];
                     $_SESSION['role'] = $user['role'];
                     $_SESSION['name'] = $user['name'];
+                    $_SESSION['status'] = $user['status'];
 
                     $role = $_SESSION['role'];
 
-                    if($role =='Admin'){
+                    if($role =='Admin' || $role =='Coordinator'){
                         header("location:./layouts/dashbord.php");
                     }
                     else{

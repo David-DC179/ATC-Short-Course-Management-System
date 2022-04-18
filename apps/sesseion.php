@@ -6,6 +6,7 @@
          $username = $_SESSION['username'];
          
          $name = $_SESSION['name'];
+         $status = $_SESSION['status'];
        
          $role = $_SESSION['role'];
          if(!isLoggedIn($username)){

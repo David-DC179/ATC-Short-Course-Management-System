@@ -7,7 +7,7 @@ function isLoggedIn($username) {
 }
 
 function isAdmin($role) {
-    if ($role === 'Admin') {
+    if ($role === 'Admin'  || $role === 'Coordinator'  ) {
         return true;
     }
     return false;
