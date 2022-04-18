@@ -7,6 +7,6 @@ session_destroy();
 $msg = "";
 
 if(!$msg){
-    $msg = "THAN YOU USING OUR SYSTEM";
+    $msg = "<p class='alert alert-warning'> THANK YOU USING OUR SYSTEM </p>";
     header("Location: ../index.php?msg=$msg");
 }

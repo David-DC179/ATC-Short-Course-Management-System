@@ -56,7 +56,7 @@
 
                     <div class="card-body">
                         <div >
-                       <p class="alert alert-warning"><?php if(isset($_GET['msg'])) echo $_GET['msg'] ?>  </p> 
+                        <?php if(isset($_GET['msg'])) echo $_GET['msg'] ?> 
                          
                                    <?php     foreach($errors as $error){
                                 
