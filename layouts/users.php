@@ -123,41 +123,7 @@
                             </div>  
 
                             <div class="col-md-10" style="background-color: #E2FECF;">
-                            <!-- <div class="row mb-4">
-                                <div class="col-md-3 ">
-                                    <div class="card bg-info">
-                                        <div class="card-header fw-bold">All Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card bg-success">
-                                        <div class="card-header fw-bold">Current Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card bg-warning">
-                                        <div class="card-header fw-bold">Pontential Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card bg-primary">
-                                        <div class="card-header fw-bold">All Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
+                          
 
                             <!-- end of side bar -->
 
@@ -173,41 +139,61 @@
                                 </div> 
 
                                 <div class="table-responsive-sm">
-                                <table class="table table-hover ">
-                                    <tr>
-                                        <th>SN</th>
-                                        <th colspan="2">FULL NAME</th>
-                                        <th>USERNAME</th>
-                                        <th>DEPARTIMENT</th>
-                                        <th>ROLE</th>
-                                        <th>STUTAS</th>
-                                        <!-- <th>STATUS</th> -->
-                                        
-                                    </tr>
-
-                                    <tr>
-                                        <td>1</td>
-                                        <td colspan="2">David Christopher </td>
-                                        <td>dchristopher@atc.ac.tz</td>
-                                        <td>ICT Departiment</td>
-                                        <td>Admin </td>
-                                        <td>
-                                            <span class="badge bg-success">ACTIVE</span>
-                                        </td>
-                                
-                                    </tr>
-
-                                    <tr>
-                                        <td>2</td>
-                                        <td colspan="2">David Christopher </td>
-                                        <td>dchristopher@atc.ac.tz</td>
-                                        <td>ICT Departiment</td>
-                                        <td>Coordinator </td>
-                                        <td>
-                                            <span class="badge bg-danger">OFFLINE</span>
-                                        </td>
                                     
-                                    </tr>
+                                <table class="table table-hover ">
+                                <?php
+                                            require "../database/conncetion.php";
+                                          
+                                            $select = "SELECT * FROM users";
+                                            $result = mysqli_query($conn,$select);
+
+                                            if(mysqli_num_rows($result)>0){?>
+                                                <thead class="table bg-dark text-light">    
+                                                    <th>SN</th>
+                                                    <th colspan="2">FULL NAME</th>
+                                                    <th>USERNAME</th>
+                                                    <th>DEPARTIMENT</th>
+                                                    <th>ROLE</th>
+                                                    <th>STUTAS</th>
+                                                    <!-- <th>STATUS</th> -->
+                                                
+                                                </thead>
+                                            <?php
+                                            
+                                                $sn = 1;
+                                                while($users = mysqli_fetch_assoc($result)){
+                                                    $name = $users['name']; 
+                                                    $username = $users['username']; 
+                                                    $role = $users['role']; 
+                                                    $status = $users['status']; 
+                                                    $departiment =$users['departiment']
+                                                ?>
+                                                    <tr>
+                                                    <td><?php echo $sn++; ?></td>
+                                                    <td colspan="2"><?php echo $name; ?>  </td>
+                                                    <td><?php echo $username ?></td>
+                                                    <td><?php echo $departiment ?> </td>
+                                                    <td><?php echo $role ?> </td>
+                                                    <td>
+                                                        <span class="badge bg-success">ACTIVE</span>
+                                                    </td>
+                                            
+                                                </tr>
+                                                
+                                           <?php     }
+                                            
+
+                                                
+                                            }
+
+                                            ?>
+
+                                    
+                    
+
+                                   
+
+                                 
                                 </table>
 
                             </div>
