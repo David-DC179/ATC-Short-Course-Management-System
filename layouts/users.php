@@ -172,7 +172,7 @@
                                 <?php
                                             require "../database/conncetion.php";
                                           
-                                            $select = "SELECT * FROM users";
+                                            $select = "SELECT * FROM users where role <> 'Admin' and username <> '$username' ";
                                             $result = mysqli_query($conn,$select);
 
                                             if(mysqli_num_rows($result)>0){?>
@@ -241,6 +241,16 @@
 
                                  
                                 </table>
+                                <?php 
+                                
+                                $selectrow = "SELECT * FROM users where role<> 'Admin'  ";
+                                $query = mysqli_query($conn , $selectrow);
+                                $row = mysqli_num_rows($query);
+
+                                
+                                ?>
+
+                                <div>Rows <?php echo $row; ?></div>
 
                             </div>
                       
