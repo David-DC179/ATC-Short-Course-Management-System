@@ -2,6 +2,7 @@
      session_start();
      require "../function/login.php";
      require "../apps/sesseion.php";
+     require_once "../apps/adduser_logic.php";
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid   mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
             <div class="col-md-12 mt-2">
                 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md">
@@ -171,9 +172,18 @@
                                 <table class="table table-hover table-responsive-sm ">
                                 <?php
                                             require "../database/conncetion.php";
+
+                                      
+
+                                            
                                           
-                                            $select = "SELECT * FROM users where role <> 'Admin' and username <> '$username' ";
+                                            $select = "SELECT * FROM users where role <> 'Admin' and role <> '$role' ";
                                             $result = mysqli_query($conn,$select);
+
+
+                                            $row = mysqli_num_rows($result);
+
+
 
                                             if(mysqli_num_rows($result)>0){?>
                                                 <thead class="table bg-dark text-light">    
@@ -216,7 +226,7 @@
 
                                                     <?php }
                                                     else{?>
-                                                                    <td class="badge m-1 bg-warning"> <?php echo $status?> </td>
+                                                             <td class="badge m-1 bg-warning"> <?php echo $status?> </td>
 
                                                     <?php  }
                                                     ?>
@@ -231,7 +241,7 @@
 
                                                 
                                             }
-
+                             
                                             ?>
 
                                     
@@ -241,16 +251,9 @@
 
                                  
                                 </table>
-                                <?php 
-                                
-                                $selectrow = "SELECT * FROM users where role<> 'Admin'  ";
-                                $query = mysqli_query($conn , $selectrow);
-                                $row = mysqli_num_rows($query);
+                     
 
-                                
-                                ?>
-
-                                <div>Rows <?php echo $row; ?></div>
+                                <div>Rows <?php echo $row." "."Inserted".$rowErr; ?></div>
 
                             </div>
                       

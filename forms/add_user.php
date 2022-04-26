@@ -2,7 +2,9 @@
 session_start();
 require "../function/login.php";
 require "../apps/sesseion.php";
-    require "../apps/adduser_logic.php";
+require "../apps/adduser_logic.php";
+
+  
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +19,7 @@ require "../apps/sesseion.php";
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid col-md-12  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid col-md-12   mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
 <div class="">
     <div class="col-md-12 mt-2">
@@ -108,14 +110,14 @@ require "../apps/sesseion.php";
                                         </div> 
                                     
 
-                                    
+<!--                                     
                                         <li>
                                             <div class="btn btn-outline-warning mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
                                                 <a href="../updates/update_user.php" class="nav-link align-middle px-0">
                                                 <i class="fs-4  bi-pencil-square text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Users</span>
                                                 </a>  
                                             </div> 
-                                        </li>
+                                        </li> -->
                                    
                                
         
@@ -168,18 +170,20 @@ require "../apps/sesseion.php";
                                 <div class="col-md-4">
                                     <label for="">Full name</label>
                                     <input type="text" placeholder="David "name ="name" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
                                 </div>
                              
                               
                                 <div class="col-md-4">
                                     <label for="">Username</label>
                                     <input type="text" placeholder="Senior" name ="username" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $usernameErr;?></span>
                                 </div>
                             </div>
                             
 
 
-                            </div>
+                       
                             
                             
                             
@@ -193,10 +197,11 @@ require "../apps/sesseion.php";
                                     <label for=""> Departiment</label>
                                     <select name="departiment" id="" class="form-control">
                                     <option value=""> Select Departiment</option>
-                                    <option value="Single">ICT</option>
-                                    <option value="Married">Mechanical</option>
-                                    <option value="divoced">Civil</option>
+                                    <option value="ICT">ICT</option>
+                                    <option value="Mechanical">Mechanical</option>
+                                    <option value="Civil">Civil</option>
                                     </select>
+                                    <span class="text-danger fw-bold"><?php echo $departimentErr;?></span>
                                 </div>
 
                                 <div class="col-md-4">
@@ -209,15 +214,17 @@ require "../apps/sesseion.php";
                                     <option value="Accountant">Accountant</option>
                                     <option value="Rector">Rector</option>
                                     </select>
+                                    <span class="text-danger fw-bold"><?php echo $roleErr;?></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for=""> Status</label>
                                     <select name="status" id="" class="form-control">
                                     <option value=""> Choose Status</option>
-                                    <option value="Single">ACTIVE</option>
-                                    <option value="Married">OFFLINE</option>
-                                    <option value="divoced">PENNDING</option>
+                                    <option value="Active">ACTIVE</option>
+                                    <option value="Offline">OFFLINE</option>
+                                    <option value="Pedding">PENNDING</option>
                                     </select>
+                                    <span class="text-danger fw-bold"><?php echo $statusErr;?></span>
                                 </div>
                                 
                              

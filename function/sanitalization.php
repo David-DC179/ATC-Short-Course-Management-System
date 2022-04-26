@@ -1,5 +1,5 @@
 <?php
-require './database/conncetion.php';
+
 function dataSanitizations($data) {
     //sanitization
     $data =  trim($data);

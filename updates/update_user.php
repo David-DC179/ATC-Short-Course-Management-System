@@ -3,6 +3,7 @@
     require "../function/login.php";
    require "../apps/sesseion.php";
     require "../database/conncetion.php";
+    require "../function/sanitalization.php";
 
 
 
@@ -17,7 +18,7 @@
             $fullname= $users['name'];
             $suzaname = $users['username'];
             $depart = $users['departiment'];
-            $rolee = $users['role'];
+            $roleee = $users['role'];
             $statas  = $users['status'];
             
 
@@ -25,15 +26,44 @@
      
     }
 
-    if(isset($_POST['update'])){
-        $name = $_POST['name'];
-        $username =$_POST['username'];
-        $departiment = $_POST['departiment'];
-        $role = $_POST['role'];
-        $status = $_POST['status'];
+    $nameErr = $usernameErr = $departimentErr = $roleErr = $statusErr = $rowErr= "";
+    $namee = $username = $departiment = $rolee = $status = "";
 
-        // die($departiment.$role.$status);
-        $update = "UPDATE users SET name='$name', username='$username', departiment='$departiment', role ='$role', status='$status' WHERE id=$id";
+    if(isset($_POST['update'])){
+            $namee = mysqli_real_escape_string($conn, dataSanitizations($_POST['name']));
+            $username = mysqli_real_escape_string($conn, dataSanitizations($_POST['username']));
+            $departiment = mysqli_real_escape_string($conn, dataSanitizations($_POST['departiment']));
+            $rolee = mysqli_real_escape_string($conn, dataSanitizations($_POST['role']));
+            $status = mysqli_real_escape_string($conn, dataSanitizations($_POST['status']));
+
+        if(empty($namee)){
+            $nameErr = "Name is required";
+            
+        }
+
+        if(empty($username)){
+            $usernameErr = "Username is required";
+            
+        }
+
+        if(empty($departiment)){
+            $departimentErr = "Departiment is required";
+            
+        }
+
+        if(empty($rolee)){
+            $roleErr = "Role is required";
+            
+        }
+
+        if(empty($status)){
+            $statusErr = "Status is required";
+            
+        }
+        
+        elseif($namee && $username && $departiment && $rolee && $status){
+            
+        $update = "UPDATE users SET name='$namee', username='$username', departiment='$departiment', role ='$rolee', status='$status' WHERE id=$id";
         $query= mysqli_query($conn,$update);
 
        
@@ -43,6 +73,8 @@
         else{
             echo "jaribu";
         }
+        }
+        
 
     }
     
@@ -204,12 +236,14 @@
                                         <div class="col-md-4">
                                             <label for="">Full  name</label>
                                             <input type="text" value="<?php echo $users['name'];?>" name="name" class="form-control">
+                                            <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
                                         </div>
                                     
                                         
                                         <div class="col-md-4">
                                             <label for="">Username</label>
                                             <input type="text" value="<?php echo $users['username'];?>" name="username" class="form-control">
+                                            <span class="text-danger fw-bold"><?php echo $usernameErr;?></span>
                                         </div>
                                     </div>
             
@@ -226,18 +260,20 @@
                                     <option value="Mechanical">Mechanical</option>
                                     <option value="Civil">Civil</option>
                                     </select>
+                                    <span class="text-danger fw-bold"><?php echo $departimentErr;?></span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for=""> Roles</label>
                                     <select name="role" id="" class="form-control">
-                                    <option value="<?php echo $rolee;?>"> <?php echo $rolee;?></option>
+                                    <option value="<?php echo $users['role'];?>"> <?php echo  $users['role'];?></option>
                                     <option value="Administrator">Administrator</option>
                                     <option value="Coordinator">Coordinator</option>
                                     <option value="Instructor">Instructor</option>
                                     <option value="Accountant">Accountant</option>
                                     <option value="Rector">Rector</option>
                                     </select>
+                                    <span class="text-danger fw-bold"><?php echo $roleErr;?></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for=""> Status</label>
@@ -247,6 +283,7 @@
                                     <option value="Offline">OFFLINE</option>
                                     <option value="Pendding">PENNDING</option>
                                     </select>
+                                    <span class="text-danger fw-bold"><?php echo $statusErr;?></span>
                                 </div>
                                 
                              
