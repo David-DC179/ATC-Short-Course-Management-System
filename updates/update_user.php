@@ -17,9 +17,28 @@
 
             $fullname= $users['name'];
             $suzaname = $users['username'];
-            $depart = $users['departiment'];
-            $roleee = $users['role'];
+            $departiment_id = $users['departiment_id'];
+            $role_id = $users['role'];
             $statas  = $users['status'];
+
+            $selectd = "SELECT * FROM departiments WHERE id=$departiment_id";
+                 $resultd = mysqli_query($conn , $selectd);
+
+                $rowd = mysqli_fetch_assoc($resultd);
+                $departimentn = $rowd['name'];
+                $departimentid = $rowd['id'];
+
+                
+
+                $selectr = "SELECT * FROM roles WHERE id=$role_id";
+                    $resultr = mysqli_query($conn , $selectr);
+
+                    $rowr = mysqli_fetch_assoc($resultr);
+                    $roleee = $rowr['name'];
+                    $roleid = $rowr['id'];
+
+                
+            
             
 
         }
@@ -32,10 +51,32 @@
     if(isset($_POST['update'])){
             $namee = mysqli_real_escape_string($conn, dataSanitizations($_POST['name']));
             $username = mysqli_real_escape_string($conn, dataSanitizations($_POST['username']));
-            $departiment = mysqli_real_escape_string($conn, dataSanitizations($_POST['departiment']));
-            $rolee = mysqli_real_escape_string($conn, dataSanitizations($_POST['role']));
+            $departimentid = mysqli_real_escape_string($conn, dataSanitizations($_POST['departiment']));
+            $roleid = mysqli_real_escape_string($conn, dataSanitizations($_POST['role']));
             $status = mysqli_real_escape_string($conn, dataSanitizations($_POST['status']));
 
+            $selectd1 = "SELECT * FROM departiments WHERE name='$departimentid'";
+                 $resultd1 = mysqli_query($conn , $selectd1);
+
+                $rowd1 = mysqli_fetch_assoc($resultd1);
+                $departimentd1 = $rowd1['id'];
+
+              
+        
+            $selectr1 = "SELECT id FROM roles where name='$roleid'";
+
+            
+            $queryr1 = mysqli_query($conn,$selectr1);
+        
+                   
+        
+        
+                    $rowr1 = mysqli_fetch_assoc($queryr1); 
+                    $roler1 = $rowr1['id'];
+
+                   
+
+       
         if(empty($namee)){
             $nameErr = "Name is required";
             
@@ -63,7 +104,7 @@
         
         elseif($namee && $username && $departiment && $rolee && $status){
             
-        $update = "UPDATE users SET name='$namee', username='$username', departiment='$departiment', role ='$rolee', status='$status' WHERE id=$id";
+        $update = "UPDATE users SET name='$namee', username='$username', departiment=$departimentd1, role =$roler1, status='$status' WHERE id=$id";
         $query= mysqli_query($conn,$update);
 
        
@@ -255,10 +296,32 @@
                                 <div class="col-md-4">
                                     <label for=""> Departiment</label>
                                     <select name="departiment" id="" class="form-control">
-                                    <option value="<?php echo $depart;?>"> <?php echo $depart;?> </option>
-                                    <option value="ICT">ICT</option>
-                                    <option value="Mechanical">Mechanical</option>
-                                    <option value="Civil">Civil</option>
+                                    <option value="<?php echo $departimentn;?>"> <?php echo $departimentn;?> </option>
+                                        
+                                    <?php
+                                $select1 = "SELECT * FROM departiments";
+
+                                $query = mysqli_query($conn,$select1);
+
+                                if($rows=mysqli_num_rows($query)){
+                                    
+                                    
+                                    while($departiment = mysqli_fetch_assoc($query)){
+                                       $dept= $departiment['name'];
+                                       $deptid= $departiment['name'];
+                                        
+                                        ?>
+                                       
+                                        <option value="<?= $deptid ?>" ><?php echo $dept ?></option>
+                                     
+                                            
+                        <?php }
+
+
+                                }
+                            ?>
+                               
+                                
                                     </select>
                                     <span class="text-danger fw-bold"><?php echo $departimentErr;?></span>
                                 </div>
@@ -266,12 +329,34 @@
                                 <div class="col-md-4">
                                     <label for=""> Roles</label>
                                     <select name="role" id="" class="form-control">
-                                    <option value="<?php echo $users['role'];?>"> <?php echo  $users['role'];?></option>
-                                    <option value="Administrator">Administrator</option>
-                                    <option value="Coordinator">Coordinator</option>
-                                    <option value="Instructor">Instructor</option>
-                                    <option value="Accountant">Accountant</option>
-                                    <option value="Rector">Rector</option>
+                                    <option value="<?php echo $rowr['name'];?>"> <?php echo  $rowr['name'];?></option>
+
+                                    <?php
+                                $select2 = "SELECT * FROM roles";
+
+                                $query = mysqli_query($conn,$select2);
+
+                                if($rows=mysqli_num_rows($query)){
+                                    
+                                    
+                                    while($rolename = mysqli_fetch_assoc($query)){
+                                       $rolee= $rolename['name'];
+                                       $roleid= $rolename['id'];
+                                        
+                                        ?>
+                                       <option value="<?= $roleid ?>" ><?php echo $rolee ?></option>
+                                     
+                                            
+                        <?php }
+
+
+                                }
+                            ?>
+                               
+
+
+
+                               
                                     </select>
                                     <span class="text-danger fw-bold"><?php echo $roleErr;?></span>
                                 </div>

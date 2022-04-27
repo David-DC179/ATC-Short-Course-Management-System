@@ -1,3 +1,3 @@
 <?php
-    $conn = mysqli_connect("localhost", "root","", "shortcourse" ) or die("could'nt connect ");
+    $conn = mysqli_connect("localhost", "root","", "shortcourses" ) or die("could'nt connect ");
 ?>

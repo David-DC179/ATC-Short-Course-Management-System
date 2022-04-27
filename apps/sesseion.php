@@ -1,8 +1,15 @@
 <?php
          
          $username = $_SESSION['username'];
-         $name = $_SESSION['name'];
+
+         //displya name
+        $name = $_SESSION['name'];
+
          $role = $_SESSION['role'];
+
+         //diplsay role 
+         $rolename = $_SESSION['namee'];
+         
          if(!isLoggedIn($username)){
              header("Location: ../index.php");
          }

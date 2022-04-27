@@ -177,15 +177,17 @@
 
                                             
                                           
-                                            $select = "SELECT * FROM users where role <> 'Admin' and role <> '$role' ";
+                                            $select = "SELECT * FROM users where role <> '1' and role <> '$role' ";
                                             $result = mysqli_query($conn,$select);
+
+                                           
 
 
                                             $row = mysqli_num_rows($result);
 
 
 
-                                            if(mysqli_num_rows($result)>0){?>
+                                            if(mysqli_num_rows($result)>0 ){?>
                                                 <thead class="table bg-dark text-light">    
                                                     <th>SN</th>
                                                     <th colspan="2">FULL NAME</th>
@@ -199,12 +201,27 @@
                                             <?php
                                             
                                                 $sn = 1;
-                                                while($users = mysqli_fetch_assoc($result)){
+                                                while($users = mysqli_fetch_assoc($result) ){
                                                     $name = $users['name']; 
                                                     $username = $users['username']; 
-                                                    $role = $users['role']; 
+                                                    $role_id = $users['role']; 
                                                     $status = $users['status']; 
-                                                    $departiment =$users['departiment']
+                                                    $departiment_id =$users['departiment_id'];
+
+                                                    $selectd = "SELECT * FROM departiments WHERE id=$departiment_id";
+                                                    $resultd = mysqli_query($conn , $selectd);
+
+                                                    $rowd = mysqli_fetch_assoc($resultd);
+                                                    $departiment = $rowd['name'];
+
+                                                    $selectr = "SELECT * FROM roles WHERE id=$role_id";
+                                                    $resultr = mysqli_query($conn , $selectr);
+
+                                                    $rowr = mysqli_fetch_assoc($resultr);
+                                                    $role = $rowr['name'];
+
+
+                                                    
                                                 ?>
                                                     <tr>
                                                     <td><?php echo $sn++; ?></td>
@@ -215,13 +232,13 @@
                                               
                                                     
                                                     <?php 
-                                                        if($status=='Active'){?>
+                                                        if($status==='Active'){?>
 
                                                             <td class="badge m-1 bg-success"><?php echo $status?> </td>
                                                                     <?php
 
                                                         }
-                                                        else if($status =='Offline'){?>
+                                                        else if($status ==='Offline'){?>
                                                             <td class="badge m-1 bg-danger"> <?php echo $status?> </td>
 
                                                     <?php }

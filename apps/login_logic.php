@@ -29,38 +29,71 @@ require "./database/conncetion.php";
                 $user = mysqli_fetch_assoc($result);
                 $username2 = $user['username'];
                 $password2 = $user['password'];
-                $name = $user['name'];
-                $status = $user['status'];
+                $role2 = $user['role'];
+                $name2 = $user['name'];
+                $status2 = $user['status'];
 
-          
+               
+                
+                    $selectr = "SELECT * FROM roles WHERE id=$role2";
+                    $resultr = mysqli_query($conn , $selectr);
 
-                if($username == $username2 && $password == $password2){
+                    $rowr = mysqli_fetch_assoc($resultr);
+                    $rolename = $rowr['name'];
+                    
+                    $role_id = $rowr['id'];
+                    
+
+                    
+
+
+                if($username == $username2 && $password == $password2 && $role2 == $role_id && $status2){
+                    
                     $_SESSION['username'] = $user['username'];
-                    $_SESSION['role'] = $user['role'];
                     $_SESSION['name'] = $user['name'];
                     $_SESSION['status'] = $user['status'];
+                    $_SESSION['role'] = $user['role'];
+                    $_SESSION['id'] = $rowr['id'];
+                    $_SESSION['namee'] = $rowr['name'];
+           
+                    if($role2 === '1'  || $role2 === '2'){
 
-                    $role = $_SESSION['role'];
-                    $status = $_SESSION['status'];
+      
+                        
+                       header("location:./layouts/dashbord.php");
 
-                    if($role =='Admin' && $status == 'Active' ||  $role =='Coordinator' && $status == 'Active' ){
-                        header("location:./layouts/dashbord.php");
                     }
-                    elseif($role =='Instructor' && $status == 'Active' ){
+
+                    elseif($role2 === '3'  ){
                         array_push($errors, " Instructor Dashbord on progress sorry!!");
 
                     }
-                    elseif($role =='Accountant' && $status == 'Active' ){
-                        array_push($errors, "Accoutant Dashbord on progress sorry!!");
+
+                    elseif($role2==='4'  ){
+                      array_push($errors, "Accoutant Dashbord on progress sorry!!");
 
                     }
-                    elseif($role =='Rector' && $status == 'Active' ){
+
+                    elseif($role2 ==='5'  ){
                         array_push($errors, " Rector Dashbord on progress sorry!!");
 
                     }
+
+
                     else{
                         array_push($errors, " Your Account is in Active Contact Your Admin");
                     }
+
+
+                    // if($role =='1' && $status == 'Active' ||  $role =='Coordinator' && $status == 'Active' ){
+                        
+                    // }
+                    
+                 
+                
+                    // else{
+                    //    
+                    // }
 
                      
                 }

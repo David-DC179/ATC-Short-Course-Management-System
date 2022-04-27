@@ -1,7 +1,13 @@
-<?
+<?php
+
+
     session_start();
-     require "../function/login.php";
-     require "../apps/sesseion.php";
+    require "../function/login.php";
+    require "../database/conncetion.php";
+    
+    require "../apps/sesseion.php";
+
+
 ?>
 
 <!DOCTYPE html>
@@ -15,13 +21,13 @@
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
-<body class="container-fluid   mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
     <div class="">
     <div class="col-md-12 mt-2">
                 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md">
                         
-                            <img class= " me-" src="../image/logo.png" width="104" height="103" alt="" srcset="">
+                            <img class= "" src="../image/logo.png" width="104" height="103" alt="" srcset="">
                             &nbsp; &nbsp; <div style="font-family: Times New Roman;">
                                <strong>  <h1 class=" h1 fw-bold" style="text-align: center; font-style:times">Arusha Technical College</h1> </strong>
                                 <h1 class="fw-bold h2" style="text-align: center;">Short Course Management System</h2> 
@@ -37,7 +43,7 @@
                                 
                                 
                             </nav>
-                            <strong class="float-md-end "><?php echo $role ." : ". $name?> 
+                            <strong class="float-md-end "><?php echo $role ." : ". $name?>
                                 <img  class="profile rounded-pill " src="../image/icon.png" width="50" height="50" alt=""> &nbsp;
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>

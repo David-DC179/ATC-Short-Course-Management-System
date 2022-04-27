@@ -3,16 +3,10 @@ session_start();
     require "../function/login.php";
    require "../apps/sesseion.php";
 
+//    if($role='1'){echo "Admin";
 
-//    $username = $_SESSION['username'];
-//    $name = $_SESSION['name'];
-//    $role = $_SESSION['role'];
-//    if(!isLoggedIn($username)){
-//        header("Location: ../  index.php");
-//    }
-//    if(!isAdmin($role)){
-//        header("Location: ../index.php");
-//    }
+// }
+
     
 ?>
 
@@ -67,7 +61,7 @@ session_start();
                                 
                                 
                             </nav>
-                            <strong class="float-md-end "><?php echo $role ." : ". $name?> 
+                            <strong class="float-md-end "><?php  echo $rolename.":"." ".$name;?> 
                                 <img  class="profile rounded-pill " src="../image/icon.png" width="50" height="50" alt=""> &nbsp;
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
