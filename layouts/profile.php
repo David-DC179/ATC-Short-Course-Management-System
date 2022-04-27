@@ -38,7 +38,7 @@
                                
                                 
                             </nav>
-                            <strong class="float-md-end "><?php echo $role ." : ". $name?>  
+                            <strong class="float-md-end "><?php  echo $rolename.":"." ".$name;?>
                                 <img  hreclass="image rounded-pill " src="../image/icon.png" width="50" height="50" alt=""> &nbsp;
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
@@ -116,7 +116,7 @@
                                     </tr>
                                     <tr>
                                         <td>Role: </td>
-                                        <td><?php echo $role ?></td>
+                                        <td><?php echo $rolename ?></td>
                                     </tr>
                                     <tr>
                                         <td>Status:</td>
