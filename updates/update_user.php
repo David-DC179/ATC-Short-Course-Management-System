@@ -46,7 +46,7 @@
     }
 
     $nameErr = $usernameErr = $departimentErr = $roleErr = $statusErr = $rowErr= "";
-    $namee = $username = $departiment = $rolee = $status = "";
+    $namee = $username = $departimentid = $roleid = $status = "";
 
     if(isset($_POST['update'])){
             $namee = mysqli_real_escape_string($conn, dataSanitizations($_POST['name']));
@@ -55,15 +55,19 @@
             $roleid = mysqli_real_escape_string($conn, dataSanitizations($_POST['role']));
             $status = mysqli_real_escape_string($conn, dataSanitizations($_POST['status']));
 
-            $selectd1 = "SELECT * FROM departiments WHERE name='$departimentid'";
+           
+
+            $selectd1 = "SELECT id FROM departiments WHERE name='$departimentid'";
                  $resultd1 = mysqli_query($conn , $selectd1);
 
                 $rowd1 = mysqli_fetch_assoc($resultd1);
                 $departimentd1 = $rowd1['id'];
 
-              
+                
+
+
         
-            $selectr1 = "SELECT id FROM roles where name='$roleid'";
+            $selectr1 = "SELECT * FROM roles where name='$roleid'";
 
             
             $queryr1 = mysqli_query($conn,$selectr1);
@@ -73,9 +77,9 @@
         
                     $rowr1 = mysqli_fetch_assoc($queryr1); 
                     $roler1 = $rowr1['id'];
-
+      
                    
-
+                    
        
         if(empty($namee)){
             $nameErr = "Name is required";
@@ -87,12 +91,12 @@
             
         }
 
-        if(empty($departiment)){
+        if(empty($departimentid)){
             $departimentErr = "Departiment is required";
             
         }
 
-        if(empty($rolee)){
+        if(empty($roleid)){
             $roleErr = "Role is required";
             
         }
@@ -101,10 +105,15 @@
             $statusErr = "Status is required";
             
         }
+
         
-        elseif($namee && $username && $departiment && $rolee && $status){
+
+        elseif($namee && $username &&  $departimentd1 && $roler1 && $status){
             
-        $update = "UPDATE users SET name='$namee', username='$username', departiment=$departimentd1, role =$roler1, status='$status' WHERE id=$id";
+         
+        //  die ($namee.$username.$departimentd1.$roler1.$status.$id);
+            
+        $update = "UPDATE users SET name='$namee', username='$username', departiment_id=$departimentd1, role =$roler1, status='$status' WHERE id=$id";
         $query= mysqli_query($conn,$update);
 
        
@@ -329,7 +338,7 @@
                                 <div class="col-md-4">
                                     <label for=""> Roles</label>
                                     <select name="role" id="" class="form-control">
-                                    <option value="<?php echo $rowr['name'];?>"> <?php echo  $rowr['name'];?></option>
+                                    <option value="<?php echo $roleee ;?>"> <?php echo  $roleee ;?></option>
 
                                     <?php
                                 $select2 = "SELECT * FROM roles";
@@ -341,10 +350,10 @@
                                     
                                     while($rolename = mysqli_fetch_assoc($query)){
                                        $rolee= $rolename['name'];
-                                       $roleid= $rolename['id'];
+                                       $roleid1= $rolename['name'];
                                         
                                         ?>
-                                       <option value="<?= $roleid ?>" ><?php echo $rolee ?></option>
+                                       <option value="<?= $roleid1 ?>" ><?php echo $rolee ?></option>
                                      
                                             
                         <?php }

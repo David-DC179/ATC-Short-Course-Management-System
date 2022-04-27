@@ -35,12 +35,11 @@ require "./database/conncetion.php";
 
                
                 
-                    $selectr = "SELECT * FROM roles WHERE id=$role2";
+                    $selectr = "SELECT * FROM roles WHERE id=$role2 ";
                     $resultr = mysqli_query($conn , $selectr);
 
                     $rowr = mysqli_fetch_assoc($resultr);
                     $rolename = $rowr['name'];
-                    
                     $role_id = $rowr['id'];
                     
 
@@ -55,26 +54,33 @@ require "./database/conncetion.php";
                     $_SESSION['role'] = $user['role'];
                     $_SESSION['id'] = $rowr['id'];
                     $_SESSION['namee'] = $rowr['name'];
-           
-                    if($role2 === '1'  || $role2 === '2'){
 
+                    
+           
+                    if($role2 == '1' && $status2 ='Active'){
+                      
       
                         
                        header("location:./layouts/dashbord.php");
 
                     }
 
-                    elseif($role2 === '3'  ){
+                    elseif( $role2 == '2' && $status2 =='Active'){
+                        header("location:./layouts/dashbord.php");
+
+                    }
+
+                    elseif($role2 == '3' && $status2 == 'Active'  ){
                         array_push($errors, " Instructor Dashbord on progress sorry!!");
 
                     }
 
-                    elseif($role2==='4'  ){
+                    elseif($role2=='4'&& $status2 == 'Active'){
                       array_push($errors, "Accoutant Dashbord on progress sorry!!");
 
                     }
 
-                    elseif($role2 ==='5'  ){
+                    elseif($role2 =='5' && $status2 == 'Active'  ){
                         array_push($errors, " Rector Dashbord on progress sorry!!");
 
                     }

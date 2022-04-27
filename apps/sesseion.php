@@ -6,6 +6,7 @@
         $name = $_SESSION['name'];
 
          $role = $_SESSION['role'];
+         $status = $_SESSION['status'];
 
          //diplsay role 
          $rolename = $_SESSION['namee'];

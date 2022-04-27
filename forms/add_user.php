@@ -197,22 +197,60 @@ require "../apps/adduser_logic.php";
                                     <label for=""> Departiment</label>
                                     <select name="departiment" id="" class="form-control">
                                     <option value=""> Select Departiment</option>
-                                    <option value="ICT">ICT</option>
-                                    <option value="Mechanical">Mechanical</option>
-                                    <option value="Civil">Civil</option>
+                                                
+                                    <?php
+                                $select1 = "SELECT * FROM departiments";
+
+                                $query = mysqli_query($conn,$select1);
+
+                                if($rows=mysqli_num_rows($query)){
+                                    
+                                    
+                                    while($departiment = mysqli_fetch_assoc($query)){
+                                       $dept= $departiment['name'];
+                                       $deptid= $departiment['name'];
+                                        
+                                        ?>
+                                       
+                                        <option value="<?= $deptid ?>" ><?php echo $dept ?></option>
+                                     
+                                            
+                        <?php }
+
+
+                                }
+                            ?>
                                     </select>
                                     <span class="text-danger fw-bold"><?php echo $departimentErr;?></span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for=""> Roles</label>
-                                    <select name="roles" id="" class="form-control">
+                                    <select name="role" id="" class="form-control">
                                     <option value=""> Choose Role</option>
-                                    <option value="Administrator">Administrator</option>
-                                    <option value="Coordinator">Coordinator</option>
-                                    <option value="Instructor">Instructor</option>
-                                    <option value="Accountant">Accountant</option>
-                                    <option value="Rector">Rector</option>
+                                   
+                                    <?php
+                                $select2 = "SELECT * FROM roles";
+
+                                $query = mysqli_query($conn,$select2);
+
+                                if($rows=mysqli_num_rows($query)){
+                                    
+                                    
+                                    while($rolename = mysqli_fetch_assoc($query)){
+                                       $rolee= $rolename['name'];
+                                       $roleid1= $rolename['name'];
+                                        
+                                        ?>
+                                       <option value="<?= $roleid1 ?>" ><?php echo $rolee ?></option>
+                                     
+                                            
+                        <?php }
+
+
+                                }
+                            ?>
+                               
                                     </select>
                                     <span class="text-danger fw-bold"><?php echo $roleErr;?></span>
                                 </div>

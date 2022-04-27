@@ -16,55 +16,82 @@
         $nameErr = $usernameErr = $departimentErr = $roleErr = $statusErr = $rowErr= "";
         $namee = $username = $departiment = $rolee = $status = $row= "";
         if(isset($_POST['submit'])){
-
             $namee = mysqli_real_escape_string($conn, dataSanitizations($_POST['name']));
             $username = mysqli_real_escape_string($conn, dataSanitizations($_POST['username']));
             $departiment = mysqli_real_escape_string($conn, dataSanitizations($_POST['departiment']));
-            $rolee = mysqli_real_escape_string($conn, dataSanitizations($_POST['roles']));
+            $rolee = mysqli_real_escape_string($conn, dataSanitizations($_POST['role']));
             $status = mysqli_real_escape_string($conn, dataSanitizations($_POST['status']));
-            // $name = mysqli_real_escape_string($conn, dataSanitizations($_POST['name']));
-
-
-            if(empty($namee)){
-                $nameErr = "Name is required";
-                
-            }
-
-            if(empty($username)){
-                $usernameErr = "Username is required";
-                
-            }
-
-            if(empty($departiment)){
-                $departimentErr = "Departiment is required";
-                
-            }
-
-            if(empty($rolee)){
-                $roleErr = "Role is required";
-                
-            }
-         
-
-            if(empty($status)){
-                $statusErr = "Status is required";
-                
-            }
-
-
-            elseif( $namee && $username && $departiment && $rolee && $status){
-                $insert = "INSERT INTO users(name,username,departiment,role,status) VALUES('$namee','$username','$departiment','$rolee','$status')";
-                $query= mysqli_query($conn , $insert);
-
-                if($query){
-                     header("location:../layouts/users.php");
-                     $rowErr = "row inserted";
-                }
-              
-            }
 
            
 
+            $selectd1 = "SELECT id FROM departiments WHERE name='$departiment'";
+                 $resultd1 = mysqli_query($conn , $selectd1);
 
+                $rowd1 = mysqli_fetch_assoc($resultd1);
+                $departimentd1 = $rowd1['id'];
+
+                
+
+
+        
+            $selectr1 = "SELECT * FROM roles where name='$rolee'";
+
+            
+            $queryr1 = mysqli_query($conn,$selectr1);
+        
+                   
+        
+        
+                    $rowr1 = mysqli_fetch_assoc($queryr1); 
+                    $roler1 = $rowr1['id'];
+      
+                   
+                    
+       
+        if(empty($namee)){
+            $nameErr = "Name is required";
+            
         }
-?>
+
+        if(empty($username)){
+            $usernameErr = "Username is required";
+            
+        }
+
+        if(empty($departiment)){
+            $departimentErr = "Departiment is required";
+            
+        }
+
+        if(empty($rolee)){
+            $roleErr = "Role is required";
+            
+        }
+
+        if(empty($status)){
+            $statusErr = "Status is required";
+            
+        }
+
+        
+
+        elseif($namee && $username &&  $departimentd1 && $roler1 && $status){
+            
+         
+        //  die ($namee.$username.$departimentd1.$roler1.$status);
+
+         $insert = "INSERT INTO users(name,username,departiment_id,role,status) VALUES('$namee','$username',$departimentd1,$roler1,'$status')";
+           
+        $query= mysqli_query($conn,$insert);
+
+       
+        if($query){
+           header("location:../layouts/users.php");
+        }
+        else{
+            echo "jaribu";
+        }
+        }
+        
+
+    }

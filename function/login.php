@@ -35,9 +35,9 @@ function isRector($role2) {
 
 
 // function isActive($status2) {
-//     if ($status2 === 'Active'   ) {
+//     if ($status2 == 'Active'   ) {
 //         return true;
 //     }
 //     return false;
-//}
-?>
+// }
+// ?>
