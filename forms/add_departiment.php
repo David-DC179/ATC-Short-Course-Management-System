@@ -1,7 +1,10 @@
 <?php
 session_start();
 require "../function/login.php";
-require "../apps/sesseion.php";?>
+require "../apps/sesseion.php";
+require "../apps/adddepartiment_logic.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +17,7 @@ require "../apps/sesseion.php";?>
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid  mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
 <div class="">
     <div class="col-md-12 mt-2">
@@ -110,13 +113,13 @@ require "../apps/sesseion.php";?>
                                         <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign Departiment</span> </a>
                                         </li>
                                     
-                                        <li>
+                                        <!-- <li>
                                             <div class="btn btn-outline-warning mt-3 px-3" style=" border: 2px solid grey; padding: 10px;">
                                                 <a href="../updates/update_departiment.php" class="nav-link align-middle px-0">
                                                 <i class="fs-4  bi-pencil-square text-dark fw-bold"> </i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Departiment</span>
                                                 </a>  
                                             </div> 
-                                        </li>
+                                        </li> -->
                                    
                                
         
@@ -160,12 +163,18 @@ require "../apps/sesseion.php";?>
                 <div class="ms-5">
                    
                     <div class="-body">
+
+                    <form action="" method="post">
+
+
+                    
                         
                         <div class="form-group col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="">Departiment name</label>
-                                    <input type="text" placeholder="ICT " class="form-control">
+                                    <input type="text" placeholder="ICT " name="name" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
                                 </div>
 
                             
@@ -182,7 +191,8 @@ require "../apps/sesseion.php";?>
                              
                                 <div class="col-md-7">
                                     <label for=""> Cordinator Name</label>
-                                    <input type="text" placeholder=" " class="form-control">
+                                    <input type="text" placeholder="Mr DC" name="coordinator" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $coordinatornameErr;?></span>
                                 </div>
                              
                             
@@ -195,7 +205,7 @@ require "../apps/sesseion.php";?>
                                 <div class="col-md-4">
                                     <label for=""></label>
                                     <!-- <input type="button" value="Save" class="btn btn-info form-control"> -->
-                                    <button type="submit" class="btn btn-primary form-control">Save</button>
+                                    <button type="submit" name="submit" class="btn btn-primary form-control">Save</button>
 
                                 </div>
 
@@ -209,13 +219,10 @@ require "../apps/sesseion.php";?>
                      
                     
                        
-                       
-                        
-                        <div class="form-group">
-                        <span></span>
-                          
                         </div>
-                    </div>
+
+                    </form>
+
                 </div>
       
             </div> 
