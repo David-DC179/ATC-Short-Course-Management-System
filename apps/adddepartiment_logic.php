@@ -20,7 +20,15 @@
 
     }
     elseif($namee && $coordinator_name){
-        echo "in";
+       $insert = "INSERT INTO departiments(name,coordinator) VALUES('$namee','$coordinator_name')";
+       $query = mysqli_query($conn,$insert);
+
+       if($query){
+           
+           header("location:../layouts/departiment.php");
+       }else{
+           echo "jaribu";
+       }
     }
 
    }    

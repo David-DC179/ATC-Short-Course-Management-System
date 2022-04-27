@@ -103,20 +103,14 @@
 
                                         <li>
                                             <div class="btn btn-outline-success px-4 mt-3" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../forms/departiment.php" class="nav-link align-middle px-0">
+                                                <a href="../layouts/departiment.php" class="nav-link align-middle px-0">
                                                   <i class="fs-4  bi-table text-dark fw-bold" width="16" height="16"></i><br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">View Departiment</span>
                                                 </a>  
                                             </div> 
                                         </li>
                                 
 
-                                        <li>
-                                            <div class="btn btn-outline-warning px-4 mt-3" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../forms/add_course.php" class="nav-link align-middle px-0">
-                                                  <i class="fs-4  bi-pencil-square text-dark fw-bold"></i><br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Departiment</span>
-                                                </a>  
-                                            </div> 
-                                        </li>
+                                       
 
                                     
                  
@@ -166,35 +160,62 @@
 
                         <div class="row">
                             <div class="container">
-                                <div class="table-responsive-sm">
+                                <div class="table-responsive-sm col-md-8">
                                     <table class="table table-hover">
-                                        <tr>
+
+                                    <?php
+                                            require "../database/conncetion.php";
+
+                                      
+
+                                            
+                                          
+                                            $select = "SELECT * FROM departiments ";
+                                            $result = mysqli_query($conn,$select);
+
+                                            $row = mysqli_num_rows($result);
+
+                                            if(mysqli_num_rows($result)>0 ){?>
+                                        <thead class="table bg-dark text-light " style="text-align: center;">
                                             <th>SN</th>
                                             <th colspan="2"> NAME</th>
                                             <th>COORDINATOR NAME</th>
+                                            <th colspan="2">ACTIONS</th>
                                             
-                                        </tr>
+                                        </thead>
+                                        <?php
 
-                                        <tr>
-                                            <td>1</td>
-                                            <td colspan="2">ICT Departiment</td>
-                                        
-                                            <td>Mr Govella, M</td>
+                                           $sn=1;
+
+                                           while($departiment=mysqli_fetch_assoc($result)){
+                                        ?>
+                                               <tr style="text-align: center;">
+                                                   <td><?php echo $sn++; ?></td>
+                                                   <td colspan="2"><?php echo $departiment['name'] ?></td>
+                                                   <td><?php echo $departiment['coordinator'] ?></</td>
+                                                   <td colspan="2">
+                                                       <a href="../updates/update_departiment.php?update=<?php echo $departiment['id'];?>" name="update"><i class="fs-4  bi-pencil-square text-warning fw-bold"></i></a>
+                                                      &nbsp; &nbsp; &nbsp;
+                                                       <i class="fs-4  bi-trash text-danger fw-bold " width="16" height="16"></i>
+                                                    </td>
+                                                
+                                                </tr>
+                                           
+                                           
+                                           
+                                           
+
+                                        <?php     }
+
+                                            }
                                             
-                                    
-                                
-                                        </tr>
 
-                                        <tr>
-                                            <td>2</td>
-                                            <td colspan="2">Electrical Engineering</td>
-                                        
-                                        <td>Mr David, C</td>
+                                                
                                       
-                                            
-                                        
-                                        </tr>
+                         
+                                        ?>
                                     </table>
+                                    <div><?php echo $row." rows are "."inserted"?></div>
 
                                 </div>
                       

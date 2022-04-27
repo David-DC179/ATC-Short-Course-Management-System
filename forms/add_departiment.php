@@ -99,27 +99,22 @@ require "../apps/adddepartiment_logic.php";
                                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                   
 
-
-                                        
-                                        <div class="btn btn-outline-success px-4 mt-3" style=" border: 2px solid grey; padding: 10px;">
+                                        <li>
+                                            <div class="btn btn-outline-primary  mt-3 px-3" style=" border: 2px solid grey; padding: 10px;">
+                                                <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                                <i class="fs-4 bi-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Add Departiment</span> </a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                          <div class="btn btn-outline-success px-4 mt-3" style=" border: 2px solid grey; padding: 10px;">
                                             <a href="../layouts/departiment.php" class="nav-link align-middle px-0">
                                             <i class="fs-4  bi-table text-dark fw-bold" width="16" height="16"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">View Departiment</span>
                                             </a>  
-                                        </div> 
-                                    
-
-                                        <li class="btn btn-outline-info  mt-3 px-3" style=" border: 2px solid grey; padding: 10px;">
-                                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                        <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign Departiment</span> </a>
+                                        </div>  
                                         </li>
-                                    
-                                        <!-- <li>
-                                            <div class="btn btn-outline-warning mt-3 px-3" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../updates/update_departiment.php" class="nav-link align-middle px-0">
-                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"> </i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Departiment</span>
-                                                </a>  
-                                            </div> 
-                                        </li> -->
+
+                                        
+                             
                                    
                                
         

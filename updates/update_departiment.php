@@ -1,7 +1,53 @@
 <?php
+
 session_start();
 require "../function/login.php";
 require "../apps/sesseion.php";
+require "../database/conncetion.php";
+require "../function/sanitalization.php";
+
+        if(isset($_GET['update'])){
+            $id = $_GET['update'];
+            $select = "SELECT * FROM departiments WHERE  id=$id";
+            $result = mysqli_query($conn,$select);
+
+            if(mysqli_num_rows($result)){
+                $users=mysqli_fetch_assoc($result);
+
+                $dname= $users['name'];
+                $cname = $users['coordinator'];
+
+            }
+        }
+
+        $nameErr = $coordinatornameErr  = $rowErr= "";
+        $namee = $coordinatornameErr =  $row= "";
+
+        if(isset($_POST['update'])){
+            $namee = mysqli_real_escape_string($conn, dataSanitizations($_POST['name']));
+            $coordinator_name = mysqli_real_escape_string($conn, dataSanitizations($_POST['coordinator']));
+
+            if(empty($namee)){
+                $nameErr = "Name is required";
+            }
+
+            if(empty($coordinator_name)){
+
+                $coordinatornameErr = "Coordinator Name required";
+
+            }
+            elseif($namee && $coordinator_name){
+                $update = "UPDATE departiments SET name ='$namee', coordinator = '$coordinator_name' WHERE id =$id";
+                $query = mysqli_query($conn,$update);
+
+                if($query){
+                    header("location:../layouts/departiment.php");
+                }else{
+                    echo "jaribu";
+                }
+            }
+
+        }
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +62,7 @@ require "../apps/sesseion.php";
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
 <div class="">
     <div class="col-md-12 mt-2">
@@ -158,12 +204,17 @@ require "../apps/sesseion.php";
                 <div class="ms-5">
                    
                     <div class="-body">
+
+                    <form action="" method="post">
+
+                  
                         
                         <div class="form-group col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="">Departiment name</label>
-                                    <input type="text" placeholder="ICT " class="form-control">
+                                    <input type="text"name="name" value="<?php echo $dname;?>" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
                                 </div>
 
                             
@@ -180,7 +231,8 @@ require "../apps/sesseion.php";
                              
                                 <div class="col-md-7">
                                     <label for=""> Cordinator Name</label>
-                                    <input type="text" placeholder=" " class="form-control">
+                                    <input type="text" name= "coordinator" value="<?php echo $cname;?>" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $coordinatornameErr;?></span>
                                 </div>
                              
                             
@@ -192,8 +244,8 @@ require "../apps/sesseion.php";
                         
                                 <div class="col-md-4">
                                     <label for=""></label>
-                                    <!-- <input type="button" value="Save" class="btn btn-info form-control"> -->
-                                    <button type="submit" class="btn btn-primary form-control">Save</button>
+                                    
+                                    <button type="submit" name="update" class="btn btn-primary form-control">Save</button>
 
                                 </div>
 
@@ -205,15 +257,8 @@ require "../apps/sesseion.php";
                             
                         </div>
                      
-                    
-                       
-                       
-                        
-                        <div class="form-group">
-                        <span></span>
-                          
-                        </div>
-                    </div>
+                
+                    </form>
                 </div>
       
             </div> 
@@ -222,29 +267,7 @@ require "../apps/sesseion.php";
         
     </div>
 
-                              
-                              
 
-                            </div>
-                      
-                        </div>
-                    </div>
-
-        
-                        
-            </div>
-
-           
-
-            
-
-        </div>
-        
-
-
-    </div>
-                 
-       
               
 
     <div class="row border-top rounded-dark mt-4" style="text-align: center;">
