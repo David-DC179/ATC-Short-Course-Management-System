@@ -2,6 +2,89 @@
 session_start();
 require "../function/login.php";
 require "../apps/sesseion.php";
+ require "../database/conncetion.php";
+ require "../function/sanitalization.php";
+
+ 
+ if(isset($_GET['update'])){
+    $id = $_GET['update'];
+    $select = "SELECT * FROM courses WHERE  id=$id";
+    $result = mysqli_query($conn,$select);
+
+    if(mysqli_num_rows($result)){
+        $courses=mysqli_fetch_assoc($result);
+
+        $fullname= $courses['name'];
+        $departiment_id = $courses['departiment_id'];
+        $duration = $courses['duration'];
+      
+
+        $selectd = "SELECT * FROM departiments WHERE id=$departiment_id";
+             $resultd = mysqli_query($conn , $selectd);
+
+            $rowd = mysqli_fetch_assoc($resultd);
+            $departimentn = $rowd['name'];
+            $departimentid = $rowd['id'];
+
+
+    }
+
+    $nameErr = $departimentErr = $durationErr = $rowErr= "";
+    $namee  = $departiment = $duration = $row= "";
+
+    if(isset($_POST['update'])){
+
+        $namee = mysqli_real_escape_string($conn, dataSanitizations($_POST['name']));
+        $departiment = mysqli_real_escape_string($conn, dataSanitizations($_POST['departiment']));
+        $duration = mysqli_real_escape_string($conn, dataSanitizations($_POST['duration']));
+  
+        $selectd1 = "SELECT id FROM departiments WHERE name='$departiment'";
+        $resultd1 = mysqli_query($conn , $selectd1);
+  
+       $rowd1 = mysqli_fetch_assoc($resultd1);
+       $departimentd1 = $rowd1['id'];
+  
+       if(empty($namee)){
+        $nameErr = "Name is required";
+        
+        }
+  
+  
+        if(empty($departiment)){
+           $departimentErr = "Departiment is required";
+     
+        }
+  
+        if(empty($duration)){
+            $durationErr = "Duration is required";
+            
+        }
+  
+  
+        elseif($namee &&  $departimentd1 && $duration ){
+            
+
+            $update = "UPDATE courses SET name='$namee', departiment_id=$departimentd1, duration='$duration' WHERE id =$id";
+            $query = mysqli_query($conn,$update);
+
+           
+
+
+
+            if($query){
+                header("location:../layouts/course.php");
+            }
+            else{
+                echo "in";
+            }
+        }
+    }
+
+ 
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +99,7 @@ require "../apps/sesseion.php";
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid   mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
 <div class="">
     <div class="col-md-12 mt-2">
@@ -87,7 +170,7 @@ require "../apps/sesseion.php";
 
                             <div class="col-auto  col-md-4 col-xl-2 px-sm-2 px-0 bg- text-dark justify-content-center" style=" background-color:#B9F88E;">
                                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-dark min-vh-100">
-                                    <div class="btn btn- px-4" style=" border: 2px solid grey; padding: 10px;">
+                                    <div class="btn btn- px-5" style=" border: 2px solid grey; padding: 10px;">
                                         <a href="../layouts/dashbord.php" class="nav-link align-middle px-0">
                                             <i class="fs-4 bi-house text-dark fw-bold "></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Home</span>
                                         </a>  
@@ -99,7 +182,7 @@ require "../apps/sesseion.php";
                                     <li>
                                             <div class="btn btn-outline-primary mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
                                                 <a href="../updates/update_course.php" class="nav-link align-middle px-0">
-                                                    <i class="fs-4 bi-house text-dark fw-bold "></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Add course</span>
+                                                    <i class="fs-4 bi-plus text-dark fw-bold "></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Add course</span>
                                                 </a>  
                                             </div> 
                                         </li>
@@ -113,10 +196,6 @@ require "../apps/sesseion.php";
                                         </div> 
                                     
 
-                                        <li class="btn btn-outline-info  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                        <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign course</span> </a>
-                                        </li>
                                     
                                     
                                    
@@ -154,132 +233,147 @@ require "../apps/sesseion.php";
                             <!-- end of side bar Student-->
 
                             <div class="row">
-                            <div class="container">
-      <div class="row justify-content-">
-            <div class="col-md-10 ">
+                                <div class="container">
+                                    <div class="row justify-content-">
+                                        <div class="col-md-10 ">
 
-          <h3>ADD NEW COURSE</h3>
-                <div class="ms-5">
-                   
-                    <div class="-body">
-                        
-                        <div class="form-group col-md-12">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <label for="">Course name</label>
-                                    <input type="text" value="Computer Application " class="form-control">
-                                </div>
-                             
-    
-                            </div>
-                            
-                            
-                        </div>
+                                            <h3>ADD NEW COURSE</h3>
+                                            <div class="ms-5">
+                                            
+                                                <div class="-body">
+                                                    
+                                                    <form action="" method="post">
 
-                     
-                        <div class="form-group col-md-12">
-                            <div class="row">
-                             
-                                <div class="col-md-7">
-                                    <label for=""> Departiment</label>
-                                    <select name="" id="" class="form-control">
-                                    <option value=""> Select Departiment</option>
-                                    <option value="Single">ICT</option>
-                                    <option value="Married">Mechanical</option>
-                                    <option value="divoced">Civil</option>
-                                    </select>
-                                </div>
-                                
-                             
-                            </div>
-                            
-                            
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <div class="row">
-                              
-                                <div class="col-md-7">
-                                    <label for="">Duration </label>
-                                    <input type="text" value="2 weeks" class="form-control">
-                                </div>
-                                
-                                
-                           
-
-
-                            </div>
-                               
-                            
-                            
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <div class="row">
-                        
-                                <div class="col-md-4">
-                                    <label for=""></label>
-                                    <!-- <input type="button" value="Save" class="btn btn-info form-control"> -->
-                                    <button type="submit" class="btn btn-primary form-control">Save</button>
-
-                                </div>
-
-
-
-                            </div>
-                               
-                            
-                            
-                        </div>
-                     
-                    
-                       
                        
                         
-                        <div class="form-group">
-                        <span></span>
-                          
+                                                                <div class="form-group col-md-12">
+                                                                    <div class="row">
+                                                                        <div class="col-md-7">
+                                                                            <label for="">Course name</label>
+                                                                            <input type="text" name="name" value="<?php echo $fullname; ?>" class="form-control">
+                                                                            <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
+                                                                        </div>
+                                                                    
+
+                                                                    </div>
+                                                                </div>
+                                            
+                                            
+                                                            </div>
+
+                                                            
+
+
+                                                            <div class="form-group col-md-12">
+                                                                <div class="row">
+                                                            
+
+                                                                            <div class="col-md-4">
+                                                                                        <label for=""> Departiment</label>
+                                                                                        <select name="departiment" id="" class="form-control">
+                                                                                        <option value="<?php echo $departimentn;?>"> <?php echo $departimentn;?> </option>
+                                                                                            
+                                                                                        <?php
+                                                                                    $select1 = "SELECT * FROM departiments";
+
+                                                                                    $query = mysqli_query($conn,$select1);
+
+                                                                                    if($rows=mysqli_num_rows($query)){
+                                                                                        
+                                                                                        
+                                                                                        while($departiment = mysqli_fetch_assoc($query)){
+                                                                                        $dept= $departiment['name'];
+                                                                                        $deptid= $departiment['name'];
+                                                                                            
+                                                                                            ?>
+                                                                                        
+                                                                                            <option value="<?= $deptid ?>" ><?php echo $dept ?></option>
+                                                                                        
+                                                                                                
+                                                                                <?php }
+
+
+                                                                                    }
+                                                                                ?>
+                                                                                
+                                                                                    
+                                                                                        </select>
+                                                                                        <span class="text-danger fw-bold"><?php echo $departimentErr;?></span>
+                                                                            </div>
+                                            
+                                        
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group col-md-12 mt-3">
+                                                                <div class="row">
+                                                                
+                                                                    <div class="col-md-7">
+                                                                        <label for="">Duration </label>
+                                                                        <input type="text" name="duration" value="<?php echo $courses['duration'] ?>"  class="form-control">
+                                                                        <span class="text-danger fw-bold"><?php echo $durationErr;?></span>
+                                                                    </div>
+
+                                                                </div>
+                                                                
+                                                                
+                                                                
+                                                            </div>
+
+                                                            <div class="form-group col-md-12">
+                                                                <div class="row">
+
+                                                                    <div class="col-md-4">
+                                                                        <label for=""></label>
+                                                                    
+                                                                        <button type="submit" name="update" class="btn btn-primary form-control">Save</button>
+
+                                                                    </div>
+
+
+
+                                                                </div>
+                                                                
+                                                                
+                                                                
+                                                            </div>
+                                                    </form>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+
                 </div>
-      
-            </div> 
-        </div>
-        
-        
-    </div>
 
-                              
-                              
+                
 
-                            </div>
-                      
-                        </div>
-                    </div>
+                                 
+                                    
+
+
+
+              
+
+
 
         
-                        
-            </div>
-
-           
-
-            
-
-        </div>
-        
-
-
-    </div>
+  
                  
        
               
 
-    <div class="row border-top rounded-dark mt-4" style="text-align: center;">
-            <div class="col-md-12 mt-3 " style="height: 7vh;">
-            <p class=" text-muted"> Arusha Technical College &copy;2022 </p>
-            </div>
-        </div>
-    </div>
+                <div class="row border-top rounded-dark mt-4" style="text-align: center;">
+                        <div class="col-md-12 mt-3 " style="height: 7vh;">
+                        <p class=" text-muted"> Arusha Technical College &copy;2022 </p>
+                        </div>
+                    </div>
+                </div>
         
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>

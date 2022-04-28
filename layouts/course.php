@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid  mt-5 mb-5" style="background-color: #E9F9EF; padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid  mb-5" style="background-color: #E9F9EF; padding: 10px; border-radius: 50px ;" >
     
 <div class="col-md-12 mt-2">
                 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md">
@@ -115,14 +115,6 @@
                                         </li>
 
                                     
-                                        <li>
-                                            <div class="btn btn-outline-warning px-4 mt-3" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../updates/update_course.php" class="nav-link align-middle px-0">
-                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Course</span>
-                                                </a>  
-                                            </div> 
-                                        </li>
-                                   
                                
         
                                     
@@ -152,41 +144,7 @@
                             </div>  
 
                             <div class="col-md-10" style="background-color: #E2FECF;">
-                            <!-- <div class="row mb-4">
-                                <div class="col-md-3 ">
-                                    <div class="card bg-info">
-                                        <div class="card-header fw-bold">All Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card bg-success">
-                                        <div class="card-header fw-bold">Current Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card bg-warning">
-                                        <div class="card-header fw-bold">Pontential Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card bg-primary">
-                                        <div class="card-header fw-bold">All Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
+                            
 
                             <!-- end of side bar -->
 
@@ -201,40 +159,72 @@
                                 
                                 </div> 
 
-                                <div class="table-responsive-sm">
+                                <div class="table-responsive-sm col-md-8">
+                                <?php
+                                            require "../database/conncetion.php";
+
+                                      
+
+                                            
+                                          
+                                            $select = "SELECT * FROM courses ";
+                                            $result = mysqli_query($conn,$select);
+
+                                            $row = mysqli_num_rows($result);
+
+                                            if(mysqli_num_rows($result)>0 ){?>
                                 <table class="table table-hover ">
-                                    <tr>
+                                    <thead class="table bg-dark text-light " style="text-align: center;">   
                                         <th>SN</th>
                                         <th colspan="2"> NAME</th>
                                         <th>DEPARTIMENT</th>
                                         <th>DURATION</th>
-                                        <!-- <th>PHONE</th>
-                                        <th>STATUS</th> -->
+                                        <th>ACTIONS</th>
                                         
-                                    </tr>
+                                    </thead>
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td colspan="2">Computer Application</td>
-                                        <td>ICT Departiment</td>
-                                        
-                                     
-                                        <td>2 weeks </td>
-                                        <td></td>
-                                
-                                    </tr>
+                                  <tr>
+                                  <?php
 
-                                    <tr>
-                                        <td>2</td>
-                                        <td colspan="2">Driving Course</td>
-                                        <td>Mechnical Departiment</td>
-                                        
-                                        
-                                        <td>3 weeks </td>
-                                        <td></td>
-                                    
-                                    </tr>
+                                            $sn=1;
+
+                                            while($courses=mysqli_fetch_assoc($result)){
+
+                                                $departiment_id =$courses['departiment_id'];
+
+                                                $selectd = "SELECT * FROM departiments WHERE id=$departiment_id";
+                                                $resultd = mysqli_query($conn , $selectd);
+
+                                                $rowd = mysqli_fetch_assoc($resultd);
+                                                $departiment = $rowd['name'];
+                                            ?>
+                                                <tr style="text-align: center;">
+                                                    <td><?php echo $sn++; ?></td>
+                                                    <td colspan="2"><?php echo $courses['name'] ?></td>
+                                                    <td><?php echo    $departiment = $rowd['name']?></</td>
+                                                    <td><?php echo $courses['duration'] ?></td>
+                                                    <td colspan="2">
+                                                        <a href="../updates/update_course.php?update=<?php echo $courses['id'];?>" name="update"><i class="fs-4  bi-pencil-square text-warning fw-bold"></i></a>
+                                                    &nbsp; &nbsp; &nbsp;
+                                                        <i class="fs-4  bi-trash text-danger fw-bold " width="16" height="16"></i>
+                                                    </td>
+                                                
+                                                </tr>
+
+                                            <?php     }
+
+                                            }
+                                            
+
+                                                
+
+
+                                            ?>
+
+                                  </tr>
+                                  
                                 </table>
+                                <div><?php echo $row." rows are "."inserted"?></div>
 
                             </div>
                       

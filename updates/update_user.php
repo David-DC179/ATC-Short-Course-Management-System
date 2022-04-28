@@ -45,8 +45,8 @@
      
     }
 
-    $nameErr = $usernameErr = $departimentErr = $roleErr = $statusErr = $rowErr= "";
-    $namee = $username = $departimentid = $roleid = $status = "";
+        $nameErr = $usernameErr = $departimentErr = $roleErr = $statusErr = $rowErr= "";
+        $namee = $username = $departimentid = $roleid = $status = "";
 
     if(isset($_POST['update'])){
             $namee = mysqli_real_escape_string($conn, dataSanitizations($_POST['name']));
@@ -115,6 +115,7 @@
             
         $update = "UPDATE users SET name='$namee', username='$username', departiment_id=$departimentd1, role =$roler1, status='$status' WHERE id=$id";
         $query= mysqli_query($conn,$update);
+        
 
        
         if($query){
@@ -226,8 +227,8 @@
                                     
                                         <li>
                                             <div class="btn btn-outline-primary mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../forms/add_user.php" class="nav-link align-middle px-0">
-                                                <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Add Users</span>
+                                                <a href="../layouts/add_user.php" class="nav-link align-middle px-0">
+                                                <i class="fs-4 bi-plus text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Add Users</span>
                                                 </a>  
                                             </div> 
                                         </li>

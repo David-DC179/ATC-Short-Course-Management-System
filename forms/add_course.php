@@ -2,6 +2,9 @@
     session_start();
     require "../function/login.php";
    require "../apps/sesseion.php";
+   require "../database/conncetion.php";
+    require "../apps/addcourse_logic.php";
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +18,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid   mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
 <div class="">
     <div class="col-md-12 mt-2">
@@ -106,18 +109,7 @@
                                         </div> 
                                     
 
-                                        <li class="btn btn-outline-info  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                        <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign course</span> </a>
-                                        </li>
-                                    
-                                        <li>
-                                            <div class="btn btn-outline-warning mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../updates/update_course.php" class="nav-link align-middle px-0">
-                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"> </i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update course</span>
-                                                </a>  
-                                            </div> 
-                                        </li>
+                                       
                                    
                                
         
@@ -147,128 +139,139 @@
                                 </div>
                             </div>  
 
-                            <div class="col-md-10" style="background-color: #E2FECF;">
+                        <div class="col-md-10" style="background-color: #E2FECF;">
                  
 
                             <!-- end of side bar Student-->
 
                             <div class="row">
-                            <div class="container">
-      <div class="row justify-content-">
-            <div class="col-md-10 ">
+                                <div class="container">
+                                    <div class="row justify-content-">
+                                        <div class="col-md-10 ">
 
-          <h3>ADD NEW COURSE</h3>
-                <div class="ms-5">
-                   
-                    <div class="-body">
-                        
-                        <div class="form-group col-md-12">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <label for="">Course name</label>
-                                    <input type="text" placeholder="Computer Application " class="form-control">
+                                            <h3>ADD NEW COURSE</h3>
+                                            <div class="ms-5">
+                                                        
+                                                <div class="-body">
+                                                    <form action="" method="post">
+
+                                                            
+                                                                
+                                                        <div class="form-group col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-7">
+                                                                    <label for="">Course name</label>
+                                                                    <input type="text" name="name" placeholder="Computer Application " class="form-control">
+                                                                    <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
+                                                                </div>
+                                                            
+                                    
+                                                            </div>
+                                                            
+                                                            
+                                                        </div>
+
+                                                            
+                                                        <div class="form-group col-md-12">
+                                                            <div class="row">
+                                                                    
+                                                                    <div class="col-md-4 mt-3">
+                                                                            <label for=""> Departiment</label>
+                                                                            <select name="departiment" id="" class="form-control">
+                                                                            <option value=""> Select Departiment</option>
+                                                                            <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
+                                                                                        
+                                                                            <?php
+                                                                        $select1 = "SELECT * FROM departiments";
+
+                                                                        $query = mysqli_query($conn,$select1);
+
+                                                                        if($rows=mysqli_num_rows($query)){
+                                                                            
+                                                                            
+                                                                            while($departiment = mysqli_fetch_assoc($query)){
+                                                                            $dept= $departiment['name'];
+                                                                            $deptid= $departiment['name'];
+                                                                                
+                                                                                ?>
+                                                                            
+                                                                                <option value="<?= $deptid ?>" ><?php echo $dept ?></option>
+                                                                            
+                                                                                    
+                                                                    <?php }
+
+
+                                                                        }
+                                                                    ?>
+                                                                            </select>
+                                                                            <span class="text-danger fw-bold"><?php echo $departimentErr;?></span>
+                                                                        </div>
+                                                                        
+                                                                    
+                                                            </div>
+                                                                    
+                                                                    
+                                                        </div>
+
+                                                        <div class="form-group col-md-12 mt-3">
+                                                            <div class="row">
+                                                            
+                                                                <div class="col-md-7">
+                                                                    <label for="">Duration </label>
+                                                                    <input type="text" name="duration" placeholder="2 weeks" class="form-control">
+                                                                    <span class="text-danger fw-bold"><?php echo $durationErr;?></span>
+                                                                </div>
+                                                                
+                                                                
+                                                        
+
+
+                                                            </div>
+                                                            
+                                                            
+                                                            
+                                                        </div>
+
+                                                        <div class="form-group col-md-12">
+                                                            <div class="row">
+                                                        
+                                                                <div class="col-md-4">
+                                                                    <label for=""></label>
+                                                                
+                                                                    <button type="submit" name="submit" class="btn btn-primary form-control">Save</button>
+
+                                                                </div>
+
+
+
+                                                            </div>
+                                                            
+                                                            
+                                                            
+                                                        </div>
+                                                            
+                                                            
+                                                            
+                                                            
+                                                                
+                                                    </form>
+
+                                                </div>
+
+                                            </div>
+                                            
+                                        </div> 
+                                    </div>
                                 </div>
-                             
+                            </div>
+                        </div>
+                    </div>
+        
+        
     
-                            </div>
-                            
-                            
-                        </div>
-
-                     
-                        <div class="form-group col-md-12">
-                            <div class="row">
-                             
-                                <div class="col-md-7">
-                                    <label for=""> Departiment</label>
-                                    <select name="" id="" class="form-control">
-                                    <option value=""> Select Departiment</option>
-                                    <option value="Single">ICT</option>
-                                    <option value="Married">Mechanical</option>
-                                    <option value="divoced">Civil</option>
-                                    </select>
-                                </div>
-                                
-                             
-                            </div>
-                            
-                            
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <div class="row">
-                              
-                                <div class="col-md-7">
-                                    <label for="">Duration </label>
-                                    <input type="text" placeholder="2 weeks" class="form-control">
-                                </div>
-                                
-                                
-                           
-
-
-                            </div>
-                               
-                            
-                            
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <div class="row">
-                        
-                                <div class="col-md-4">
-                                    <label for=""></label>
-                                    <!-- <input type="button" value="Save" class="btn btn-info form-control"> -->
-                                    <button type="submit" class="btn btn-primary form-control">Save</button>
-
-                                </div>
-
-
-
-                            </div>
-                               
-                            
-                            
-                        </div>
-                     
-                    
-                       
-                       
-                        
-                        <div class="form-group">
-                        <span></span>
-                          
-                        </div>
-                    </div>
-                </div>
-      
-            </div> 
-        </div>
-        
-        
-    </div>
 
                               
-                              
 
-                            </div>
-                      
-                        </div>
-                    </div>
-
-        
-                        
-            </div>
-
-           
-
-            
-
-        </div>
-        
-
-
-    </div>
                  
        
               

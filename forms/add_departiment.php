@@ -213,8 +213,7 @@ require "../apps/adddepartiment_logic.php";
                         </div>
                      
                     
-                       
-                        </div>
+                      
 
                     </form>
 
@@ -227,26 +226,7 @@ require "../apps/adddepartiment_logic.php";
     </div>
 
                               
-                              
 
-                            </div>
-                      
-                        </div>
-                    </div>
-
-        
-                        
-            </div>
-
-           
-
-            
-
-        </div>
-        
-
-
-    </div>
                  
        
               
