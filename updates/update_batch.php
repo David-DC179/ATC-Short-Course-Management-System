@@ -1,7 +1,107 @@
 <?php
+
 session_start();
 require "../function/login.php";
-require "../apps/sesseion.php";?>
+require "../apps/sesseion.php";
+require "../database/conncetion.php";
+require "../function/sanitalization.php";
+
+
+
+if(isset($_GET['update'])){
+    $id = $_GET['update'];
+    $select = "SELECT * FROM batches WHERE  id=$id";
+    $result = mysqli_query($conn,$select);
+
+    if(mysqli_num_rows($result)){
+        $courses=mysqli_fetch_assoc($result);
+
+        $batchname= $courses['name'];
+        $course_id = $courses['course'];
+        $instractor = $courses['instractor'];
+        $start_date = $courses['start_date'];
+        $finish_date  = $courses['finish_date'];
+
+        $selectc = "SELECT * FROM courses WHERE id=$course_id";
+             $resultc = mysqli_query($conn , $selectc);
+
+            $rowc = mysqli_fetch_assoc($resultc);
+            $coursena = $rowc['name'];
+            $courseid = $rowc['id'];
+
+    }
+
+
+
+}
+
+$nameErr = $courseErr = $instructorErr = $start_dateErr = $finish_dateErr = $rowErr= "";
+$namee = $courseid = $instructor = $start_date1 = $finish_date1 = $row= "";
+if(isset($_POST['update'])){
+    $namee = mysqli_real_escape_string($conn, dataSanitizations($_POST['name']));
+    $courseid = mysqli_real_escape_string($conn, dataSanitizations($_POST['course']));
+    $instructor = mysqli_real_escape_string($conn, dataSanitizations($_POST['instructor']));
+    $start_date1 = mysqli_real_escape_string($conn, dataSanitizations($_POST['startdate']));
+    $finish_date1 = mysqli_real_escape_string($conn, dataSanitizations($_POST['finishdate']));
+
+   
+
+        $selectc1 = "SELECT id FROM courses WHERE name='$courseid'";
+         $resultc1 = mysqli_query($conn , $selectc1);
+
+        $rowc1 = mysqli_fetch_assoc($resultc1);
+        $courses = $rowc1['id'];
+
+
+        if(empty($namee)){
+            $nameErr = "Name is required";
+            
+        }
+
+        if(empty($courseid)){
+            $courseErr = "Course name is required";
+            
+        }
+
+        if(empty($instructor)){
+            $instructorErr = "Instructor name is required";
+            
+        }
+
+        if(empty($start_date1)){
+            $start_dateErr = "Start date is required";
+            
+        }
+
+        if(empty($finish_date1)){
+            $finish_dateErr = "Finish date is required";
+            
+        }
+
+        
+
+        elseif($namee  &&  $courses && $instructor && $start_date1 && $finish_date1){
+            // die($namee.$courses.$instructor.$start_date.$finish_date);
+
+            $update = "UPDATE batches SET name='$namee',course=$courses, instractor='$instractor', start_date='$start_date', finish_date='$finish_date'";
+
+            $query = mysqli_query($conn,$update);
+      
+
+           if($query){
+               header("location:../layouts/batch");
+           }
+           else{
+               echo "jaribu";
+           }
+
+        }
+           
+
+
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +115,7 @@ require "../apps/sesseion.php";?>
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid  mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
 <div class="">
     <div class="col-md-12 mt-2">
@@ -109,18 +209,7 @@ require "../apps/sesseion.php";?>
                                         </div> 
                                     
 
-                                        <li class="btn btn-outline-info  mt-3 px-3" style=" border: 2px solid grey; padding: 10px;">
-                                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                        <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign Batch</span> </a>
-                                        </li>
-                                    
-                                        <!-- <li>
-                                            <div class="btn btn-outline-warning mt-3 px-3" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../updates/update_batch.php" class="nav-link align-middle px-0">
-                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"> </i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Batch</span>
-                                                </a>  
-                                            </div> 
-                                        </li> -->
+                                 
                                    
                                
         
@@ -164,27 +253,52 @@ require "../apps/sesseion.php";?>
                 <div class="ms-5">
                    
                     <div class="-body">
+                        <form action="" method="post">
+
+                        
                         
                         <div class="form-group col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
                                     <label for="">Batch name</label>
-                                    <input type="text" placeholder="June batch 2 " class="form-control">
+                                    
+                                    <input type="text" name="name" value="<?php echo $batchname; ?>" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for=""> Course</label>
-                                    <input type="text" placeholder="Web Design " class="form-control">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for=""> Departiment</label>
-                                    <select name="" id="" class="form-control">
-                                    <option value=""> Select Departiment</option>
-                                    <option value="Single">ICT</option>
-                                    <option value="Married">Mechanical</option>
-                                    <option value="divoced">Civil</option>
+                                    <select name="course" id="" class="form-control">
+                                    <option value="<?php echo $coursena;?>"> <?php echo $coursena;?> </option>
+                                        
+                                    <?php
+                                $select1 = "SELECT * FROM courses";
+
+                                $query = mysqli_query($conn,$select1);
+
+                                if($rows=mysqli_num_rows($query)){
+                                    
+                                    
+                                    while($course = mysqli_fetch_assoc($query)){
+                                       $coursename= $course['name'];
+                                       $coursesid= $course['name'];
+                                        
+                                        ?>
+                                       
+                                        <option value="<?= $coursesid ?>" ><?php echo $coursename ?></option>
+                                     
+                                            
+                        <?php }
+
+
+                                }
+                            ?>
+                               
+                                
                                     </select>
+                                    <span class="text-danger fw-bold"><?php echo $courseErr;?></span>
                                 </div>
+                               
                              
     
                             </div>
@@ -198,12 +312,10 @@ require "../apps/sesseion.php";?>
                              
                                 <div class="col-md-4">
                                     <label for=""> Instructor</label>
-                                    <input type="text" placeholder=" " class="form-control">
+                                    <input type="text" name="instructor" value="<?php echo $instractor;?>" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $instructorErr;?></span>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for=""> Number of Students</label>
-                                    <input type="text" placeholder=" " class="form-control">
-                                </div>
+                              
                              
                             </div>
                             
@@ -215,12 +327,16 @@ require "../apps/sesseion.php";?>
                               <label for="">Duration </label>
                                 <div class="col-md-4">
                                     <label for="">Start Date</label>  
-                                    <input type="date" placeholder="" class="form-control">
+                                    <?php echo $courses['start_date'] ?>
+                                    <input type="text" name="startdate" value="<?php echo $start_date ?>" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $start_dateErr;?></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="">Start Date</label>  
-                                    <input type="date" placeholder="" class="form-control">
+                                    <label for="">Finish Date</label> 
+                                    <?php echo $finish_date ?> 
+                                    <input type="text" name="finishdate" value="<?php echo $finish_date ?>" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $finish_dateErr;?></span>
                                 </div>
                                 
                                 
@@ -238,8 +354,8 @@ require "../apps/sesseion.php";?>
                         
                                 <div class="col-md-4">
                                     <label for=""></label>
-                                    <!-- <input type="button" value="Save" class="btn btn-info form-control"> -->
-                                    <button type="submit" class="btn btn-primary form-control">Save</button>
+                                  
+                                    <button type="submit" name="update" class="btn btn-primary form-control">Save</button>
 
                                 </div>
 
@@ -252,13 +368,9 @@ require "../apps/sesseion.php";?>
                         </div>
                      
                     
-                       
-                       
-                        
-                        <div class="form-group">
-                        <span></span>
+                    
                           
-                        </div>
+                        </form>
                     </div>
                 </div>
       
@@ -270,14 +382,7 @@ require "../apps/sesseion.php";?>
 
                               
                               
-
-                            </div>
-                      
-                        </div>
-                    </div>
-
-        
-                        
+  
             </div>
 
            

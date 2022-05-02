@@ -166,11 +166,38 @@ require "../apps/adddepartiment_logic.php";
                         
                         <div class="form-group col-md-12">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label for="">Departiment name</label>
-                                    <input type="text" placeholder="ICT " name="name" class="form-control">
-                                    <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
+                            <div class="col-md-4 mt-3">
+                                <label for=""> Departiment</label>
+                                <select name="departiment" id="" class="form-control">
+                                <option value=""> Select Departiment</option>
+                                <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
+    
+                                    <?php
+                                $select1 = "SELECT * FROM departiments";
+
+                                $query = mysqli_query($conn,$select1);
+
+                                if($rows=mysqli_num_rows($query)){
+                                    
+                                    
+                                    while($departiment = mysqli_fetch_assoc($query)){
+                                    $dept= $departiment['name'];
+                                    $deptid= $departiment['name'];
+                                        
+                                        ?>
+                                    
+                                        <option value="<?= $deptid ?>" ><?php echo $dept ?></option>
+                                    
+                                            
+                            <?php }
+
+
+                                }
+                            ?>
+                                    </select>
+                                    <span class="text-danger fw-bold"><?php echo $departimentErr;?></span>
                                 </div>
+                                                                        
 
                             
                              

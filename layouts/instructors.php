@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid  mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
     <div class="">
         <div class="row">
@@ -100,19 +100,21 @@
                   
                                     
                     
-                                    <li>
+                                        <li>
                                         <div class="btn btn-outline-primary px-4 mt-3" style=" border: 2px solid grey; padding: 10px;">
                                             <a href="../forms/add_instraructor.php" class="nav-link align-middle px-0">
                                             <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Add Instructor</span>
                                             </a>  
                                         </div> 
                                         </li>
-
-                                        <li class="btn btn-outline-success  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                        <li>
+                                         <div class="btn btn-outline-success  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
+                                        <a href="../layouts/instructors.php" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                                         <i class="fs-4  bi-table text-dark fw-bold" width="16" height="16"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">View Instructors</span> </a>
                                         
+                                        </div>
                                         </li>
+                                       
                                     
 
                                         <li class="btn btn-outline-info  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
@@ -120,13 +122,7 @@
                                         <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign Instructor</span> </a>
                                         </li>
                                     
-                                        <li>
-                                            <div class="btn btn-outline-warning mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../updates/update_instructor.php" class="nav-link align-middle px-0">
-                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Instructor</span>
-                                                </a>  
-                                            </div> 
-                                        </li>
+                                     
                                    
                                    
                                
@@ -158,41 +154,7 @@
                             </div>  
 
                             <div class="col-md-10" style="background-color: #E2FECF;">
-                            <!-- <div class="row mb-4">
-                                <div class="col-md-3 ">
-                                    <div class="card bg-info">
-                                        <div class="card-header fw-bold">All Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card bg-success">
-                                        <div class="card-header fw-bold">Current Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card bg-warning">
-                                        <div class="card-header fw-bold">Pontential Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card bg-primary">
-                                        <div class="card-header fw-bold">All Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> -->
+                          
 
                             <!-- end of side bar -->
 
@@ -207,43 +169,79 @@
                                 
                                 </div> 
 
-                                <div class="table-responsive-sm">
+                                <div class="table-responsive-sm col-md-11">
                                 <table class="table table-hover ">
-                                    <tr>
-                                        <th>SN</th>
+                                <?php
+                                            require "../database/conncetion.php";
+
+                                      
+
+                                            
+                                          
+                                            $select = "SELECT * FROM instructors ";
+                                            $result = mysqli_query($conn,$select);
+
+                                            $row = mysqli_num_rows($result);
+
+                                            if(mysqli_num_rows($result)>0 ){?>
+                                    <thead class="table bg-dark text-light " style="text-align: center;">
+                                            <th>SN</th>
                                         <th colspan="2">FULL NAME</th>
-                                        <th>DEPARTIMENT</th>
                                         <th>EMAIL</th>
                                         <th>PHONE</th>
-                                        <th>COURSE</th>
+                                        <th>DEPARTIMENT</th>
+                                        <th>ACTIONS</th>
                                       
                                         
-                                    </tr>
+                                    </thead>
+                                    <?php
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td colspan="2">David Christopher</td>
-                                        <td>ICT Departiment</td>
-                                        
-                                        <td>davidchristopher@atc.ac.tz</td>
-                                        <td>
-                                       O764063426
-                                        </td>
-                                        <td></td>
-                                
-                                    </tr>
+                                        $sn=1;
 
-                                    <tr>
-                                        <td>2</td>
-                                        <td colspan="2">David Christopher</td>
-                                
-                                        <td>ICT Departimen</td>
-                                        <td>davidchristopher@atc.ac.tz</td>
-                                        <td>O764063426</td>
-                                        <td>Web Design</td>
-                                    
-                                    </tr>
-                                </table>
+                                        while($instructor=mysqli_fetch_assoc($result)){
+
+                                            $departiment_id =$instructor['departiment_id'];
+
+                                            $selectd = "SELECT * FROM departiments WHERE id=$departiment_id";
+                                            $resultd = mysqli_query($conn , $selectd);
+
+                                            $rowd = mysqli_fetch_assoc($resultd);
+                                            $departiment = $rowd['name'];
+                                        ?>
+                                            <tr style="text-align: center;">
+                                                <td><?php echo $sn++; ?></td>
+                                                <td colspan="2">
+                                                    <?php echo $instructor['name'] ?>
+                                                    <?php echo $instructor['last_name'] ?>
+                                                </td>
+                                                <td><?php echo $instructor['email'] ?></td>
+                                                <td><?php echo $instructor['phone'] ?></td>
+                                                <td><?php echo    $departiment = $rowd['name']?></</td>
+                                                
+                                                <td colspan="2">
+                                                    <a href="../updates/update_instructor.php?update=<?php echo $instructor['id'];?>" name="update"><i class="fs-4  bi-pencil-square text-warning fw-bold"></i></a>
+                                                &nbsp; &nbsp; &nbsp;
+                                                    <i class="fs-4  bi-trash text-danger fw-bold " width="16" height="16"></i>
+                                                </td>
+                                            
+                                            </tr>
+
+                                        <?php     }
+
+                                        }
+
+
+                                            
+
+
+                                        ?>
+
+                                        </tr>
+
+                                        </table>
+                                        <div><?php echo $row." rows are "."inserted"?></div>
+
+                                  
 
                             </div>
                       

@@ -2,6 +2,8 @@
     session_start();
     require "../function/login.php";
    require "../apps/sesseion.php";
+   require "../database/conncetion.php";
+   require "../apps/addinstructor_logic.php";
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +18,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid col-md-12  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid col-md-12   mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
 <div class="">
     <div class="col-md-12 mt-2">
                 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md">
@@ -106,15 +108,12 @@
                                         </div> 
                                     
 
-                                        <li class="btn btn-outline-info  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                        <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign Instructor</span> </a>
-                                        </li>
+                                      
                                     
                                         <li>
-                                            <div class="btn btn-outline-warning mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
+                                            <div class="btn btn-outline-success mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
                                                 <a href="../updates/update_instructor.php" class="nav-link align-middle px-0">
-                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Instructor</span>
+                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">View Instructors</span>
                                                 </a>  
                                             </div> 
                                         </li>
@@ -163,17 +162,23 @@
                         <h4>PERSONAL PARTICULARS</h4>
                     </div>
                     <div class="-body">
+
+                    <form action="" method="post">
+
+                 
                         
                         <div class="form-group col-md-12">
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="">First name</label>
-                                    <input type="text" placeholder="David " class="form-control">
+                                    <input type="text" name="name" placeholder="David " class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
                                 </div>
                              
                                 <div class="col-md-5">
                                     <label for="">Last name</label>
-                                    <input type="text" placeholder="Senior" class="form-control">
+                                    <input type="text" name="lastname" placeholder="Senior" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $lastnameErr;?></span>
                                 </div>
                             </div>
                             
@@ -184,18 +189,43 @@
                         <div class="form-group col-md-12">
                             <div class="row">
                              
-                                <div class="col-md-4">
+                            
+                                                       
+                                <div class="col-md-4 mt-3">
                                     <label for=""> Departiment</label>
-                                    <select name="" id="" class="form-control">
+                                    <select name="departiment" id="" class="form-control">
                                     <option value=""> Select Departiment</option>
-                                    <option value="Single">ICT</option>
-                                    <option value="Married">Mechanical</option>
-                                    <option value="divoced">Civil</option>
-                                    </select>
+                                    
+                                                
+                                    <?php
+                                        $select1 = "SELECT * FROM departiments";
+
+                                        $query = mysqli_query($conn,$select1);
+
+                                        if($rows=mysqli_num_rows($query)){
+                                            
+                                            
+                                            while($departiment = mysqli_fetch_assoc($query)){
+                                            $dept= $departiment['name'];
+                                            $deptid= $departiment['name'];
+                                                
+                                                ?>
+                                                                            
+                                            <option value="<?= $deptid ?>" ><?php echo $dept ?></option>
+                                        
+                                                
+                                <?php }
+
+
+                                    }
+                                ?>
+                                        </select>
+                                        <span class="text-danger fw-bold"><?php echo $departimentErr;?></span>
+                                    </div>
                                 </div>
                                 
                              
-                            </div>
+                            
                             
                             
                         </div>
@@ -205,22 +235,15 @@
                               
                                 <div class="col-md-4">
                                     <label for="">E-mail address</label>
-                                    <input type="text" placeholder="davidchristopher@gmail.com" class="form-control">
+                                    <input type="email" name="email" placeholder="davidchristopher@gmail.com" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $emailErr;?></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Phone. No</label>
-                                    <input type="text" placeholder="0764063426" class="form-control">
+                                    <input type="text" name="phone" placeholder="0764063426" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $phoneErr;?></span>
                                 </div>
-                                <!-- <div class="col-md-4">
-                                    <label for=""> Status</label>
-                                    <select name="" id="" class="form-control">
-                                    <option value=""> Select Status</option>
-                                    <option value="Single">Active</option>
-                                    <option value="Married">Offli</option>
-                                    <option value="divoced">Civil</option>
-                                    </select>
-                                </div> -->
-
+                      
 
                             </div>
                                
@@ -233,8 +256,8 @@
                         
                                 <div class="col-md-4">
                                     <label for=""></label>
-                                    <!-- <input type="button" value="Save" class="btn btn-info form-control"> -->
-                                    <button type="submit" class="btn btn-primary form-control">Save</button>
+                                  
+                                    <button type="submit" name="submit" class="btn btn-primary form-control">Save</button>
 
                                 </div>
 
@@ -247,13 +270,8 @@
                         </div>
                      
                     
-                       
-                       
-                        
-                        <div class="form-group">
-                        <span></span>
-                          
-                        </div>
+                    
+                    </form>
                     </div>
                 </div>
       

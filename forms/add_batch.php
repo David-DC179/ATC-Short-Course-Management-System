@@ -1,7 +1,12 @@
 <?php
 session_start();
 require "../function/login.php";
-require "../apps/sesseion.php";?>
+require "../apps/sesseion.php";
+require "../database/conncetion.php";
+require "../apps/addbatch_logic.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +19,7 @@ require "../apps/sesseion.php";?>
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid   mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
 <div class="">
     <div class="col-md-12 mt-2">
@@ -110,13 +115,7 @@ require "../apps/sesseion.php";?>
                                         <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign Batch</span> </a>
                                         </li>
                                     
-                                        <li>
-                                            <div class="btn btn-outline-warning mt-3 px-3" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../updates/update_batch.php" class="nav-link align-middle px-0">
-                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"> </i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Batch</span>
-                                                </a>  
-                                            </div> 
-                                        </li>
+                                    
                                    
                                
         
@@ -159,31 +158,52 @@ require "../apps/sesseion.php";?>
           <h3>CREATE NEW BATCH</h3>
                 <div class="ms-5">
                    
-                    <div class="-body">
+                    <div class="card-body">
+                        <form action="" method="post">
+
+                        
                         
                         <div class="form-group col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
                                     <label for="">Batch name</label>
-                                    <input type="text" placeholder="June batch 2 " class="form-control">
+                                    <input type="text" name="name" placeholder="June batch 2 " class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <label for=""> Course</label>
-                                    <input type="text" placeholder="Web Design " class="form-control">
-                                </div>
-                                <div class="col-md-4">
-                                    <label for=""> Departiment</label>
-                                    <select name="" id="" class="form-control">
-                                    <option value=""> Select Departiment</option>
-                                    <option value="Single">ICT</option>
-                                    <option value="Married">Mechanical</option>
-                                    <option value="divoced">Civil</option>
-                                    </select>
-                                </div>
-                             
+                                
+                                    <div class="col-md-4">
+                                <label for=""> Course</label>
+                                <select name="course" id="" class="form-control">
+                                <option value=""> Select Coure</option>
+                                
     
-                            </div>
+                                    <?php
+                                $select1 = "SELECT * FROM courses";
+
+                                $query = mysqli_query($conn,$select1);
+
+                                if($rows=mysqli_num_rows($query)){
+                                    
+                                    
+                                    while($course = mysqli_fetch_assoc($query)){
+                                    $coursename= $course['name'];
+                                    $couresid= $course['name'];
+                                        
+                                        ?>
+                                    
+                                        <option value="<?= $couresid ?>" ><?php echo $coursename ?></option>
+                                    
+                                            
+                            <?php }
+
+
+                                }
+                            ?>
+                                    </select>
+                                    <span class="text-danger fw-bold"><?php echo $courseErr;?></span>
+                                </div>
+
                             
                             
                         </div>
@@ -194,12 +214,10 @@ require "../apps/sesseion.php";?>
                              
                                 <div class="col-md-4">
                                     <label for=""> Instructor</label>
-                                    <input type="text" placeholder=" " class="form-control">
+                                    <input type="text" placeholder=" Mr DC" name="instructor" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $instructorErr;?></span>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for=""> Number of Students</label>
-                                    <input type="text" placeholder=" " class="form-control">
-                                </div>
+                                
                              
                             </div>
                             
@@ -211,12 +229,14 @@ require "../apps/sesseion.php";?>
                               <label for="">Duration </label>
                                 <div class="col-md-4">
                                     <label for="">Start Date</label>  
-                                    <input type="date" placeholder="" class="form-control">
+                                    <input type="date" name="startdate" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $start_dateErr;?></span>
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label for="">Start Date</label>  
-                                    <input type="date" placeholder="" class="form-control">
+                                    <label for="">Finish Date</label>  
+                                    <input type="date" name="finishdate" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $finish_dateErr;?></span>
                                 </div>
                                 
                                 
@@ -234,8 +254,8 @@ require "../apps/sesseion.php";?>
                         
                                 <div class="col-md-4">
                                     <label for=""></label>
-                                    <!-- <input type="button" value="Save" class="btn btn-info form-control"> -->
-                                    <button type="submit" class="btn btn-primary form-control">Save</button>
+                                 
+                                    <button type="submit" name="submit" class="btn btn-primary form-control">Save</button>
 
                                 </div>
 
@@ -250,11 +270,8 @@ require "../apps/sesseion.php";?>
                     
                        
                        
-                        
-                        <div class="form-group">
-                        <span></span>
-                          
-                        </div>
+                       
+                        </form>
                     </div>
                 </div>
       

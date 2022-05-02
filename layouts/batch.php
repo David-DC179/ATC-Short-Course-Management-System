@@ -119,14 +119,7 @@
                                         </div> 
                                     </li>
 
-                                    
-                                    <li>
-                                        <div class="btn btn-outline-warning px-4 mt-3" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../updates/update_batch.php" class="nav-link align-middle px-0">
-                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Batch</span>
-                                                </a>  
-                                        </div> 
-                                    </li>
+                                   
 
                                   
                  
@@ -178,52 +171,91 @@
                             <div class="container col-md-12">
                                 <div class="table-responsive-sm">
                                     <table class="table table-hover">
-                                        <tr>
+                                    <?php
+                                            require "../database/conncetion.php";
+
+                                      
+
+                                            
+                                          
+                                            $select = "SELECT * FROM batches ";
+                                            $result = mysqli_query($conn,$select);
+
+                                           
+
+
+                                            $row = mysqli_num_rows($result);
+
+
+
+                                            if(mysqli_num_rows($result)>0 ){?>
+                                        <thead class="table bg-dark text-light" style="text-align: center;">  
                                             <th>SN</th>
-                                            <th colspan="2"> NAME</th>
+                                            <th > NAME</th>
                                             <th>COURSE</th>
-                                            <th>DEPARTIMENT</th>
+                                            <!-- <th>DEPARTIMENT</th> -->
                                             <th>INSTRUCTOR </th>
-                                            <th>NO. STUDENTS</th>
+                                            
                                             
                                             <th>START DATE</th>
                                             <th>FINISH DATE</th>
-                                        </tr>
+                                            <th>ACTION</th>
+                                        </thead>
 
                                         <tr>
-                                            <td>1</td>
-                                            <td colspan="2">Computer Application</td>
-                                            <td>Computer Application</td>
-                                            <td>ICT departiment</td>
-                                            <td>Eng DC</td>
+                                        <?php
+                                            
+                                            $sn = 1;
+                                            while($batch = mysqli_fetch_assoc($result) ){
+                                                $name = $batch['name']; 
+                                                $course = $batch['course']; 
+                                                $instructor = $batch['instractor']; 
+                                                $start_date = $batch['start_date']; 
+                                                $finish_date = $batch['finish_date']; 
+                                                // $departiment_id =$batch['departiment_id'];
 
-                                            <td>2345</td>
-                                            
-                                            
-                                            <td>4 april 20222 </td>
-                                            <td>22 april 2022</td>
-                                    
-                                
-                                        </tr>
+                                                // $selectd = "SELECT * FROM departiments WHERE id=$departiment_id";
+                                                // $resultd = mysqli_query($conn , $selectd);
 
-                                        <tr>
-                                            <td>2</td>
-                                            <td colspan="2">Web Desing</td>
-                                        <td>Computer Application</td>
-                                        <td>ICT departiment</td>
-                                        <td>Eng DC</td>
-                                        <td>34455</td>
-                                        
-                                        
-                                        <td>4 april 20222 </td>
-                                        <td>22 april 2022</td>
+                                                // $rowd = mysqli_fetch_assoc($resultd);
+                                                // $departiment = $rowd['name'];
+
+                                                $selectc = "SELECT * FROM courses WHERE id=$course";
+                                                $resultc = mysqli_query($conn , $selectc);
+
+                                                $rowc = mysqli_fetch_assoc($resultc);
+                                                $courses = $rowc['name'];
+
+
+                                                
+                                            ?>
+                                                <tr style="text-align: center;">
+                                                <td><?php echo $sn++; ?></td>
+                                                <td><?php echo $name?></td>
+                                                <td><?php echo $courses?></td>
+                                                <td><?php echo $instructor?></td>
+                                                <td><?php echo $start_date?></td>
+                                                <td><?php echo $finish_date?></td>
+                                                <td><a href="../updates/update_batch.php?update=<?php echo $batch['id'];?>" name="update"><i class="fs-4  bi-pencil-square text-warning fw-bold"></i></a></td>
+
+                                                </tr>
+
+
+                                                <?php     }
                                             
-                                        
-                                        </tr>
+                                            }
+                                                
+                                      
+                         
+                                        ?>
+
+                                          
 
 
 
                                     </table>
+                                    
+                                <div>Rows <?php echo $row." "."Inserted"; ?></div>
 
                                 
 

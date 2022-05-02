@@ -27,7 +27,7 @@
    
       }
 
-  if(empty($duration)){
+      if(empty($duration)){
       $durationErr = "Duration is required";
       
    }

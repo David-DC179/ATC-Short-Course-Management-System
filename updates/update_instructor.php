@@ -1,7 +1,105 @@
 <?php
-    session_start();
-    require "../function/login.php";
-   require "../apps/sesseion.php";require "../apps/sesseion.php";
+ session_start();
+ require "../function/login.php";
+ require "../apps/sesseion.php";
+  require "../database/conncetion.php";
+  require "../function/sanitalization.php";
+ 
+  
+    if(isset($_GET['update'])){
+        $id = $_GET['update'];
+        $select = "SELECT * FROM instructors WHERE  id=$id";
+        $result = mysqli_query($conn,$select);
+        
+        if(mysqli_num_rows($result)){
+            $instructors=mysqli_fetch_assoc($result);
+ 
+            $firstname= $instructors['name'];
+            $lastname= $instructors['last_name'];
+            $email1= $instructors['email'];
+            $phone1= $instructors['phone'];
+            $departiment_id = $instructors['departiment_id'];
+      
+       
+ 
+            $selectd = "SELECT * FROM departiments WHERE id=$departiment_id";
+              $resultd = mysqli_query($conn , $selectd);
+ 
+             $rowd = mysqli_fetch_assoc($resultd);
+             $departimentn = $rowd['name'];
+             $departimentid = $rowd['id'];
+ 
+ 
+        }
+
+    }
+
+    $nameErr = $lastnameErr = $emailErr = $phoneErr = $departimentErr = $rowErr= "";
+    $namee  = $lastname = $email = $phone = $departiment  = $row= "";
+    if(isset($_POST['update'])){
+ 
+       $namee = mysqli_real_escape_string($conn, dataSanitizations($_POST['name']));
+       $lastname = mysqli_real_escape_string($conn, dataSanitizations($_POST['lastname']));
+       $email = mysqli_real_escape_string($conn, dataSanitizations($_POST['email']));
+       $phone = mysqli_real_escape_string($conn, dataSanitizations($_POST['phone']));
+       $departiment = mysqli_real_escape_string($conn, dataSanitizations($_POST['departiment']));
+       
+ 
+       $selectd1 = "SELECT id FROM departiments WHERE name='$departiment'";
+       $resultd1 = mysqli_query($conn , $selectd1);
+ 
+      $rowd1 = mysqli_fetch_assoc($resultd1);
+      $departimentd1 = $rowd1['id'];
+ 
+ 
+         if(empty($namee)){
+             $nameErr = "First name is required";
+         
+             }
+ 
+         if(empty($lastname)){
+             $lastnameErr = "Last name is required";
+             
+             }
+         if(empty($email)){
+             $emailErr = "Email is required";
+                 
+             }
+         if(empty($phone)){
+             $phoneErr = "Phone number is required";
+                 
+             }
+   
+         if(empty($departiment)){
+            $departimentErr = "Departiment is required";
+      
+         }
+   
+      
+   
+   
+      elseif($namee && $lastname && $email && $phone && $departimentd1  ){
+   
+         // die ($namee.$departimentd1.$duration);
+   
+            $update = "UPDATE instructors SET name='$name', last_name='$lastname', email='$email', phone='$phone', departiment_id=$departimentd1";
+              
+         $query= mysqli_query($conn,$update);
+   
+        
+         if($query){
+            header("location:../layouts/instructors.php");
+         }
+         else{
+             echo "jaribu";
+             
+         }
+   
+ 
+     }
+ 
+ }
+ 
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +114,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid col-md-12  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid col-md-12  mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
 <div class="">
     <div class="col-md-12 mt-2">
@@ -117,14 +215,7 @@
                                         <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign Instructor</span> </a>
                                         </li>
                                     
-                                        <!-- <li>
-                                            <div class="btn btn-outline-warning mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../updates/update_instructor.php" class="nav-link align-middle px-0">
-                                                    <i class="fs-4 bi-house text-dark fw-bold "></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Instructor</span>
-                                                </a>  
-                                            </div> 
-                                        </li> -->
-                                   
+                                     
                                
         
                                     
@@ -169,17 +260,22 @@
                         <h4>PERSONAL PARTICULARS</h4>
                     </div>
                     <div class="-body">
+
+                    <form action="" method="post">
+
                         
                         <div class="form-group col-md-12">
                             <div class="row">
                                 <div class="col-md-5">
                                     <label for="">First name</label>
-                                    <input type="text" value="David " class="form-control">
+                                    <input type="text" name="name" value="<?php echo $firstname; ?> " class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
                                 </div>
                              
                                 <div class="col-md-5">
                                     <label for="">Last name</label>
-                                    <input type="text" value="Senior" class="form-control">
+                                    <input type="text" name="lastname" value="<?php echo $instructors['last_name']; ?>" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $lastnameErr;?></span>
                                 </div>
                             </div>
                             
@@ -190,18 +286,41 @@
                         <div class="form-group col-md-12">
                             <div class="row">
                              
-                                <div class="col-md-4">
-                                    <label for=""> Departiment</label>
-                                    <select name="" id="" class="form-control">
-                                    <option value=""> Select Departiment</option>
-                                    <option value="Single">ICT</option>
-                                    <option value="Married">Mechanical</option>
-                                    <option value="divoced">Civil</option>
-                                    </select>
-                                </div>
+                            <div class="col-md-4">
+                                <label for=""> Departiment</label>
+                                <select name="departiment" id="" class="form-control">
+                                <option value="<?php echo $departimentn;?>"> <?php echo $departimentn;?> </option>
+                                    
+                        <?php
+                                $select1 = "SELECT * FROM departiments";
+
+                                $query = mysqli_query($conn,$select1);
+
+                                if($rows=mysqli_num_rows($query)){
+                                    
+                                                                                        
+                                while($departiment = mysqli_fetch_assoc($query)){
+                                $dept= $departiment['name'];
+                                $deptid= $departiment['name'];
+                                    
+                                    ?>
                                 
+                                    <option value="<?= $deptid ?>" ><?php echo $dept ?></option>
+                                
+                                        
+                        <?php }
+
+
+                            }
+                        ?>
+                        
+                                                                                    
+                            </select>
+                            <!-- <span class="text-danger fw-bold"><?php echo $departimentErr;?></span> -->
+                        </div>
+
                              
-                            </div>
+                          
                             
                             
                         </div>
@@ -211,22 +330,15 @@
                               
                                 <div class="col-md-5">
                                     <label for="">E-mail address</label>
-                                    <input type="text" value="davidchristopher@ac.tz" class="form-control">
+                                    <input type="email" name="email" value="<?php echo $email1 ?>" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $emailErr;?></span>
                                 </div>
                                 <div class="col-md-5">
                                     <label for="">Phone. No</label>
-                                    <input type="text" value="0764063426" class="form-control">
+                                    <input type="text" name="phone" value="<?php echo $phone1?>" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $phoneErr;?></span>
                                 </div>
-                                <!-- <div class="col-md-4">
-                                    <label for=""> Status</label>
-                                    <select name="" id="" class="form-control">
-                                    <option value=""> Select Status</option>
-                                    <option value="Single">Active</option>
-                                    <option value="Married">Offli</option>
-                                    <option value="divoced">Civil</option>
-                                    </select>
-                                </div> -->
-
+                              
 
                             </div>
                                
@@ -239,8 +351,8 @@
                         
                                 <div class="col-md-4">
                                     <label for=""></label>
-                                    <!-- <input type="button" value="Save" class="btn btn-info form-control"> -->
-                                    <button type="submit" class="btn btn-primary form-control">Save</button>
+                                    
+                                    <button type="submit" name="update" class="btn btn-primary form-control">Save</button>
 
                                 </div>
 
@@ -256,10 +368,7 @@
                        
                        
                         
-                        <div class="form-group">
-                        <span></span>
-                          
-                        </div>
+                    </form>
                     </div>
                 </div>
       

@@ -282,121 +282,121 @@
                    
                     <div class="-body">
                         <form action="" method="post">
-                            <div class="form-group col-md-12">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label for="">Full  name</label>
-                                            <input type="text" value="<?php echo $users['name'];?>" name="name" class="form-control">
-                                            <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
-                                        </div>
-                                    
-                                        
-                                        <div class="col-md-4">
-                                            <label for="">Username</label>
-                                            <input type="text" value="<?php echo $users['username'];?>" name="username" class="form-control">
-                                            <span class="text-danger fw-bold"><?php echo $usernameErr;?></span>
-                                        </div>
-                                    </div>
-            
-                                    
-                            </div>
-                            <div class="form-group col-md-12">
-                            <div class="row">
-                             
-                                <div class="col-md-4">
-                                    <label for=""> Departiment</label>
-                                    <select name="departiment" id="" class="form-control">
-                                    <option value="<?php echo $departimentn;?>"> <?php echo $departimentn;?> </option>
-                                        
-                                    <?php
-                                $select1 = "SELECT * FROM departiments";
-
-                                $query = mysqli_query($conn,$select1);
-
-                                if($rows=mysqli_num_rows($query)){
-                                    
-                                    
-                                    while($departiment = mysqli_fetch_assoc($query)){
-                                       $dept= $departiment['name'];
-                                       $deptid= $departiment['name'];
-                                        
-                                        ?>
-                                       
-                                        <option value="<?= $deptid ?>" ><?php echo $dept ?></option>
-                                     
+                                            <div class="form-group col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label for="">Full  name</label>
+                                                            <input type="text" value="<?php echo $users['name'];?>" name="name" class="form-control">
+                                                            <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
+                                                        </div>
+                                                    
+                                                        
+                                                        <div class="col-md-4">
+                                                            <label for="">Username</label>
+                                                            <input type="text" value="<?php echo $users['username'];?>" name="username" class="form-control">
+                                                            <span class="text-danger fw-bold"><?php echo $usernameErr;?></span>
+                                                        </div>
+                                                    </div>
+                            
+                                                    
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                            <div class="row">
                                             
-                        <?php }
+                                                <div class="col-md-4">
+                                                    <label for=""> Departiment</label>
+                                                    <select name="departiment" id="" class="form-control">
+                                                    <option value="<?php echo $departimentn;?>"> <?php echo $departimentn;?> </option>
+                                                        
+                                                    <?php
+                                                $select1 = "SELECT * FROM departiments";
+
+                                                $query = mysqli_query($conn,$select1);
+
+                                                if($rows=mysqli_num_rows($query)){
+                                                    
+                                                    
+                                                    while($departiment = mysqli_fetch_assoc($query)){
+                                                    $dept= $departiment['name'];
+                                                    $deptid= $departiment['name'];
+                                                        
+                                                        ?>
+                                                    
+                                                        <option value="<?= $deptid ?>" ><?php echo $dept ?></option>
+                                                    
+                                                            
+                                        <?php }
 
 
-                                }
-                            ?>
-                               
-                                
-                                    </select>
-                                    <span class="text-danger fw-bold"><?php echo $departimentErr;?></span>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label for=""> Roles</label>
-                                    <select name="role" id="" class="form-control">
-                                    <option value="<?php echo $roleee ;?>"> <?php echo  $roleee ;?></option>
-
-                                    <?php
-                                $select2 = "SELECT * FROM roles";
-
-                                $query = mysqli_query($conn,$select2);
-
-                                if($rows=mysqli_num_rows($query)){
-                                    
-                                    
-                                    while($rolename = mysqli_fetch_assoc($query)){
-                                       $rolee= $rolename['name'];
-                                       $roleid1= $rolename['name'];
-                                        
-                                        ?>
-                                       <option value="<?= $roleid1 ?>" ><?php echo $rolee ?></option>
-                                     
+                                                }
+                                            ?>
                                             
-                        <?php }
+                                                
+                                                    </select>
+                                                    <span class="text-danger fw-bold"><?php echo $departimentErr;?></span>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label for=""> Roles</label>
+                                                    <select name="role" id="" class="form-control">
+                                                    <option value="<?php echo $roleee ;?>"> <?php echo  $roleee ;?></option>
+
+                                                    <?php
+                                                $select2 = "SELECT * FROM roles";
+
+                                                $query = mysqli_query($conn,$select2);
+
+                                                if($rows=mysqli_num_rows($query)){
+                                                    
+                                                    
+                                                    while($rolename = mysqli_fetch_assoc($query)){
+                                                    $rolee= $rolename['name'];
+                                                    $roleid1= $rolename['name'];
+                                                        
+                                                        ?>
+                                                    <option value="<?= $roleid1 ?>" ><?php echo $rolee ?></option>
+                                                    
+                                                            
+                                        <?php }
 
 
-                                }
-                            ?>
-                               
+                                                }
+                                            ?>
+                                            
 
 
 
-                               
-                                    </select>
-                                    <span class="text-danger fw-bold"><?php echo $roleErr;?></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for=""> Status</label>
-                                    <select name="status" id="" class="form-control">
-                                    <option value="<?php echo $statas;?>"><?php echo $statas;?></option>
-                                    <option value="Active">ACTIVE</option>
-                                    <option value="Offline">OFFLINE</option>
-                                    <option value="Pendding">PENNDING</option>
-                                    </select>
-                                    <span class="text-danger fw-bold"><?php echo $statusErr;?></span>
-                                </div>
-                                
-                             
-                            </div>
-                            
-                            
-                        </div>
-                        <div class="form-group col-md-12 mt-4">
-                            <div class="row col-md-4">                      
-                    
-                              
-                                    <button type="submit" class="btn btn-primary form-control" name="update">Save</button>
+                                            
+                                                    </select>
+                                                    <span class="text-danger fw-bold"><?php echo $roleErr;?></span>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label for=""> Status</label>
+                                                    <select name="status" id="" class="form-control">
+                                                    <option value="<?php echo $statas;?>"><?php echo $statas;?></option>
+                                                    <option value="Active">ACTIVE</option>
+                                                    <option value="Offline">OFFLINE</option>
+                                                    <option value="Pendding">PENNDING</option>
+                                                    </select>
+                                                    <span class="text-danger fw-bold"><?php echo $statusErr;?></span>
+                                                </div>
+                                                
+                                            
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                        <div class="form-group col-md-12 mt-4">
+                                            <div class="row col-md-4">                      
+                                    
+                                            
+                                                    <button type="submit" class="btn btn-primary form-control" name="update">Save</button>
 
-                            </div>
-                               
-                            
-                            
-                        </div>
+                                            </div>
+                                            
+                                            
+                                            
+                                        </div>
                      
 
 
