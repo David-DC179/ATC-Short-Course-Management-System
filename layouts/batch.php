@@ -178,7 +178,7 @@
 
                                             
                                           
-                                            $select = "SELECT * FROM batches ";
+                                            $select = "SELECT * FROM batches where id <> '10' ";
                                             $result = mysqli_query($conn,$select);
 
                                            

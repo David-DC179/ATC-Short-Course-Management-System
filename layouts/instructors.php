@@ -115,13 +115,13 @@
                                         </div>
                                         </li>
                                        
-                                    
+<!--                                     
 
                                         <li class="btn btn-outline-info  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
                                         <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
                                         <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign Instructor</span> </a>
                                         </li>
-                                    
+                                     -->
                                      
                                    
                                    

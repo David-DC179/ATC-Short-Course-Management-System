@@ -2,6 +2,45 @@
   session_start();
   require "../function/login.php";
   require "../apps/sesseion.php";
+
+  require "../database/conncetion.php";
+
+  if(isset($_GET['view'])){
+    $id = $_GET['view'];
+  
+ 
+                                                            
+                                          
+  $select = "SELECT * FROM students WHERE  id=$id ";
+              $result = mysqli_query($conn,$select);
+
+             
+
+
+             $row = mysqli_num_rows($result);
+
+
+
+              if(mysqli_num_rows($result)>0 ){
+                  
+
+
+                $students = mysqli_fetch_assoc($result);
+                $studentname = $students['first_name']; 
+                $middle = $students['middle_name']; 
+                $last = $students['last_name']; 
+                $gender = $students['gender']; 
+                $date_of_birth = $students['date_of_birth'];
+                $place_of_birth = $students['place_of_birth'];
+                $nationality = $students['nationality'];
+                $marital_status = $students['marital_status'];
+                $phonenumber = $students['phonenumber'];
+                $email = $students['email'];
+                $current_address = $students['current_address'];
+               
+              }
+            }
+  
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +55,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid  mt-5 mb-5" style="background-color: #E9F9EF; padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid   mb-5" style="background-color: #E9F9EF; padding: 10px; border-radius: 50px ;" >
     
 <div class="">
     <div class="col-md-12 mt-2">
@@ -110,25 +149,13 @@
                                         <li>
                                         <div class="btn btn-outline-success px-4 mt-3" style=" border: 2px solid grey; padding: 10px;">
                                             <a href="../layouts/students.php" class="nav-link align-middle px-0">
-                                            <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">View Student</span>
+                                            <i class="fs-4 bi-table text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">View Student</span>
                                             </a>  
                                         </div> 
                                         </li>
                                     
 
-                                        <li class="btn btn-outline-info  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                        <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign Student</span> </a>
-                                        </li>
-                                    
-                                        <li>
-                                            <div class="btn btn-outline-warning mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../updates/update_student.php" class="nav-link align-middle px-0">
-                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Student</span>
-                                                </a>  
-                                            </div> 
-                                        </li>
-
+                                        
 
                                    
                                    
@@ -170,49 +197,57 @@
                             <div class="row">
                                 <div class="container ">
                                     <div class="col-md-6">
-                                        <h3 class="h3">  STUDENTS DETAILS</h3>
+                                        <h3 class="h3">  STUDENT DETAILS</h3>
 
                                         
                                             <div class="table-responsive-sm">
                                             <h4>A. PERSONAL PARTICULARS</h4>
                                                 <table class="table ">
                                                         <tr>
-                                                            <td>Full Name: </td>
-                                                            <td>David Christopher</td>
+                                                            <td>Full name:</td>
+                                                            <td>
+                                                                <?php 
+                                                                    echo $studentname." ".$middle." ".$last;
+                                                                ?>
+
+                                                            </td>
+                                                            
                                                         </tr>
+               
                                                     
+                                   
                                                     <tr>
-                                                        <td>Date of Birth:</td>
-                                                        <td>17-09-2000</td>
+                                                        <td>Date of Birth: </td>
+                                                        <td><?php echo  $date_of_birth ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Place of Birth: </td>
-                                                        <td>Dar es salaam</td>
+                                                        <td><?php echo  $place_of_birth ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Nationality:</td>
-                                                        <td class="">Tanzanian </td>
+                                                        <td><?php echo  $nationality ?></td>
                                                         
                                                     </tr>
                                                     <tr>
-                                                        <td><label for=""> Marital Status</label></td>
-                                                        <td>Single</td>
+                                                        <td><label for=""> Marital Status:</label></td>
+                                                        <td><?php echo  $marital_status ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Gender</td>
-                                                        <td>Male</td>
+                                                        <td>Gender:</td>
+                                                        <td><?php echo $gender ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Tel. No</td>
-                                                        <td>0764063426</td>
+                                                        <td>Tel. No:</td>
+                                                        <td><?php   echo $phonenumber; ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>E-mail address</td>
-                                                        <td>david@gmail.com</td>
+                                                        <td>E-mail address:</td>
+                                                        <td><?php echo  $email ?></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Current residence address</td>
-                                                        <td>Arusha</td>
+                                                        <td>Current residence address:</td>
+                                                        <td><?php echo $current_address ?></td>
                                                     </tr>
                                                 
                                                 </table>

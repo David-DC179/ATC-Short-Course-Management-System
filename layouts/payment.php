@@ -32,7 +32,7 @@
                     <div class="navbar navbar-light text-dark shadow-sm mt-3 mb-3" style="height: auto; background-color:#B9F88E;">
                         <div class="container-fluid">
                             <nav class="navbar-brand">
-                                <strong class="float-md-start">ATC-SCMS |INSTRUCTORS </strong>
+                                <strong class="float-md-start">ATC-SCMS |PAYMENTS </strong>
                                 
                                 
                             </nav>
@@ -52,7 +52,8 @@
                         <div class="row" style=" background-color:#E2FECF;" >
 
                             
-                            <div class="col-md-12 ms-5 ">
+                            <div class="col-md-12 ms-5    ">
+                            <!-- <a href="../layouts/students.php" class="btn btn-outline-success active">MANAGE STUDENTS  <img src="../image/student.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a> -->
                                 <a href="../layouts/students.php" class="btn btn-outline-dark">MANAGE STUDENTS  <img src="../image/student.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
                                 <a href="../layouts/instructors.php" class="btn btn-outline-dark"> INSTRUCTORS <img src="../image/batche2.jfif" class="image rounded-pill" width="32" height="30"  alt="" srcset=""></a>
                                 <a href="../layouts/course.php" class="btn btn-outline-dark"> COURSES <img src="../image/course2.png" class="image rounded-pill" width="32" height="30"  alt="" srcset=""></a>

@@ -258,7 +258,7 @@ require "../apps/adduser_logic.php";
                                     <label for=""> Status</label>
                                     <select name="status" id="" class="form-control">
                                     <option value=""> Choose Status</option>
-                                    <option value="Active">ACTIVE</option>
+                                    <option value="Actives">ACTIVE</option>
                                     <option value="Offline">OFFLINE</option>
                                     <option value="Pedding">PENNDING</option>
                                     </select>

@@ -2,6 +2,37 @@
   session_start();
   require "../function/login.php";
   require "../apps/sesseion.php";
+  require "../database/conncetion.php";
+ 
+                                                            
+                                          
+  $select = "SELECT * FROM students ";
+              $result = mysqli_query($conn,$select);
+
+             
+
+
+             $row = mysqli_num_rows($result);
+
+             $select1 = "SELECT * FROM students ";
+             $result1 = mysqli_query($conn,$select1);
+
+            
+
+
+            $row1 = mysqli_num_rows($result1);
+
+
+
+              if(mysqli_num_rows($result1)>0 ){
+
+                $student1 = mysqli_fetch_assoc($result1);
+
+               
+                $statusy = $student1['status'];
+              
+              
+               
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +47,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid  mt-5 mb-5" style="background-color: #E9F9EF; padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid   mb-5" style="background-color: #E9F9EF; padding: 10px; border-radius: 50px ;" >
 <div class="">
     <div class="col-md-12 mt-2">
                 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md">
@@ -119,14 +150,7 @@
                                         <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign Student</span> </a>
                                         </li>
                                     
-                                        <li>
-                                            <div class="btn btn-outline-warning mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../updates/update_student.php" class="nav-link align-middle px-0">
-                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Student</span>
-                                                </a>  
-                                            </div> 
-                                        </li>
-
+                                     
 
                                    
                                    
@@ -164,7 +188,7 @@
                                     <div class="card bg-info">
                                         <div class="card-header fw-bold">All Students</div>
                                         <div class="card-body">
-                                            <span>2383</span>
+                                            <span><?php echo "0".$row  ?></span>
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +196,15 @@
                                     <div class="card bg-success">
                                         <div class="card-header fw-bold">ACTIVE Students</div>
                                         <div class="card-body">
-                                            <span>2383</span>
+                                            <span>
+                                                
+                                                
+                                            <?php 
+                                                if($statusy === 'Active'){
+                                                    echo "0" .$row ;
+                                                }
+                                             ?>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -180,19 +212,18 @@
                                     <div class="card bg-warning">
                                         <div class="card-header fw-bold">Pontential Students</div>
                                         <div class="card-body">
-                                            <span>2383</span>
+                                            <span>0
+                                            <?php 
+                                                if($statusy == 'Potential'){
+                                                    echo "0".$row1 ;
+                                                }
+                                             ?>
+                                            </span>
                                             
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="col-md-3">
-                                    <div class="card bg-primary">
-                                        <div class="card-header fw-bold">All Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div> -->
+                         
                             </div> 
 
                             <!-- end of side bar Student-->
@@ -208,58 +239,131 @@
                                 
                                 </div> 
 
-                                <div class="table-responsive-sm">
+                                <div class="table-responsive-sm col-md-12">
                                 <table class="table table-hover ">
-                                    <tr>
+                             
+                                    <thead class="table bg-dark text-light " style="text-align: center;">
+
                                         <th>SN</th>
-                                        <th colspan="2">FULL NAME</th>
-                                        <th>COURSE</th>
-                                        <th>BATCH</th>
-                                        <th>DEPARTIMENT</th>
-                                        
-                                        <th>PHONE</th>
+                                        <th colspan="">FULL NAME</th>
+                                        <th>GENDER</th>
+                                        <th>COURSE NAME</th>
+                                        <th>BATCH NAME</th>
+                                        <th>DEPARTIMENT</th>                      
                                         <th>STATUS</th>
                                         <th>ACTION</th>
                                         
-                                    </tr>
+                                    </thead>
+                                    <tr >
 
-                                    <tr>
-                                        <td>1</td>
-                                        <td colspan="2">David Christopher</td>
-                                        <td>Web Design</td>
-                                        <td>June batch 1</td>
-                                        <td>ICT Departiment</td>
-                                        <td>0764063426</td>
-                                        <td>
-                                            <span class="badge bg-success">Active</span>
-                                            <span class="badge bg-danger">Not Payed</span>
-                                        </td>
-                                        <td>
-                                            <a href="./student_detail.php" class="btn btn-outline-primary btn-sm">view details</a>
-                                        </td>
-                                        
-                                        
-                                     
-                                       
-                                    </tr>
+                                    <?php
+                                                  $sn = 1;
+                                                  while($students = mysqli_fetch_assoc($result) ){
+                                                      $studentname = $students['first_name']; 
+                                                      $middle = $students['middle_name']; 
+                                                      $last = $students['last_name']; 
+                                                      $gender = $students['gender']; 
+                                                      $batch = $students['batch_id'];
+                                                      $statusi = $students['status'];
+                                                      $payment = $students['payment'];
+                                           
 
-                                    <tr>
-                                        <td>2</td>
-                                        <td colspan="2">David Christopher</td>
-                                        <td>Web Design</td>
-                                        <td>June batch 1</td>
-                                        <td>ICT Departiment</td>
-                                        <td>0764063426</td>
-                                        <td>
-                                            <span class="badge bg-warning">Pontential</span>
-                                            <span class="badge bg-success">Payed</span>
-                                        </td>
-                                        <td>
-                                            <a href="./student_detail.php" class="btn btn-outline-primary btn-sm">view details</a>
-                                        </td>
+                                                $selectb = "SELECT * FROM batches WHERE id=$batch";
+                                                $resultb = mysqli_query($conn , $selectb);
+
+                                                $rowb = mysqli_fetch_assoc($resultb);
+                                                $batchname = $rowb['name'];
+
+                                                $selectd = "SELECT * FROM departiments WHERE id=$batch";
+                                                $resultd = mysqli_query($conn , $selectd);
+
+                                                $rowd = mysqli_fetch_assoc($resultd);
+                                                $departimentname = $rowd['name'];
+
+                                                $selectc = "SELECT * FROM courses WHERE id=$batch";
+                                                $resultc = mysqli_query($conn , $selectc);
+
+                                                $rowc = mysqli_fetch_assoc($resultc);
+                                                $courses = $rowc['name'];
+
+
+                                                
+                                            ?>
+                                                
+                                                <td><?php echo $sn++; ?></td>
+                                                <td colspan="">
+                                                    <?php echo $studentname?>
+                                                    <?php echo $middle?>
+                                                    <?php echo $last?>
+                                                
+                                                </td>
+                                                <td><?php echo $gender ?></td>
+                                                
+                                                <td><?php echo $courses?></td>
+                                                <td><?php echo $batchname?></td>
+                                                <td><?php echo $departimentname?></td>
+                                                <td>
+                                                    
+                                                    
+
+                                                    <?php 
+                                                        if($statusi == 'Active'){
+                                                            echo " <span class='badge bg-success'> Active</span>";
+
+                                                        }
+
+                                                        // else{
+                                                        //     echo "<span class='badge bg-warning'> Potential</span>";
+                                                        // }
+                                                        if($statusi == 'Potential'){
+                                                            
+                                                            echo "<span class='badge bg-warning'>Pontential</span>";
+                                                        }
+
+                                                        echo " ";
+
+                                                        if($payment == 'Payed'){
+                                                            echo "<span class='badge bg-success'> Payed</span>";
+
+                                                        }
+
+                                                        if($payment == 'Pending'){
+                                                            echo "<span class='badge bg-danger'> Not Payed</span>";
+
+                                                        }
+                                                      
+                                                      
+                                                       
+                                                        // else{
+                                                        //     echo "<span class='badge bg-danger'> Not Payed</span>";
+                                                        // }
+                                                        
+                                                        
+
+                                                    ?>
+                                                        
+                                                </td>
+                                                <td><a href="../layouts/student_detail.php?view=<?php echo $students['id'];?>" name="view"><i class="fs-4 bi bi-person-lines-fill text-primary fw-bold"></i> </a> 
+                                                <a href="../updates/update_student.php?update=<?php echo $students['id'];?>" name="update"><i class="fs-4  bi-pencil-square text-warning fw-bold"></i></a></td>
+
+                                                </tr>
+
+
+                                                <?php     }
+                                            
+                                            }
+                                                
+                                      
+                         
+                                        ?>
+
+                                          
+
+
+
+                                    </table>
                                     
-                                    </tr>
-                                </table>
+                                <div>Rows <?php echo $row." "."Inserted"; ?></div>
 
                             </div>
                       

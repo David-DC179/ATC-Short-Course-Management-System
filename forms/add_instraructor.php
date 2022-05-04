@@ -109,14 +109,14 @@
                                     
 
                                       
-                                    
+<!--                                     
                                         <li>
                                             <div class="btn btn-outline-success mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
                                                 <a href="../updates/update_instructor.php" class="nav-link align-middle px-0">
                                                 <i class="fs-4  bi-pencil-square text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">View Instructors</span>
                                                 </a>  
                                             </div> 
-                                        </li>
+                                        </li> -->
                                    
                                
         

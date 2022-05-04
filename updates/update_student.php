@@ -1,7 +1,16 @@
 <?php
-   session_start();
-   require "../function/login.php";
-  require "../apps/sesseion.php";
+    session_start();
+    require "../function/login.php";
+    require "../apps/sesseion.php";
+   
+
+      
+
+     
+     require "../apps/updatestudent_logic.php";
+    
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +25,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid col-md-12  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;">
+<body class="container-fluid col-md-12  mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;">
     
 <div class="">
     <div class="col-md-12 mt-2">
@@ -105,13 +114,7 @@
                                         </div> 
                                         </li>
                   
-                                    
-<!--                     
-                                        <li class="btn btn-outline-primary  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                        <a href="../forms/registration_student.php" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                        <i class="fs-4 bi-person-plus text-dark fw-bold"></i><br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Register Student</span> </a>
-                                        </li> -->
-                                        
+  
                                         <div class="btn btn-outline-success px-4 mt-3" style=" border: 2px solid grey; padding: 10px;">
                                             <a href="../layouts/students.php" class="nav-link align-middle px-0">
                                             <i class="fs-4  bi-table text-dark fw-bold" width="16" height="16"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">View Student</span>
@@ -166,24 +169,26 @@
 
           <h3>UPDATE STUDENTS INFORMATION</h3>
           <div class="d">
-                        <div class="d header">
+            <form action="" method="post">    
+                        <div class="card header">
                             
                         </div>
-                        <div class="d-body">
+                        <div class="card-body">
+                            
                             <h4>A. PERSONAL PARTICULARS</h4>
                             <div class="form-group col-md-12">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="">Fisrt Name</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" value="<?php echo  $first_name2 ?>" name="firstname" class="form-control">
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Middle Name</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" value="<?php echo  $middle_name2 ?>" name="middlename" class="form-control">
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Last Name</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" value="<?php echo  $last_name2 ?>" name="lastname" class="form-control">
                                     </div>
                                 </div>
                                 
@@ -194,15 +199,15 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="">Date of Birth</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" value="<?php echo  $date_of_birth2 ?>" name="DOB" class="form-control">
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Place of Birth</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" value="<?php echo  $place_of_birth2 ?>" name="POB" class="form-control">
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Nationality</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" value="<?php echo  $nationality2 ?>" name="nationality" class="form-control">
                                     </div>
                                 </div>
                                 
@@ -212,22 +217,26 @@
                             <div class="form-group col-md-12">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label for="">Marital Status</label>
-                                        <input type="text" class="form-control">
+                                        
+                                        <label for=""> Marital Status</label>
+                                        <select name="marital" id="" class="form-control">
+                                            <option value="<?php echo  $marital_status2 ?>" name="marital"><?php echo  $marital_status2 ?></option>
+                                            
+                                            <option value="Single">Single</option>
+                                            <option value="Married">Married</option>
+                                            <option value="divoced">Divoced</option>
+                                        </select>
                                     </div>
                                     <div class="col-md-4">
                                         <label for=""> Gender</label>
-                                        <select name="" id="" class="form-control">
-                                        <option value="">Select Gender</option>
+                                        <select  name="gender" id="" class="form-control">
+                                        <option value="<?php echo  $gender2 ?>"><?php echo  $gender2 ?></option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                         </select>
                                     </div>
                                     
-                                    <!-- <div class="col-md-4">
-                                        <label for="">dc</label>
-                                        <input type="text" class="form-control">
-                                    </div> -->
+                                  
                                 </div>
                                 
                                 
@@ -237,15 +246,18 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="">Tel. No</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" value="<?php echo  $phonenumber2 ?>" name="phone" class="form-control">
+
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">E-mail address</label>
-                                        <input type="text" class="form-control">
+                                        <input value="<?php echo  $email2 ?>" name="email" type="email" class="form-control">
+                                        
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Current residence address</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" value="<?php echo  $current_address2 ?>" name="currentaddress" class="form-control">
+
                                 
                                     </div>
 
@@ -255,8 +267,13 @@
                                 
                                 
                             </div>
+                            <div class="col-md-4">
+                                    <label for=""></label>
+                                    <button type="submit" name="update" class="btn btn-warning mt-3 form-control">Update</button>
 
-                            <div class="form-group col-md-12">
+                                </div>
+
+                            <!-- <div class="form-group col-md-12">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label for="">Program Name</label>
@@ -267,11 +284,11 @@
                                         <label for="">Batch Name</label>
                                         <input type="text" class="form-control">
                                     </div>
-                                    <!-- <div class="col-md-4">
+                                <div class="col-md-4">
                                         <label for=""></label>
                                         <input type="button" value="Save" class="btn btn-info form-control">
 
-                                    </div> -->
+                                    </div> 
 
 
 
@@ -279,7 +296,7 @@
                                 
                                 
                                 
-                            </div>
+                            </div> -->
                         
                         
                         </div>
@@ -673,7 +690,7 @@
                                 
                                 <div class="col-md-4">
                                     <label for=""></label>
-                                    <input type="button" value="Save" class="btn btn-info form-control mb-5">
+                                    <input type="button" name="update" value="Save" class="btn btn-info form-control mb-5">
 
                                 </div>
 
@@ -686,6 +703,7 @@
 
                             
                         </div>
+            </form>
 
                     </div>
 

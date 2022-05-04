@@ -25,15 +25,15 @@ session_start();
 <style>
     .image:hover{
         
-       zoom:120%;
+       /* zoom:120%; */
        padding: 5%;
 
         background-color: #B9F88E;
         
     }
-    .profile:hover{
+    /* .profile:hover{
         zoom: 120%;
-    }
+    } */
 </style>
 <!--  -->
 <body class="">
@@ -182,6 +182,8 @@ session_start();
                                             
                                         </div>
                                     </a>  
+
+                                  
                                     
                                     <a href="../layouts/users.php" class="col-md-2  m-3 text-decoration-none text-dark fw-bold ">
                                         <div class="" style="text-align: center; background-color:#E9F9EF;  border-top: 5px solid grey;

@@ -374,7 +374,7 @@
                                                     <label for=""> Status</label>
                                                     <select name="status" id="" class="form-control">
                                                     <option value="<?php echo $statas;?>"><?php echo $statas;?></option>
-                                                    <option value="Active">ACTIVE</option>
+                                                    <option value="Actives">ACTIVE</option>
                                                     <option value="Offline">OFFLINE</option>
                                                     <option value="Pendding">PENNDING</option>
                                                     </select>

@@ -122,9 +122,9 @@
                                         <td>Status:</td>
 
                                         <?php 
-                                            if($status=='Active'){?>
+                                            if($status =='Actives'){?>
 
-                                                <td class="badge m-1 bg-success"><?php echo $status?> </td>
+                                                <td class="badge m-1 bg-success">Active</td>
                                                         <?php
 
                                             }

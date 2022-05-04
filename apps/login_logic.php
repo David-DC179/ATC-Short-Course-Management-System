@@ -57,7 +57,7 @@ require "./database/conncetion.php";
 
                     
            
-                    if($role2 == '1' && $status2 ='Active'){
+                    if($role2 == '1' && $status2 ='Actives'){
                       
       
                         
@@ -65,22 +65,22 @@ require "./database/conncetion.php";
 
                     }
 
-                    elseif( $role2 == '2' && $status2 =='Active'){
+                    elseif( $role2 == '2' && $status2 =='Actives'){
                         header("location:./layouts/dashbord.php");
 
                     }
 
-                    elseif($role2 == '3' && $status2 == 'Active'  ){
+                    elseif($role2 == '3' && $status2 == 'Actives'  ){
                         array_push($errors, " Instructor Dashbord on progress sorry!!");
 
                     }
 
-                    elseif($role2=='4'&& $status2 == 'Active'){
+                    elseif($role2=='4'&& $status2 == 'Actives'){
                       array_push($errors, "Accoutant Dashbord on progress sorry!!");
 
                     }
 
-                    elseif($role2 =='5' && $status2 == 'Active'  ){
+                    elseif($role2 =='5' && $status2 == 'Actives'  ){
                         array_push($errors, " Rector Dashbord on progress sorry!!");
 
                     }

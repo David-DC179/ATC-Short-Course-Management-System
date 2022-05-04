@@ -2,6 +2,7 @@
 session_start();
 require "../function/login.php";
 require "../apps/sesseion.php";
+require "../apps/addstudents_logic.php";
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +17,7 @@ require "../apps/sesseion.php";
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
 </head>
 
-<body class="container-fluid col-md-12  mt-5 mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
+<body class="container-fluid col-md-12  mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
     
 <div class="">
     <div class="col-md-12 mt-2">
@@ -97,13 +98,8 @@ require "../apps/sesseion.php";
                             
                                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                   
-                                    
-<!--                     
-                                        <li class="btn btn-outline-primary  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                        <a href="../forms/registration_student.php" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                        <i class="fs-4 bi-person-plus text-dark fw-bold"></i><br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Register Student</span> </a>
-                                        </li> -->
-                                        
+                   
+                                       
                                         <div class="btn btn-outline-success px-4 mt-3" style=" border: 2px solid grey; padding: 10px;">
                                             <a href="../layouts/students.php" class="nav-link align-middle px-0">
                                             <i class="fs-4  bi-table text-dark fw-bold" width="16" height="16"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">View Student</span>
@@ -116,13 +112,6 @@ require "../apps/sesseion.php";
                                         <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign Student</span> </a>
                                         </li>
                                     
-                                        <li>
-                                            <div class="btn btn-outline-warning mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                                <a href="../updates/update_student.php" class="nav-link align-middle px-0">
-                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Student</span>
-                                                </a>  
-                                            </div> 
-                                        </li>
                                    
                                
         
@@ -153,41 +142,7 @@ require "../apps/sesseion.php";
                             </div>  
 
                             <div class="col-md-10" style="background-color: #E2FECF;">
-                            <!-- <div class="row mb-4">
-                                <div class="col-md-3 ">
-                                    <div class="card bg-info">
-                                        <div class="card-header fw-bold">All Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card bg-success">
-                                        <div class="card-header fw-bold">Current Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card bg-warning">
-                                        <div class="card-header fw-bold">Pontential Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card bg-primary">
-                                        <div class="card-header fw-bold">All Students</div>
-                                        <div class="card-body">
-                                            <span>2383</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>  -->
+                            
 
                             <!-- end of side bar Student-->
 
@@ -202,20 +157,25 @@ require "../apps/sesseion.php";
                         <h4>PERSONAL PARTICULARS</h4>
                     </div>
                     <div class="-body">
+                        <form action="" method="post">
+
                         
                         <div class="form-group col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
                                     <label for="">First name</label>
-                                    <input type="text" placeholder="David " class="form-control">
+                                    <input type="text" name="firstname" placeholder="David " class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $first_nameErr;?></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Middle name</label>
-                                    <input type="text" placeholder="Christopher " class="form-control">
+                                    <input type="text"name="middlename" placeholder="Christopher " class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $middle_nameErr;?></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Last name</label>
-                                    <input type="text" placeholder="Senior" class="form-control">
+                                    <input type="text" name="lastname" placeholder="Senior" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $last_nameErr;?></span>
                                 </div>
                             </div>
                             
@@ -226,15 +186,18 @@ require "../apps/sesseion.php";
                             <div class="row">
                                 <div class="col-md-4">
                                     <label for="">Date of Birth</label>
-                                    <input type="date" placeholder="" class="form-control">
+                                    <input type="date" name="DOB" placeholder="" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $date_of_birthErr;?></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Place of Birth</label>
-                                    <input type="text" placeholder="Dar es salaam" class="form-control">
+                                    <input type="text" name="POB" placeholder="Dar es salaam" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $place_of_birthErr;?></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Nationality</label>
-                                    <input type="text" placeholder="Tanzanian" class="form-control">
+                                    <input type="text" name="nationality" placeholder="Tanzanian" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $nationalityErr;?></span>
                                 </div>
                             </div>
                             
@@ -245,20 +208,22 @@ require "../apps/sesseion.php";
                             <div class="row">
                                 <div class="col-md-4">
                                     <label for=""> Marital Status</label>
-                                    <select name="" id="" class="form-control">
+                                    <select name="marital" id="" class="form-control">
                                     <option value="">Marital Status</option>
                                     <option value="Single">Single</option>
                                     <option value="Married">Married</option>
                                     <option value="divoced">Divoced</option>
                                     </select>
+                                    <span class="text-danger fw-bold"><?php echo $marital_statusErr;?></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for=""> Gender</label>
-                                    <select name="" id="" class="form-control">
+                                    <select name="gender" id="" class="form-control">
                                     <option value="">Select Gender</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                     </select>
+                                    <span class="text-danger fw-bold"><?php echo $genderErr;?></span>
                                 </div>
                                 
                              
@@ -270,16 +235,19 @@ require "../apps/sesseion.php";
                         <div class="form-group col-md-12">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label for="">el. NoT</label>
-                                    <input type="text" placeholder="0764063426" class="form-control">
+                                    <label for="">Tel. No</label>
+                                    <input type="text" name="phone" placeholder="0764063426" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $phonenumberErr;?></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">E-mail address</label>
-                                    <input type="text" placeholder="davidchristopher@gmail.com" class="form-control">
+                                    <input type="email" name="email" placeholder="davidchristopher@gmail.com" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $emailErr;?></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Current residence address</label>
-                                    <input type="text" placeholder="Sakina Arusha" class="form-control">
+                                    <input type="text" name="currentaddress" placeholder="Sakina Arusha" class="form-control">
+                                    <span class="text-danger fw-bold"><?php echo $current_addressErr;?></span>
                              
                                 </div>
 
@@ -292,14 +260,14 @@ require "../apps/sesseion.php";
 
                         <div class="form-group col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <!-- <div class="col-md-4">
                                     <label for="">Program Name</label>
                                     <input type="text" placeholder="Computer Application" class="form-control">
-                                </div>
+                                </div> -->
                                 <div class="col-md-4">
                                     <label for=""></label>
-                                    <!-- <input type="button" value="Save" class="btn btn-info form-control"> -->
-                                    <button type="submit" class="btn btn-primary form-control">Save</button>
+                                  
+                                    <button type="submit" name="submit" class="btn btn-primary form-control">Save</button>
 
                                 </div>
 
@@ -310,15 +278,9 @@ require "../apps/sesseion.php";
                             
                             
                         </div>
-                     
-                    
-                       
-                       
-                        
-                        <div class="form-group">
-                        <span></span>
-                          
-                        </div>
+   
+                        </form>
+
                     </div>
                 </div>
       
