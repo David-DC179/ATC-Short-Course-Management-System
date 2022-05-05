@@ -87,24 +87,16 @@ require "./database/conncetion.php";
 
 
                     else{
-                        array_push($errors, " Your Account is in Active Contact Your Admin");
+                        array_push($errors, " Your Account is inActive, Contact Your Admin");
                     }
 
 
-                    // if($role =='1' && $status == 'Active' ||  $role =='Coordinator' && $status == 'Active' ){
-                        
-                    // }
-                    
-                 
-                
-                    // else{
-                    //    
-                    // }
+                   
 
                      
                 }
                 else{
-                    array_push($errors, "Invalid credentials");
+                    array_push($errors, "Your account or password is incorrect!!,If you don't remember contact your admin");
                 }
             }else{
                 array_push($errors, "Invalid credentials");

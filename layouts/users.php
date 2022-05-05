@@ -238,17 +238,17 @@
                                                     <td><?php echo $username ?></td>
                                                     <td><?php echo $departiment ?> </td>
                                                     <td><?php echo $role ?> </td>
-                                              
-                                                    
+   
+                                                    <td ><a href="../apps/activation.php?activationuser=<?php echo $users['id'];?>" name="update">
                                                     <?php 
                                                         if($status==='Actives'){?>
 
-                                                            <td class="badge m-1 bg-success">Active</td>
+                                                            <button class="badge m-1 bg-success">Active</button>
                                                                     <?php
 
                                                         }
                                                         else if($status ==='Offline'){?>
-                                                            <td class="badge m-1 bg-danger"> Offline</td>
+                                                            <button class="badge m-1 bg-danger"> Offline</button>
 
                                                     <?php }
                                                     else{?>
@@ -256,6 +256,7 @@
 
                                                     <?php  }
                                                     ?>
+                                                    </a></td>
 
                                                     <td><a href="../updates/update_user.php?update=<?php echo $users['id'];?>" name="update"><i class="fs-4  bi-pencil-square text-warning fw-bold"></i></a></td>
                                                     
