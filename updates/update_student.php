@@ -181,14 +181,17 @@
                                     <div class="col-md-4">
                                         <label for="">Fisrt Name</label>
                                         <input type="text" value="<?php echo  $first_name2 ?>" name="firstname" class="form-control">
+                                        <span class="text-danger fw-bold"><?php echo $first_nameErr;?></span>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Middle Name</label>
                                         <input type="text" value="<?php echo  $middle_name2 ?>" name="middlename" class="form-control">
+                                        <span class="text-danger fw-bold"><?php echo $middle_nameErr;?></span>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Last Name</label>
                                         <input type="text" value="<?php echo  $last_name2 ?>" name="lastname" class="form-control">
+                                        <span class="text-danger fw-bold"><?php echo $last_nameErr;?></span>
                                     </div>
                                 </div>
                                 
@@ -200,14 +203,17 @@
                                     <div class="col-md-4">
                                         <label for="">Date of Birth</label>
                                         <input type="text" value="<?php echo  $date_of_birth2 ?>" name="DOB" class="form-control">
+                                        <span class="text-danger fw-bold"><?php echo $date_of_birthErr;?></span>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Place of Birth</label>
                                         <input type="text" value="<?php echo  $place_of_birth2 ?>" name="POB" class="form-control">
+                                        <span class="text-danger fw-bold"><?php echo $place_of_birthErr;?></span>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Nationality</label>
                                         <input type="text" value="<?php echo  $nationality2 ?>" name="nationality" class="form-control">
+                                        <span class="text-danger fw-bold"><?php echo $nationalityErr;?></span>
                                     </div>
                                 </div>
                                 
@@ -226,6 +232,7 @@
                                             <option value="Married">Married</option>
                                             <option value="divoced">Divoced</option>
                                         </select>
+                                        <span class="text-danger fw-bold"><?php echo $marital_statusErr;?></span>
                                     </div>
                                     <div class="col-md-4">
                                         <label for=""> Gender</label>
@@ -234,6 +241,7 @@
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                         </select>
+                                        <span class="text-danger fw-bold"><?php echo $genderErr;?></span>
                                     </div>
                                     
                                   
@@ -247,16 +255,21 @@
                                     <div class="col-md-4">
                                         <label for="">Tel. No</label>
                                         <input type="text" value="<?php echo  $phonenumber2 ?>" name="phone" class="form-control">
+                                        <span class="text-danger fw-bold"><?php echo $phonenumberErr;?></span>
+                                        <span class="text-danger fw-bold"><?php echo $phonenumberErrv;?></span>
 
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">E-mail address</label>
-                                        <input value="<?php echo  $email2 ?>" name="email" type="email" class="form-control">
+                                        <input value="<?php echo  $email2 ?>" name="email" type="text" class="form-control">
+                                        <span class="text-danger fw-bold"><?php echo $emailErr;?></span>
+                                        <span class="text-danger fw-bold"><?php echo $emailErrv;?></span>
                                         
                                     </div>
                                     <div class="col-md-4">
                                         <label for="">Current residence address</label>
                                         <input type="text" value="<?php echo  $current_address2 ?>" name="currentaddress" class="form-control">
+                                        <span class="text-danger fw-bold"><?php echo $current_addressErr;?></span>
 
                                 
                                     </div>

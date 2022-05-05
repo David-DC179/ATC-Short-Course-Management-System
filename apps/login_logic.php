@@ -1,8 +1,8 @@
 <?php 
-
+session_start();
 require "./function/sanitalization.php";
 require "./database/conncetion.php";
-   session_start();
+   
    require "./function/login.php";
 
     $errors = array();

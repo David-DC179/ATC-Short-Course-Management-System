@@ -29,8 +29,8 @@
         
 
             
-        $first_nameErr = $middle_nameErr = $last_nameErr = $date_of_birthErr = $place_of_birthErr = $nationalityErr = $marital_statusErr = $genderErr = $phonenumberErr = $emailErr = $current_addressErr ="";
-        $first_name = $middle_name = $last_name = $date_of_birth = $place_of_birth = $nationality = $marital_status = $gender = $phonenumber = $email = $current_address  = "";
+        $first_nameErr = $middle_nameErr = $last_nameErr = $date_of_birthErr = $place_of_birthErr = $nationalityErr = $marital_statusErr = $genderErr = $phonenumberErr = $emailErr = $phonenumberErrv = $emailErrv = $current_addressErr ="";
+        $first_name = $middle_name = $last_name = $date_of_birth = $place_of_birth = $nationality = $marital_status = $gender = $phonenumber1 = $email = $current_address  = "";
         if(isset($_POST['update'])){
             $first_name1 = mysqli_real_escape_string($conn, dataSanitizations($_POST['firstname']));
             $middle_name1 = mysqli_real_escape_string($conn, dataSanitizations($_POST['middlename']));
@@ -46,22 +46,7 @@
             $current_address1 = mysqli_real_escape_string($conn, dataSanitizations($_POST['currentaddress']));
            
 
-            // $name = $students['first_name']; 
-            // $middle = $students['middle_name']; 
-            // $last = $students['last_name']; 
-            // $gender = $students['gender']; 
-            // $batch = $students['batch_id'];
-            // $status = $students['status'];
-            // $payment = $students['payment'];
-
-           
-
-                // $selectc1 = "SELECT id FROM courses WHERE name='$course'";
-                //  $resultc1 = mysqli_query($conn , $selectc1);
-
-                // $rowc1 = mysqli_fetch_assoc($resultc1);
-                // $courses = $rowc1['id'];
-
+       
 
                 if(empty($first_name1)){
                     $first_nameErr = "firstname is required";
@@ -103,15 +88,36 @@
                     
                 }
 
-                if(empty($phonenumber1)){
-                    $phonenumberErr = "Phonenumber is required";
-                    
-                }
+                if(!empty($phonenumber1)){
 
-                if(empty($email1)){
-                    $emailErr = "Email address is required";
+                    if(!filter_var($phonenumber1,FILTER_VALIDATE_INT)){
+                        $phonenumberErrv  = "Invalid Phone number ";
+    
+                    }
+
+                  
+                    
                     
                 }
+                else{
+                    $phonenumberErr = "Phonenumber is required";
+              }
+
+
+                if(!empty($email1)){
+
+                    if(!filter_var($email1,FILTER_VALIDATE_EMAIL)){
+                        $emailErrv = "Invalid Email Address";
+    
+                    }
+    
+                   
+                    
+                }
+                else{
+                    $emailErr = "Email address is required";
+              }
+
 
                 if(empty($current_address1)){
                     $current_addressErr = "Current address is required";

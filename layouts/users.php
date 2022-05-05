@@ -176,14 +176,22 @@
                                       
 
                                             
+                        
+                                        if($role == '1' && $status2 ='Actives'){
+                   
+                                           
                                           
                                             $select = "SELECT * FROM users where role <> '1' and role <> '$role' ";
                                             $result = mysqli_query($conn,$select);
-
-                                           
-
-
                                             $row = mysqli_num_rows($result);
+                                        }
+
+                                            if($role == '2' ){
+                                                $select = "SELECT * FROM users where role = '3' ";
+                                            $result = mysqli_query($conn,$select);
+                                            $row = mysqli_num_rows($result);
+
+                                            }
 
 
 
@@ -219,6 +227,7 @@
 
                                                     $rowr = mysqli_fetch_assoc($resultr);
                                                     $role = $rowr['name'];
+                                                    
 
 
                                                     
@@ -258,6 +267,8 @@
 
                                                 
                                             }
+
+                                        
                              
                                             ?>
 

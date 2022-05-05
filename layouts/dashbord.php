@@ -106,6 +106,7 @@ session_start();
             <div class="dashbord col-md-12 ">
                 
                 <div class="row justify-content-center" >
+         
                     
                                     <a href="./students.php" class="col-md-2  m-3 text-decoration-none text-dark fw-bold ">
                                         <div class="h " style="text-align: center; background-color:#E9F9EF;  border-top: 5px solid grey;
@@ -118,16 +119,7 @@ session_start();
                                     </div>
                                 </a>
                   
-                                <a href="./instructors.php" class="col-md-2  m-3 text-decoration-none text-dark fw-bold ">
-                                    <div class="" style="text-align: center; background-color:#E9F9EF;  border-top: 5px solid grey;
-                                        padding: 10px;
-                                        border-radius: 50px;">
-                                        
-                                            <img src="../image/batche2.jfif" class="image rounded-pill"  width="103" height="102" alt="" srcset="">
-                                            <caption>INSTRUCTORS</caption>
-                                        
-                                    </div> 
-                                </a>   
+                            
                    
                                 <a href="./course.php" class="col-md-2  m-3 text-decoration-none text-dark fw-bold ">   
                                     <div class="" style="text-align: center; background-color:#E9F9EF;  border-top: 5px solid grey;
@@ -151,14 +143,8 @@ session_start();
                                         
                                     </div>  
                                 </a>
-                    
-                </div>
-                
 
-       
-
-                <div class="row justify-content-center">
-
+                                
                                 <a href="./departiment.php" class="col-md-2  m-3 text-decoration-none text-dark fw-bold ">
                                     <div class="" style="text-align: center; background-color:#E9F9EF;  border-top: 5px solid grey;
                                     padding: 10px;
@@ -170,6 +156,14 @@ session_start();
                                         
                                     </div>
                                 </a>
+                    
+                </div>
+                
+
+       
+
+                <div class="row justify-content-center">
+
                     
                     
                                     <a href="../layouts/payment.php" class="col-md-2  m-3 text-decoration-none text-dark fw-bold ">

@@ -83,7 +83,7 @@ if(isset($_POST['update'])){
         elseif($namee  &&  $courses && $instructor && $start_date1 && $finish_date1){
             // die($namee.$courses.$instructor.$start_date.$finish_date);
 
-            $update = "UPDATE batches SET name='$namee',course=$courses, instractor='$instractor', start_date='$start_date', finish_date='$finish_date'";
+            $update = "UPDATE batches SET name='$namee',course=$courses, instractor='$instractor', start_date='$start_date', finish_date='$finish_date' WHERE id=$id";
 
             $query = mysqli_query($conn,$update);
       

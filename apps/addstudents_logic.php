@@ -15,7 +15,7 @@
 // payment
 
 
-        $first_nameErr = $middle_nameErr = $last_nameErr = $date_of_birthErr = $place_of_birthErr = $nationalityErr = $marital_statusErr = $genderErr = $phonenumberErr = $emailErr = $current_addressErr ="";
+        $first_nameErr = $middle_nameErr = $last_nameErr = $date_of_birthErr = $place_of_birthErr = $nationalityErr = $marital_statusErr = $genderErr = $phonenumberErr = $emailErr = $phonenumberErrv = $emailErrv = $current_addressErr ="";
         $first_name = $middle_name = $last_name = $date_of_birth = $place_of_birth = $nationality = $marital_status = $gender = $phonenumber = $email = $current_address  = "";
         if(isset($_POST['submit'])){
             $first_name = mysqli_real_escape_string($conn, dataSanitizations($_POST['firstname']));
@@ -42,11 +42,11 @@
 
            
 
-                // $selectc1 = "SELECT id FROM courses WHERE name='$course'";
-                //  $resultc1 = mysqli_query($conn , $selectc1);
+                $selectc1 = "SELECT id FROM courses WHERE name='$course'";
+                 $resultc1 = mysqli_query($conn , $selectc1);
 
-                // $rowc1 = mysqli_fetch_assoc($resultc1);
-                // $courses = $rowc1['id'];
+                $rowc1 = mysqli_fetch_assoc($resultc1);
+                $courses = $rowc1['id'];
 
 
                 if(empty($first_name)){
@@ -89,16 +89,37 @@
                     
                 }
 
-                if(empty($phonenumber)){
+                if(!empty($phonenumber)){
+
+                    if(!filter_var($phonenumber,FILTER_VALIDATE_INT)){
+                        $phonenumberErrv  = "Invalid Phone number ";
+    
+                    }
+
+                  
+                    
+                    
+                }
+                else{
                     $phonenumberErr = "Phonenumber is required";
+              }
+
+
+                if(!empty($email)){
+
+                    if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
+                        $emailErrv = "Invalid Email Address";
+    
+                    }
+    
+                   
                     
                 }
-
-                if(empty($email)){
+                else{
                     $emailErr = "Email address is required";
-                    
-                }
+              }
 
+            
                 if(empty($current_address)){
                     $current_addressErr = "Current address is required";
                     

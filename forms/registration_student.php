@@ -238,11 +238,13 @@ require "../apps/addstudents_logic.php";
                                     <label for="">Tel. No</label>
                                     <input type="text" name="phone" placeholder="0764063426" class="form-control">
                                     <span class="text-danger fw-bold"><?php echo $phonenumberErr;?></span>
+                                    <span class="text-danger fw-bold"><?php echo $phonenumberErrv;?></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">E-mail address</label>
-                                    <input type="email" name="email" placeholder="davidchristopher@gmail.com" class="form-control">
+                                    <input type="text" name="email" placeholder="davidchristopher@gmail.com" class="form-control">
                                     <span class="text-danger fw-bold"><?php echo $emailErr;?></span>
+                                    <span class="text-danger fw-bold"><?php echo $emailErrv;?></span>
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Current residence address</label>
