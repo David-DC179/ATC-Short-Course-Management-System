@@ -199,6 +199,7 @@
                                             
                                             <th>START DATE</th>
                                             <th>FINISH DATE</th>
+                                            <th>STATUS</th>
                                             <th>ACTION</th>
                                         </thead>
 
@@ -212,6 +213,7 @@
                                                 $instructor = $batch['instractor']; 
                                                 $start_date = $batch['start_date']; 
                                                 $finish_date = $batch['finish_date']; 
+                                                $status = $batch['status'];
                                                 // $departiment_id =$batch['departiment_id'];
 
                                                 // $selectd = "SELECT * FROM departiments WHERE id=$departiment_id";
@@ -236,6 +238,24 @@
                                                 <td><?php echo $instructor?></td>
                                                 <td><?php echo $start_date?></td>
                                                 <td><?php echo $finish_date?></td>
+                                                <td ><a href="../apps/activation.php?activationbatch=<?php echo $batch['id'];?>" name="update">
+                                                    <?php 
+                                                        if($status==='active'){?>
+
+                                                            <button class="badge m-1 bg-success">Active</button>
+                                                                    <?php
+
+                                                        }
+                                                        elseif($status ==='Complete'){?>
+                                                            <button class="badge m-1 bg-info"> Complete</button>
+
+                                                    <?php }
+                                                    else{?>
+                                                             <button class="badge m-1 bg-warning text-dark"> Pending</button>
+
+                                                    <?php  }
+                                                    ?>
+                                                    </a></td>
                                                 <td><a href="../updates/update_batch.php?update=<?php echo $batch['id'];?>" name="update"><i class="fs-4  bi-pencil-square text-warning fw-bold"></i></a></td>
 
                                                 </tr>

@@ -96,7 +96,7 @@ require "./database/conncetion.php";
                      
                 }
                 else{
-                    array_push($errors, "Your account or password is incorrect!!,If you don't remember contact your admin");
+                    array_push($errors, "Your account or password is incorrect!!,If you don't remember contact your adimn");
                 }
             }else{
                 array_push($errors, "Invalid credentials");

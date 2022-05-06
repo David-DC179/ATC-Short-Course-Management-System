@@ -1,7 +1,12 @@
 <?php
   session_start();
+
+  
   require "../function/login.php";
   require "../apps/sesseion.php";
+
+
+  
 ?>
 
 <!DOCTYPE html>
@@ -151,7 +156,7 @@
                             <div class="row">
                                 <div class="container">
                                     <div class="float-md-start">
-                                        <h3 class="h3"> LIST OF COURSES</h3>
+                                        <h3 class="h3"> LIST OF COURSES  </h3>  <?php if(isset($_GET['msg'])) echo $_GET['msg'] ?>    
                                     </div>
                                     <div class="float-md-end">
                                     <input class="form-controme-3  rounded-pill" type="search" placeholder="Search" aria-label="Search">
@@ -167,7 +172,7 @@
 
                                             
                                           
-                                            $select = "SELECT * FROM courses ";
+                                            $select = "SELECT * FROM courses WHERE deletes = 'Active' ";
                                             $result = mysqli_query($conn,$select);
 
                                             $row = mysqli_num_rows($result);
@@ -206,7 +211,7 @@
                                                     <td colspan="2">
                                                         <a href="../updates/update_course.php?update=<?php echo $courses['id'];?>" name="update"><i class="fs-4  bi-pencil-square text-warning fw-bold"></i></a>
                                                     &nbsp; &nbsp; &nbsp;
-                                                        <i class="fs-4  bi-trash text-danger fw-bold " width="16" height="16"></i>
+                                                    <a href="../apps/delete.php?deletecourse=<?php echo $courses['id'];?>"> <i class="fs-4  bi-trash text-danger fw-bold " width="16" height="16"></i>
                                                     </td>
                                                 
                                                 </tr>
@@ -225,6 +230,8 @@
                                   
                                 </table>
                                 <div><?php echo $row." rows are "."inserted"?></div>
+                                <br>
+                              
 
                             </div>
                       

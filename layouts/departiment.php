@@ -170,7 +170,7 @@
 
                                             
                                           
-                                            $select = "SELECT * FROM departiments ";
+                                            $select = "SELECT * FROM departiments WHERE deletes='active' ";
                                             $result = mysqli_query($conn,$select);
 
                                             $row = mysqli_num_rows($result);
@@ -196,7 +196,7 @@
                                                    <td colspan="2">
                                                        <a href="../updates/update_departiment.php?update=<?php echo $departiment['id'];?>" name="update"><i class="fs-4  bi-pencil-square text-warning fw-bold"></i></a>
                                                       &nbsp; &nbsp; &nbsp;
-                                                       <i class="fs-4  bi-trash text-danger fw-bold " width="16" height="16"></i>
+                                                     <a href="../apps/delete.php?deletedepartiment=<?php echo $departiment['id'];?>" ><i class="fs-4  bi-trash text-danger fw-bold " width="16" height="16"></i>
                                                     </td>
                                                 
                                                 </tr>

@@ -282,7 +282,8 @@
                                 </table>
                      
 
-                                <div>Rows <?php echo $row." "."Inserted".$rowErr; ?></div>
+                                <div>Rows <?php echo $row." "."Inserted".$rowErr; ?> </div>
+                                
 
                             </div>
                       
