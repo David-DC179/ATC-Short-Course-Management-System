@@ -17,6 +17,7 @@ require "../apps/addbatch_logic.php";
     <link rel="shortcut icon" href="../image/logo.png">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
+ 
 </head>
 
 <body class="container-fluid   mb-5" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;" >
@@ -229,13 +230,13 @@ require "../apps/addbatch_logic.php";
                               <label for="">Duration </label>
                                 <div class="col-md-4">
                                     <label for="">Start Date</label>  
-                                    <input type="date" name="startdate" class="form-control">
+                                    <input type="date" id="date1" name="startdate" class="date form-control">
                                     <span class="text-danger fw-bold"><?php echo $start_dateErr;?></span>
                                 </div>
 
                                 <div class="col-md-4">
                                     <label for="">Finish Date</label>  
-                                    <input type="date" name="finishdate" class="form-control">
+                                    <input type="date" id="date2" name="finishdate" class="date form-control">
                                     <span class="text-danger fw-bold"><?php echo $finish_dateErr;?></span>
                                 </div>
                                 
@@ -315,5 +316,28 @@ require "../apps/addbatch_logic.php";
         
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var todayDate = new Date();
+        var month = todayDate.getMonth() + 1;
+        var year = todayDate.getUTCFullYear();
+        var tdate = todayDate.getDate();
+
+        if(month < 10){
+            month = "0" + month;
+        }
+        if(tdate < 10){
+            tdate = "0" + tdate;
+        }
+
+        var minDate = year + "-" + month + "-" + tdate;
+
+
+        document.querySelector("#date1, #date2").setAttribute("min",minDate);
+        console.log(minDate);
+        document.getElementById("date2").setAttribute("min",minDate);
+        console.log(minDate);
+
+    </script>
+  
 </body>
 </html>

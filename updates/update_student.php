@@ -315,164 +315,197 @@
                         </div>
 
                        <!-- end of section a -->
+                       <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne" style="background-color: #E2FECF;">
+                                <button class="accordion-button collapsed"style="background-color: #E2FECF;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                <h4>B. PARENTS/GUARDIAN INFORMATION</h4>
+                                </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body" style="background-color: #E2FECF;">
+                                <div class="d-body mt-3">
+                           
+                           <div class="form-group col-md-12">
+                               <div class="row">
+                                   <div class="col-md-4">
+                                       <label for="">First Name</label>
+                                       <input type="text" class="form-control">
+                                   </div>
+                                   <div class="col-md-4">
+                                       <label for="">Middle Name</label>
+                                       <input type="text" class="form-control">
+                                   </div>
+                                   <div class="col-md-4">
+                                       <label for="">Last Name</label>
+                                       <input type="text" class="form-control">
+                                   </div>
+                               </div>
+                               
+                               
+                           </div>
 
+                           <div class="form-group col-md-12">
+                               <div class="row">
+                                   <label for="">Home address</label>
+                                   <div class="col-md-12 ms-2">
+
+                                       <div class="row ">
+                                           
+                                           <div class="col-md-4">
+                                               <label for="">Ward</label>
+                                               <input type="text" class="form-control">
+                                           </div>
+                                           <div class="col-md-4">
+                                               <label for="">Street</label>
+                                               <input type="text" class="form-control">
+                                           </div>
+                                           <div class="col-md-4">
+                                               <label for="">Regional</label>
+                                               <input type="text" class="form-control">
+                                           </div>
+                                           
+                                       </div>
+                                   
+                                       
+                                   </div>
+                                   
+                               </div>
+                               
+                               
+                           </div>
+
+                           <div class="form-group col-md-12">
+                               <div class="row">
+                                   <div class="col-md-4">
+                                       <label for=""> Tel. No:</label>
+                                       <input type="text" class="form-control">
+                                   </div>                 
+                                   <div class="col-md-4">
+                                       <label for="">Occupation</label>
+                                       <input type="text" class="form-control">
+                                   </div>
+                                   <div class="col-md-4">
+                                       <label for="">Relationship</label>
+                                       <input type="text" class="form-control">
+                                   </div>
+                               </div>
+                               
+                               
+                           </div>
+
+
+                               
+     
+                           
+                       </div>
+                       <!-- end of section b -->
+                                    
+                                </div>
+                                </div>
+                    </div>
+
+                    <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                <button class="accordion-button collapsed" style="background-color: #E2FECF;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                <h4>C. NEXT OF KIN INFORMATION</h4>
+                                </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body " style="background-color: #E2FECF;">
+                                    
                         <div class="d-body mt-3">
-                            <h4>B. PARENTS/GUARDIAN INFORMATION</h4>
-                            <div class="form-group col-md-12">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="">First Name</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">Middle Name</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">Last Name</label>
-                                        <input type="text" class="form-control">
-                                    </div>
+                        
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for="">First Name</label>
+                                    <input type="text" class="form-control">
                                 </div>
-                                
-                                
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <div class="row">
-                                    <label for="">Home address</label>
-                                    <div class="col-md-12 ms-2">
-
-                                        <div class="row ">
-                                            
-                                            <div class="col-md-4">
-                                                <label for="">Ward</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="">Street</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="">Regional</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            
-                                        </div>
-                                    
-                                        
-                                    </div>
-                                    
+                                <div class="col-md-4">
+                                    <label for="">Middle Name</label>
+                                    <input type="text" class="form-control">
                                 </div>
-                                
-                                
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label for=""> Tel. No:</label>
-                                        <input type="text" class="form-control">
-                                    </div>                 
-                                    <div class="col-md-4">
-                                        <label for="">Occupation</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">Relationship</label>
-                                        <input type="text" class="form-control">
-                                    </div>
+                                <div class="col-md-4">
+                                    <label for="">Last Name</label>
+                                    <input type="text" class="form-control">
                                 </div>
-                                
-                                
                             </div>
-
-
-                                
-      
                             
-                        </div>
-                        <!-- end of section b -->
-
-                        <div class="d-body mt-3">
-                            <h4>C. NEXT OF KIN INFORMATION</h4>
-                            <div class="form-group col-md-12">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label for="">First Name</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">Middle Name</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">Last Name</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                
-                                
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <div class="row">
-                                    <label for="">Home address</label>
-                                    <div class="col-md-12 ms-2">
-
-                                        <div class="row ">
-                                            
-                                            <div class="col-md-4">
-                                                <label for="">Ward</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="">Street</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="">Regional</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            
-                                        </div>
-                                    
-                                        
-                                    </div>
-                                    
-                                </div>
-                                
-                                
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label for=""> Tel. No:</label>
-                                        <input type="text" class="form-control">
-                                    </div>                 
-                                    <div class="col-md-4">
-                                        <label for="">Occupation</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="">Relationship</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                
-                                
-                            </div>
-
-
-               
-
                             
                         </div>
 
-                                    <!-- end of sectionc -->
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <label for="">Home address</label>
+                                <div class="col-md-12 ms-2">
 
-                        <div class="d-body mt-3">
-                            <h4>D. STUDENT’S EDUCATION BACKGROUND</h4>
+                                    <div class="row ">
+                                        
+                                        <div class="col-md-4">
+                                            <label for="">Ward</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="">Street</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="">Regional</label>
+                                            <input type="text" class="form-control">
+                                        </div>
+                                        
+                                    </div>
+                                
+                                    
+                                </div>
+                                
+                            </div>
+                            
+                            
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label for=""> Tel. No:</label>
+                                    <input type="text" class="form-control">
+                                </div>                 
+                                <div class="col-md-4">
+                                    <label for="">Occupation</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="">Relationship</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+
+
+           
+
+                        
+                    </div>
+
+                                <!-- end of sectionc -->    
+                                
+                            </div>
+                                </div>
+                    </div>
+
+                    <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                <button class="accordion-button collapsed" style="background-color: #E2FECF;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                <h4>D. STUDENT’S EDUCATION BACKGROUND</h4>
+                                </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body" style="background-color: #E2FECF;">
+                                <div class="d-body mt-3">
+                            
                             <div class="form-group col-md-12 mt-3">
                                 <h5>➢ PRIMARY SCHOOL INFORMATION</h5>
                                 <div class="row">
@@ -644,14 +677,22 @@
                              <!-- end of section d -->
                                 
 
+  
+                                
+                            </div>
+                                </div>
+                    </div>
 
-                        </div>
-
-       
-
-                        
-                        <div class="d-body mt-3">
-                            <h4>E. EMPLOYMENT RECORDS</h4>
+                    <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingFour">
+                                <button class="accordion-button collapsed" style="background-color: #E2FECF;" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                <h4>E. EMPLOYMENT RECORDS</h4>
+                                </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body" style="background-color: #E2FECF;"> 
+                                <div class="d-body mt-3">
+                            
                             <div class="form-group col-md-12">
                                 <div class="row">
                                     <div class="col-md-8">
@@ -699,7 +740,19 @@
 
                            
 
-                            <div class="form-group col-md-12">
+                       
+
+
+               
+
+                            
+                        </div>    
+                                </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="form-group col-md-12">
                                 
                                 <div class="col-md-4">
                                     <label for=""></label>
@@ -711,11 +764,15 @@
 
                             </div>
 
+                        
 
-               
 
-                            
-                        </div>
+                
+
+       
+
+                        
+                
             </form>
 
                     </div>

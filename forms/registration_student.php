@@ -186,7 +186,7 @@ require "../apps/addstudents_logic.php";
                             <div class="row">
                                 <div class="col-md-4">
                                     <label for="">Date of Birth</label>
-                                    <input type="date" name="DOB" placeholder="" class="form-control">
+                                    <input type="date" name="DOB" placeholder="" id="date" class="form-control">
                                     <span class="text-danger fw-bold"><?php echo $date_of_birthErr;?></span>
                                 </div>
                                 <div class="col-md-4">
@@ -225,7 +225,16 @@ require "../apps/addstudents_logic.php";
                                     </select>
                                     <span class="text-danger fw-bold"><?php echo $genderErr;?></span>
                                 </div>
-                                
+<!-- 
+                                <div class="col-md-4">
+                                <div class="input-group date" data-provide="datepicker">
+                                    <input type="text" class="form-control">
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                </div> -->
+
+                       
                              
                             </div>
                             
@@ -326,5 +335,7 @@ require "../apps/addstudents_logic.php";
         
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/bootstrap/js/date.js"></script>
 </body>
 </html>
