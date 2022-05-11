@@ -16,8 +16,11 @@
 
 
         $first_nameErr = $middle_nameErr = $last_nameErr = $date_of_birthErr = $place_of_birthErr = $nationalityErr = $marital_statusErr = $genderErr = $phonenumberErr = $emailErr = $phonenumberErrv = $emailErrv = $current_addressErr ="";
-        $first_name = $middle_name = $last_name = $date_of_birth = $place_of_birth = $nationality = $marital_status = $gender = $phonenumber = $email = $current_address  = "";
+$id = $first_name = $middle_name = $last_name = $date_of_birth = $place_of_birth = $nationality = $marital_status = $gender = $phonenumber = $email = $current_address  = "";
         if(isset($_POST['submit'])){
+            $id = $_POST['select'];
+
+            die($id);
             $first_name = mysqli_real_escape_string($conn, dataSanitizations($_POST['firstname']));
             $middle_name = mysqli_real_escape_string($conn, dataSanitizations($_POST['middlename']));
             $last_name = mysqli_real_escape_string($conn, dataSanitizations($_POST['lastname']));

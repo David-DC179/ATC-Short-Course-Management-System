@@ -17,6 +17,38 @@ require "../apps/addbatch_logic.php";
     <link rel="shortcut icon" href="../image/logo.png">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/bootstrap/icons/font/bootstrap-icons.css">
+    <style>
+        body {
+             background: #8fb0a9;
+        }
+/* .table-fixed {  */
+    /* margin-left: 25rem; */
+                 /* margin-top: 10rem;} */
+
+.table-responsive thead,.table-responsive thead>th { background: #4d7275; color: #fff;}
+.table-fixed tbody tr td { background: #fff;}
+
+.table-responsive>thead>tr>th {
+    border: 0 !important;
+}
+.table-responsive>tbody>tr>td:last-child { 
+    border-right: 0;}
+.table-responsive tbody td,.table-responsive thead>tr>th { 
+    /* float: left;  */
+    font-size: 12px; 
+    padding-left: 20px !important;
+}
+.table-responsive .col { 
+    width:25%;
+} 
+.table-responsive  {
+    display: block;
+     height: 300px; 
+    overflow-y: auto;}
+.table-responsive tr { 
+    display: block;}
+
+    </style>
  
 </head>
 
@@ -59,7 +91,7 @@ require "../apps/addbatch_logic.php";
 
                             
                             <div class="col-md-12 ms-5 ">
-                                <a href="../layouts/students.ph" class="btn btn-outline-dark">MANAGE STUDENTS  <img src="../image/student.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
+                                <a href="../layouts/students.php" class="btn btn-outline-dark">MANAGE STUDENTS  <img src="../image/student.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
                                 <a href="../layouts/course.php" class="btn btn-outline-dark"> COURSES <img src="../image/course2.png" class="image rounded-pill" width="32" height="30"  alt="" srcset=""></a>
                                 <a href="../layouts/instructors.php" class="btn btn-outline-dark"> INSTRUCTORS <img src="../image/batch.png" class="image rounded-pill"  width="32" height="30"  alt="" srcset=""></a>
                                 <a href="../layouts/departiment.php" class="btn btn-outline-dark"> DEPARTIMENTS <img src="../image/dep2.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
@@ -154,29 +186,124 @@ require "../apps/addbatch_logic.php";
                             <div class="row">
                             <div class="container">
       <div class="row justify-content-">
-            <div class="col-md-10 ">
+            <div class="col-md-12    ">
 
           <h3>CREATE NEW BATCH</h3>
                 <div class="ms-5">
+                    <div class="row ">
+                        <div class="card col-md-6">
+                            <div class="card-header">Select Students
+                            <input class="float-md-end form-controme-3  rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                            </div>
+                            <div class="card-body">
+
+                <table class="table  table-striped table-condensed table-responsive">
+                <?php 
+                                            $selects = "SELECT * FROM students WHERE status <> 'Active'";
+                                            $results = mysqli_query($conn , $selects);
+                                    ?>
+                     <thead> 
+                         <tr>
+                         <th class="col" colspan="3" > FULL NAME</th>
+                         <th class="col" colspan="2">STATUS</th>
+                         <th class="col">MARK</th> 
+                             
+                        </tr> 
+                    </thead>
+                    <?php                                                             $sn = 1;
+                                                            while($students = mysqli_fetch_assoc($results) ){?>
+                                                            <tbody style="text-align:center">
+                                                            <tr>
+                                                            
+                                                            <?php
+                                                                $studentid = $students['id'];
+                                                                $studentname = $students['first_name']; 
+                                                                $middle = $students['middle_name']; 
+                                                                $last = $students['last_name']; 
+                                                                $gender = $students['gender']; 
+                                                                $batch = $students['batch_id'];
+                                                                $statusi = $students['status'];
+                                                                $payment = $students['payment'];
+                                                            
+                                                            ?>
+                                                           
+                            
+                                <td class="col" colspan="3">
+                                    <?php  echo $studentname." ".$middle." ".$last; ?>
+                                    
+                                </td>
+                                <td class="col" colspan="2"> <?php 
+                                                        if($statusi == 'Active'){
+                                                            echo " <span class='badge bg-success'> Active</span>";
+
+                                                        }
+
+        
+                                                        if($statusi == 'Potential'){
+                                                            
+                                                            echo "<span class='badge bg-warning'>Pontential</span>";
+                                                        }
+
+                                                        echo   "&nbsp;";
+
+                                                        if($payment == 'Payed'){
+                                                            echo "<span class='badge bg-success'> Payed</span>";
+
+                                                        }
+
+                                                        if($payment == 'Pending'){
+                                                            echo "<span class='badge bg-danger'> Not Payed</span>";
+
+                                                        }
+                                                      
+                                                      
+                                                       
+                                                        // else{
+                                                        //     echo "<span class='badge bg-danger'> Not Payed</span>";
+                                                        // }
+                                                        
+                                                        
+
+                                                    ?>
+                                
+                           
+                            </td>
+                                <td class="col"><input type="checkbox" value="<?php $studentid ?>" name="select" id=""></td>
+                            </tr>
+
+
+                                                            <?php }?>
+                        
+ 
+</tbody>
+</table>
+  
+
+                               
+
+                </div>
+                        </div>
+                       
+               
                    
-                    <div class="card-body">
+                        <div class="card-body col-md-6">
                         <form action="" method="post">
 
                         
                         
                         <div class="form-group col-md-12">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-">
                                     <label for="">Batch name</label>
                                     <input type="text" name="name" placeholder="June batch 2 " class="form-control">
                                     <span class="text-danger fw-bold"><?php echo $nameErr;?></span>
                                 </div>
 
                                 
-                                    <div class="col-md-4">
+                                    <div class="col-md-">
                                 <label for=""> Course</label>
                                 <select name="course" id="" class="form-control">
-                                <option value=""> Select Coure</option>
+                                <option value=""> Select Course</option>
                                 
     
                                     <?php
@@ -213,7 +340,7 @@ require "../apps/addbatch_logic.php";
                         <div class="form-group col-md-12">
                             <div class="row">
                              
-                                <div class="col-md-4">
+                                <div class="col-md-">
                                     <label for=""> Instructor</label>
                                     <input type="text" placeholder=" Mr DC" name="instructor" class="form-control">
                                     <span class="text-danger fw-bold"><?php echo $instructorErr;?></span>
