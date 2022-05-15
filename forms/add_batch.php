@@ -190,6 +190,7 @@ require "../apps/addbatch_logic.php";
 
           <h3>CREATE NEW BATCH</h3>
                 <div class="ms-5">
+                <form action="" method="post">
                     <div class="row ">
                         <div class="card col-md-6">
                             <div class="card-header">Select Students
@@ -245,6 +246,7 @@ require "../apps/addbatch_logic.php";
                                                         }
 
                                                         echo   "&nbsp;";
+                                                        // echo $studentid ;
 
                                                         if($payment == 'Payed'){
                                                             echo "<span class='badge bg-success'> Payed</span>";
@@ -253,6 +255,7 @@ require "../apps/addbatch_logic.php";
 
                                                         if($payment == 'Pending'){
                                                             echo "<span class='badge bg-danger'> Not Payed</span>";
+
 
                                                         }
                                                       
@@ -268,12 +271,19 @@ require "../apps/addbatch_logic.php";
                                 
                            
                             </td>
-                                <td class="col"><input type="checkbox" value="<?php $studentid ?>" name="select" id=""></td>
+                            <!-- <td class="col"><input type="checkbox" href="../apps/addbatch_logic.php?submit=<?php echo $students['id'];?>" name="studentid" id=""></td> -->
+                            
+                            <!-- <td ><a href="../apps/addbatch_logic.php?studentid=<?php echo $students['id'];?>" name="studentid"> -->
+                                <td class="col"><input  type="checkbox" value="<?php echo $studentid ?>" name="studentid[]" id=""></td>
                             </tr>
 
 
-                                                            <?php }?>
-                        
+                                                            <?php } ?>
+                                                            <span class="text-danger fw-bold"><?php echo $iddErr;?></span>
+
+                                                            
+
+                            
  
 </tbody>
 </table>
@@ -287,7 +297,7 @@ require "../apps/addbatch_logic.php";
                
                    
                         <div class="card-body col-md-6">
-                        <form action="" method="post">
+                        
 
                         
                         

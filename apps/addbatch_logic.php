@@ -7,14 +7,28 @@
    require "../database/conncetion.php";
    require "../function/sanitalization.php";
 
-        $nameErr = $courseErr = $instructorErr = $start_dateErr = $finish_dateErr = $rowErr= "";
-        $namee = $course = $instructor = $start_date = $finish_date = $row= "";
-        if(isset($_POST['submit'])){
+
+
+  
+
+        $nameErr = $courseErr = $instructorErr = $start_dateErr = $finish_dateErr = $iddErr="";                                                                                                                                                                                                                         $iddErr ="";
+        $namee = $course = $instructor = $start_date = $finish_date = $id= "";
+
+           
+if(isset($_POST['submit'])){
+
+
+
+            
+         
             $namee = mysqli_real_escape_string($conn, dataSanitizations($_POST['name']));
             $course = mysqli_real_escape_string($conn, dataSanitizations($_POST['course']));
             $instructor = mysqli_real_escape_string($conn, dataSanitizations($_POST['instructor']));
             $start_date = mysqli_real_escape_string($conn, dataSanitizations($_POST['startdate']));
             $finish_date = mysqli_real_escape_string($conn, dataSanitizations($_POST['finishdate']));
+
+
+
 
            
 
@@ -46,14 +60,14 @@
                 }
         
                 if(empty($finish_date)){
-                    $finish_dateErr = "Finish date is required";
+                   
                     
                 }
-        
+
+                        // insert batch information in db
                 
         
                 elseif($namee  &&  $courses && $instructor && $start_date && $finish_date){
-                    // die($namee.$courses.$instructor.$start_date.$finish_date);
                    $insert = "INSERT INTO batches(name,course,instractor,start_date,finish_date) VALUES('$namee',$courses,'$instructor','$start_date','$finish_date')";
                    $query = mysqli_query($conn,$insert);
 
@@ -65,7 +79,41 @@
                    }
 
                 }
+
+                // update students whre id is selected
+
+            if($_POST['studentid']!=''){
+            
+                foreach($_POST['studentid'] as $sid){
+
+            
+            $selectstudent = "SELECT * FROM students where id =$sid";
+            $resultstudent = mysqli_query($conn , $selectstudent);
+
+           $rowstudents = mysqli_fetch_assoc($resultstudent);
+           $studentid[]= $rowstudents['id'];
+
+          
+       
+
+            $update = "UPDATE students SET status = 'Active',batch_id=3 where id in ($sid)";
+            $querystudent = mysqli_query($conn ,$update);
+
+                    if($querystudent){
+                        header("location{../layouts/batch.php");
+                    } else{
+                        echo "jaribu ten";
+                    }
+           }
+            }else{
+
+                $iddErr = "Must be select students";
+
+            }
+
+
                    
 
 
         }
+    // }
