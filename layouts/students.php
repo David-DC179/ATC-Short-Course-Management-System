@@ -29,8 +29,9 @@
                             </div>
          
                 </header>
+                
 
-                <div class="navbar navbar-light text-dark shadow-sm mt-3 mb3" style="height: auto; background-color:#B9F88E;">
+                <!-- <div class="navbar navbar-light text-dark shadow-sm mt-3 mb3" style="height: auto; background-color:#B9F88E;">
                         <div class="container">
                             <nav class="navbar-brand">
                                 <strong class="float-md-start">ATC-SCMS | STUDENT </strong>
@@ -43,7 +44,9 @@
                             </strong>
                         
                         </div>
-                </div>
+                </div> -->
+
+                
 
             </div> 
 

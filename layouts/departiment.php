@@ -1,5 +1,5 @@
 <?php 
-    require "./apps/sesseion.php";
+    require "../apps/sesseion.php";
 ?>
 
 <!DOCTYPE html>
@@ -15,43 +15,66 @@
 </head>
 <body class="container-fluid col-12" style="background-color: #E9F9EF;  padding: 10px; border-radius: 50px ;">
     
-    <div class="   mt-5 mb-5"  >
-        <div class="row justify-content-center">
-            <div class="col-md-12 mt-2">
+    <div class="   " >
+        <div class="col-md-12 mt-2">
                 <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md">
                         
                             <img class= " me-" src="../image/logo.png" width="104" height="103" alt="" srcset="">
-                            &nbsp;&nbsp;<div style="font-family: Times New Roman;">
+                            &nbsp; &nbsp; <div style="font-family: Times New Roman;">
                                <strong>  <h1 class=" h1 fw-bold" style="text-align: center; font-style:times">Arusha Technical College</h1> </strong>
                                 <h1 class="fw-bold h2" style="text-align: center;">Short Course Management System</h2> 
                             </div>
          
                 </header>
 
-                <div class="navbar navbar-light text-dark shadow-sm mt-3" style="height: auto; background-color:#B9F88E;">
-                        <div class="container">
+
+                    <div class="navbar navbar-light text-dark shadow-sm mt-3 mb-3" style="height: auto; background-color:#B9F88E;">
+                        <div class="container-fluid">
                             <nav class="navbar-brand">
-                                <strong class="float-md-start">ATC-SCMS | DEPARTIMENTS </strong>
+                                <strong class="float-md-start">ATC-SCMS |INSTRUCTORS </strong>
                                 
                                 
                             </nav>
                             <strong class="float-md-end "><?php echo $role ." : ". $name?> 
-                                <img  hreclass="image rounded-pill " src="../image/icon.png" width="50" height="50" alt=""> &nbsp;
-                                                                           
+                                <img  class="profile rounded-pill " src="../image/icon.png" width="50" height="50" alt=""> &nbsp;
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>                                            
                             </strong>
                         
                         </div>
-                </div>
+                    </div>
+                
 
-              
-                 
-            </div> 
+                <div class="collapse text-dark" id="navbarHeader" style=" background-color:#E2FECF;">
+                    <div class="container-fluid " style=" background-color:#E2FECF;">
+                        <div class="row" style=" background-color:#E2FECF;" >
+
+                            
+                            <div class="col-md-12 ms-5 ">
+                                <a href="" class="btn btn-outline-dark">MANAGE STUDENTS  <img src="../image/student.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
+                                <a href="" class="btn btn-outline-dark"> COURSE <img src="../image/course2.png" class="image rounded-pill" width="32" height="30"  alt="" srcset=""></a>
+                                <a href="" class="btn btn-outline-dark"> BATCH <img src="../image/batch.png" class="image rounded-pill"  width="32" height="30"  alt="" srcset=""></a>
+                                <a href="" class="btn btn-outline-dark"> INSTRUCTORS <img src="../image/dep2.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
+                                <a href="" class="btn btn-outline-dark"> PAYMENT <img src="../image/accoun.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
+                                <a href="" class="btn btn-outline-dark">MANAGE USERS <img src="../image/check3.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
+                                <a href="" class="btn btn-outline-dark"> REPORT <img src="../image/report.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
+                    
+                                
+                         
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                
+
+        </div>
                   
            
         
        
         
-            <div class=" container-responsive-sm col-md m-2" style="background-color: #E2FECF;" >
+        <div class=" container-responsive-sm col-md m-2" style="background-color: #E2FECF;" >
           
             <div class="row flex-nowrap mt-3 ">
                     <div class="col-auto col-md-4 col-xl-2 px-sm-2 px-0 bg- text-dark" style=" background-color:#B9F88E;">
