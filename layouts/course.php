@@ -31,7 +31,7 @@
                     <div class="navbar navbar-light text-dark shadow-sm mt-3 mb-3" style="height: auto; background-color:#B9F88E;">
                         <div class="container-fluid">
                             <nav class="navbar-brand">
-                                <strong class="float-md-start">ATC-SCMS |INSTRUCTORS </strong>
+                                <strong class="float-md-start">ATC-SCMS |COURSES </strong>
                                 
                                 
                             </nav>
@@ -53,10 +53,10 @@
                             
                             <div class="col-md-12 ms-5 ">
                                 <a href="" class="btn btn-outline-dark">MANAGE STUDENTS  <img src="../image/student.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
-                                <a href="" class="btn btn-outline-dark"> INSTRUCTORS <img src="../image/course2.png" class="image rounded-pill" width="32" height="30"  alt="" srcset=""></a>
-                                <a href="" class="btn btn-outline-dark"> BATCH <img src="../image/batch.png" class="image rounded-pill"  width="32" height="30"  alt="" srcset=""></a>
-                                <a href="" class="btn btn-outline-dark"> DEPARTIMENT <img src="../image/dep2.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
-                                <a href="" class="btn btn-outline-dark"> PAYMENT <img src="../image/accoun.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
+                                <a href="" class="btn btn-outline-dark"> INSTRUCTORS <img src="../image/batche2.jfif" class="image rounded-pill" width="32" height="30"  alt="" srcset=""></a>
+                                <a href="" class="btn btn-outline-dark"> BATCHES <img src="../image/batch.png" class="image rounded-pill"  width="32" height="30"  alt="" srcset=""></a>
+                                <a href="" class="btn btn-outline-dark"> DEPARTIMENTS <img src="../image/dep2.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
+                                <a href="" class="btn btn-outline-dark"> PAYMENTS <img src="../image/accoun.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
                                 <a href="" class="btn btn-outline-dark">MANAGE USERS <img src="../image/check3.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
                                 <a href="" class="btn btn-outline-dark"> REPORT <img src="../image/report.png" class="image rounded-pill" width="32" height="30" alt="" srcset=""></a>
                     
