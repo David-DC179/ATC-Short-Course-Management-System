@@ -104,23 +104,22 @@
                                         </li>
                   
 
-                                        <li class="btn btn-outline-success  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                        <i class="fs-4  bi-table text-dark fw-bold" width="16" height="16"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">View Courses</span> </a>
-                                        
+                                        <li>
+                                            <div class="btn btn-outline-success px-4 mt-3" style=" border: 2px solid grey; padding: 10px;">
+                                                <a href="../layouts/course.php" class="nav-link align-middle px-0">
+                                                <i class="fs-4  bi-table text-dark fw-bold" width="16" height="16"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">View Course</span>
+                                                </a>  
+                                            </div> 
                                         </li>
-                                    
 
-                                        <!-- <li class="btn btn-outline-info  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                        <i class="fs-4 bi-person-plus text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Assign Instructor</span> </a>
-                                        </li> -->
                                     
-                                        <li class="btn btn-outline-warning  mt-3 px-4" style=" border: 2px solid grey; padding: 10px;">
-                                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                                        <i class="fs-4  bi-pencil-square text-dark fw-bold"></i> <br> <span class="ms- d-none d-sm-inline text-dark fw-bold">Update Courses</span> </a>
+                                        <li>
+                                            <div class="btn btn-outline-warning px-4 mt-3" style=" border: 2px solid grey; padding: 10px;">
+                                                <a href="../updates/update_course.php" class="nav-link align-middle px-0">
+                                                <i class="fs-4  bi-pencil-square text-dark fw-bold"></i> <br> <span class="ms-1 d-none d-sm-inline text-dark fw-bold">Update Course</span>
+                                                </a>  
+                                            </div> 
                                         </li>
-                                   
                                    
                                
         
